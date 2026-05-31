@@ -129,7 +129,7 @@ export default function ArchitectSection() {
         start: "top 80%",
         end:   "center 60%",
         scrub: 0.5,
-        onUpdate(self) {
+        onUpdate(self: ScrollTrigger) {
           copyBlack.style.clipPath = buildPolygon(self.progress);
         },
       });
