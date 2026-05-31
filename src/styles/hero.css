@@ -1,0 +1,310 @@
+/* ─── Hero Section ──────────────────────────────────────────── */
+
+@import "./animations.css";
+
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #050505;
+}
+
+/* Background */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  filter: saturate(1.15) brightness(0.72);
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.55) 0%,
+    rgba(0, 0, 0, 0.25) 40%,
+    rgba(0, 0, 0, 0.25) 60%,
+    rgba(0, 0, 0, 0.75) 100%
+  );
+}
+
+.hero-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 80% 60% at 50% 70%,
+    rgba(255, 100, 20, 0.12) 0%,
+    transparent 70%
+  );
+}
+
+/* Navbar */
+.hero-nav {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.75rem 3rem;
+  animation: slide-down var(--duration-normal) var(--ease-smooth) both;
+}
+
+.hero-logo {
+  display: flex;
+  align-items: center;
+}
+
+.hero-logo-img {
+  width: auto;
+  height: 44px;
+  object-fit: contain;
+}
+
+.hero-nav-right {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.hero-lang {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 2rem;
+  padding: 0.5rem 1.1rem;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: background 200ms ease;
+}
+
+.hero-lang:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.hero-flag-img {
+  width: 32px;
+  height: 22px;
+  object-fit: cover;
+  border-radius: 3px;
+  display: block;
+  flex-shrink: 0;
+}
+
+.hero-flag-img--uk {
+  width: 27px;
+  height: 18px;
+}
+
+.hero-lang-text {
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+
+.hero-hamburger {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 7px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.35rem;
+  width: 38px;
+}
+
+.hero-hamburger span {
+  display: block;
+  width: 20px;
+  height: 2.5px;
+  background: white;
+  border-radius: 2px;
+}
+
+.hero-hamburger span:nth-child(2) {
+  width: 34px;
+}
+
+/* Centre content */
+.hero-content {
+  position: relative;
+  z-index: 10;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 1.5rem;
+}
+
+.hero-headline {
+  font-size: clamp(2rem, 5.5vw, 5rem);
+  max-width: 800px;
+  font-weight: 600;
+  line-height: 1;
+  color: white;
+  text-transform: lowercase;
+  letter-spacing: -0.03em;
+  text-shadow: 0 2px 40px rgba(0, 0, 0, 0.5);
+  animation: slide-up var(--duration-slow) var(--ease-smooth) 100ms both;
+  order: 2;
+  margin-top: 15rem;
+}
+
+/* Bottom CTA */
+.hero-cta {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 2.5rem;
+  animation: fade-in var(--duration-slow) var(--ease-gentle) 600ms both;
+  order: 1;
+}
+
+.hero-showreel {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 200ms ease;
+}
+
+.hero-showreel:hover {
+  color: white;
+}
+
+.hero-scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.4), transparent);
+  animation: fade-in 1s ease 1s both;
+}
+
+/* ── Sidebar ─────────────────────────────────────────────── */
+
+.sidebar-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  z-index: 40;
+  animation: fade-in 250ms var(--ease-gentle) both;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  inset-inline-end: 0;
+  width: min(360px, 85vw);
+  height: 100vh;
+  background: #0d0d0d;
+  border-inline-start: 1px solid rgba(255, 255, 255, 0.08);
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  padding: 2.5rem 2.5rem 3rem;
+  transform: translateX(110%);
+  transition: transform 400ms var(--ease-smooth);
+}
+
+[dir="rtl"] .sidebar {
+  transform: translateX(-110%);
+}
+
+.sidebar--open {
+  transform: translateX(0) !important;
+}
+
+.sidebar-close {
+  align-self: flex-end;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-bottom: 3rem;
+  transition: background 200ms ease;
+}
+
+.sidebar-close:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  padding: 1rem 0;
+  color: white;
+  text-decoration: none;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  opacity: 0;
+  animation: slide-up 350ms var(--ease-smooth) both;
+}
+
+.sidebar--open .sidebar-link {
+  opacity: 1;
+}
+
+/* RTL support */
+
+[dir="rtl"] .hero-headline {
+  letter-spacing: 0;
+  line-height: 1.15;
+}
+
+[dir="rtl"] .hero-showreel-icon svg {
+  transform: scaleX(-1);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .hero-nav {
+    padding: 1.25rem 1.5rem;
+  }
+
+  .hero-logo-img {
+    height: 32px;
+  }
+}

@@ -1,26 +1,324 @@
 @import "tailwindcss";
+@import "../styles/hero.css";
+@import "../styles/architect.css";
+@import "../styles/animations.css";
 
+/* ─── Design tokens ─────────────────────────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  /* Colors */
+  --color-bg: #ffffff;
+  --color-fg: #0a0a0a;
+  --color-primary: #2563eb;
+  --color-primary-hover: #1d4ed8;
+  --color-secondary: #64748b;
+  --color-muted: #f1f5f9;
+  --color-border: #e2e8f0;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Typography */
+  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), monospace;
+
+  /* Spacing scale */
+  --section-padding: clamp(4rem, 8vw, 8rem);
+
+  /* Animation */
+  --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-snappy: cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  --ease-gentle: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 200ms;
+  --duration-normal: 400ms;
+  --duration-slow: 700ms;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --color-bg: #0a0a0a;
+    --color-fg: #fafafa;
+    --color-primary: #3b82f6;
+    --color-primary-hover: #2563eb;
+    --color-secondary: #94a3b8;
+    --color-muted: #1e293b;
+    --color-border: #1e293b;
   }
 }
 
+/* ─── Base reset ─────────────────────────────────────────────── */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Reduced motion ─────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ─── Grid Section ──────────────────────────────────────────── */
+
+/* gs-wrapper mirrors StackSection .wrapper */
+.gs-wrapper {
+  margin-top: -200vh;
+  position: relative;
+  z-index: 20;
+  height: 200vh;
+}
+
+/* gs-card mirrors StackSection .card */
+.gs-card {
+  position: sticky;
+  top: 0;
+  overflow: hidden;
+  will-change: transform;
+  background: #000;
+  transform: translateY(100vh);
+}
+
+.gs-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 clamp(1.5rem, 5vw, 5rem);
+}
+
+.gs-inner {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 400px;
+}
+
+.gs-cell {
+  position: relative;
+  height: 400px;
+  overflow: hidden;
+}
+
+.gs-img {
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.gs-cell:hover .gs-img {
+  transform: scale(1.04);
+}
+
+.gs-text-cell {
+  background: #000;
+}
+
+.gs-cell:nth-child(8) .gs-heading {
+  top: 40%;
+}
+
+
+
+.gs-heading {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  width: max-content;
+  margin: 0 auto;
+  transform: translateY(-50%);
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+
+/* ─── Secret Section ────────────────────────────────────────── */
+
+.secret-scroll-space {
+  position: relative;
+  height: 200vh;
+}
+
+.secret-section {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.secret-text-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.5rem;
+}
+
+.secret-reveal-layer {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.secret-our {
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.secret-ing {
+  font-size: clamp(3rem, 10vw, 10rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+.secret-dim   { color: #444; }
+.secret-white { color: #ffffff; }
+.secret-green { color: #02E682; }
+
+/* ─── Architect Section ──────────────────────────────────────── */
+
+.architect-section {
+  background: #ffffff;
+  min-height: 150vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(5rem, 10vh, 9rem);
+  padding: clamp(6rem, 12vh, 10rem) clamp(1.5rem, 6vw, 5rem);
+  overflow: hidden;
+}
+
+.architect-headline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 1100px;
+  /* gap is controlled by GSAP */
+}
+
+.architect-word {
+  display: block;
+  font-size: clamp(2.5rem, 5.5vw, 6rem);
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  line-height: 1.15;
+  color: #0a0a0a;
+  text-transform: uppercase;
+  width: 100%;
+}
+
+.architect-word--left {
+  text-align: left;
+}
+
+.architect-word--right {
+  text-align: right;
+}
+
+.architect-word--bold {
+  font-weight: 700;
+}
+
+.architect-row {
+  display: flex;
+  align-items: center;
+  gap: clamp(2rem, 5vw, 5rem);
+  width: 100%;
+  max-width: 1200px;
+}
+
+.architect-video-wrap {
+  flex: 0 0 55%;
+  aspect-ratio: 4 / 5;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.architect-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.architect-copy {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.architect-text-reveal {
+  position: relative;
+}
+
+.architect-copy-grey {
+  color: #cccccc;
+}
+
+.architect-copy-black {
+  position: absolute;
+  inset: 0;
+  color: #0a0a0a;
+}
+
+.architect-copy-primary {
+  font-size: clamp(1.6rem, 3vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.copy-line {
+  display: block;
+}
+
+.architect-copy-secondary {
+  font-size: clamp(0.95rem, 1.3vw, 1.1rem);
+  font-weight: 400;
+  line-height: 1.7;
+  color: #4a4a4a;
+}
+
+@media (max-width: 768px) {
+  .architect-row {
+    flex-direction: column;
+  }
+
+  .architect-video-wrap {
+    flex: none;
+    width: 100%;
+  }
+
+  .architect-word {
+    font-size: clamp(1.8rem, 10vw, 3rem);
+  }
 }

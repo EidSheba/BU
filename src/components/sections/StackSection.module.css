@@ -1,0 +1,100 @@
+.wrapper {
+  margin-top: -100vh;
+  position: relative;
+  z-index: 20;
+  height: 160vh;
+}
+
+.card {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  background-color: #ffffff;
+  will-change: transform;
+  overflow: hidden;
+}
+
+/* ── Content layout ── */
+
+.inner {
+  height: 100%;
+  padding: 4rem 6vw 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.heading {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  font-weight: 800;
+  color: #0a0a0a;
+  margin: 0 0 2.5rem;
+  line-height: 1.1;
+}
+
+.cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4vw;
+  flex: 1;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.label {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: #0a0a0a;
+}
+
+.colHeading {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: clamp(1.5rem, 2.2vw, 2rem);
+  font-weight: 800;
+  color: #0a0a0a;
+  margin: 0 0 0.8rem;
+  line-height: 1.15;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.body p {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: clamp(0.78rem, 0.95vw, 0.9rem);
+  line-height: 1.75;
+  color: #555;
+  margin: 0;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  padding-top: 2rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.85rem 2.6rem;
+  background-color: #0a0a0a;
+  color: #ffffff;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 999px;
+  text-decoration: none;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  border: none;
+}

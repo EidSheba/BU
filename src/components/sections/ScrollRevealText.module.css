@@ -1,0 +1,49 @@
+.container {
+  position: relative;
+  height: calc(2200px + 100vh);
+  background-color: #000;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.textCenter {
+  position: relative;
+  width: 100%;
+  text-align: center;
+}
+
+.group {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  text-align: center;
+}
+
+.lineWrapper {
+  overflow: hidden;
+}
+
+.line {
+  color: #fff;
+  font-weight: 700;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  line-height: 1.2;
+  transform-origin: center center;
+}
+
+.storytellers {
+  font-size: clamp(4.5rem, 11vw, 8.5rem);
+  color: #e8d5b0;
+  letter-spacing: -0.02em;
+  transform-origin: center center;
+}
