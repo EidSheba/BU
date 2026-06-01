@@ -1,7 +1,7 @@
 /* ── Outer scroll container — provides scroll distance for GSAP ── */
 .outer {
   position: relative;
-  height: 600vh; /* (N-1) transitions + 1 viewport viewport + 1 viewport dwell = 6×100vh */
+  height: 500vh; /* 4 slides: 3 transitions + 1 viewport + 1 dwell = 5×100vh */
 }
 
 /* ── Sticky viewport-height stage ── */
@@ -13,11 +13,19 @@
   background: #000;
 }
 
-/* ── Each card fills the full stage; GSAP translateX slides it ── */
-.card {
-  position: absolute;
-  inset: 0;
+/* ── Horizontal track — all cards sit side by side ── */
+.track {
+  display: flex;
+  height: 100%;
   will-change: transform;
+  width: 400vw; /* N × 100vw  (N = 4 slides) */
+}
+
+/* ── Each card = one viewport-width slice of the track ── */
+.card {
+  flex: 0 0 100vw;
+  position: relative;
+  height: 100%;
 }
 
 /* ── The visible image block — smaller, offset right ── */
