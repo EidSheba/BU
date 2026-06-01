@@ -6,6 +6,8 @@ import ParallaxBanner from "@/components/sections/ParallaxBanner";
 import ArchitectSection from "@/components/sections/ArchitectSection";
 import SecretSection from "@/components/sections/SecretSection";
 import GridSection from "@/components/sections/GridSection";
+import WorkSliderSection from "@/components/sections/WorkSliderSection";
+import FooterSection from "@/components/sections/FooterSection";
 
 export default function Home() {
   return (
@@ -39,6 +41,8 @@ export default function Home() {
         <SecretSection />
       </div>
       <GridSection />
+      <WorkSliderSection />
+      <FooterSection />
     </main>
   );
 }

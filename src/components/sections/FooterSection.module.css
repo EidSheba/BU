@@ -1,0 +1,275 @@
+.footer {
+  background: #000;
+  color: #fff;
+  overflow: hidden;
+}
+
+/* ── CTA headline area ─────────────────────────────── */
+.cta {
+  padding: clamp(5rem, 10vh, 9rem) clamp(2rem, 6vw, 7rem) clamp(4rem, 7vh, 7rem);
+  border-bottom: 1px solid #1a1a1a;
+}
+
+.ctaHeadline {
+  font-size: clamp(3rem, 8vw, 9rem);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  margin-bottom: clamp(2.5rem, 5vh, 5rem);
+}
+
+.ctaLine {
+  display: block;
+}
+
+.ctaAccent {
+  color: #02E682;
+}
+
+.ctaBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  border: 1px solid #333;
+  background: transparent;
+  color: #fff;
+  font-size: clamp(0.75rem, 1vw, 0.9rem);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+  text-decoration: none;
+}
+
+.ctaBtn:hover {
+  background: #02E682;
+  border-color: #02E682;
+  color: #000;
+}
+
+.ctaBtnArrow {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.ctaBtn:hover .ctaBtnArrow {
+  transform: translateX(6px);
+}
+
+/* ── Marquee strip ─────────────────────────────────── */
+.marqueeWrap {
+  border-bottom: 1px solid #1a1a1a;
+  padding: 1.1rem 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.marqueeTrack {
+  display: inline-flex;
+  gap: 0;
+  animation: marquee 22s linear infinite;
+}
+
+.marqueeTrack:hover {
+  animation-play-state: paused;
+}
+
+.marqueeItem {
+  font-size: clamp(0.65rem, 0.9vw, 0.78rem);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #444;
+  padding: 0 3rem;
+  flex-shrink: 0;
+}
+
+.marqueeItem span {
+  color: #02E682;
+  margin-right: 3rem;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ── Info grid ─────────────────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: clamp(3rem, 5vw, 6rem);
+  padding: clamp(4rem, 7vh, 6rem) clamp(2rem, 6vw, 7rem);
+  border-bottom: 1px solid #1a1a1a;
+}
+
+/* Brand column */
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.logoImg {
+  object-fit: contain;
+  object-position: left;
+  filter: brightness(0) invert(1);
+}
+
+.logoWrap {
+  position: relative;
+  width: 140px;
+  height: 46px;
+  flex-shrink: 0;
+}
+
+.tagline {
+  font-size: clamp(0.8rem, 1.1vw, 0.95rem);
+  font-weight: 400;
+  line-height: 1.7;
+  color: #666;
+  max-width: 280px;
+}
+
+.socials {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid #222;
+  color: #666;
+  transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.socialLink:hover {
+  border-color: #02E682;
+  color: #02E682;
+}
+
+/* Nav column */
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.colLabel {
+  font-size: clamp(0.6rem, 0.8vw, 0.72rem);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #02E682;
+  margin-bottom: 1.2rem;
+}
+
+.navLink {
+  font-size: clamp(0.85rem, 1.1vw, 1rem);
+  font-weight: 500;
+  color: #888;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.35rem 0;
+  transition: color 0.25s ease;
+  width: fit-content;
+}
+
+.navLink:hover {
+  color: #fff;
+}
+
+/* Contact column */
+.contactItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-bottom: 1.4rem;
+}
+
+.contactLabel {
+  font-size: clamp(0.55rem, 0.75vw, 0.68rem);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #444;
+}
+
+.contactValue {
+  font-size: clamp(0.82rem, 1.05vw, 0.95rem);
+  font-weight: 400;
+  color: #aaa;
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+a.contactValue:hover {
+  color: #02E682;
+}
+
+/* ── Bottom bar ────────────────────────────────────── */
+.bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem clamp(2rem, 6vw, 7rem);
+}
+
+.copyright {
+  font-size: clamp(0.65rem, 0.85vw, 0.75rem);
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: #444;
+  text-transform: uppercase;
+}
+
+.legal {
+  display: flex;
+  gap: 2rem;
+}
+
+.legalLink {
+  font-size: clamp(0.65rem, 0.85vw, 0.75rem);
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: #444;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.25s ease;
+}
+
+.legalLink:hover {
+  color: #fff;
+}
+
+/* ── Responsive ────────────────────────────────────── */
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .brand {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}
