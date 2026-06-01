@@ -63,13 +63,15 @@
   z-index: 1;
 }
 
-/* ── Text overlaid on the left of the image ── */
+/* ── Text straddles the image left edge (imgWrap starts at 33%).
+   Positioned on .card so overflow:hidden on imgWrap doesn't clip it. ── */
 .text {
   position: absolute;
-  left: clamp(1.5rem, 3vw, 3rem);
+  left: calc(33% - 7rem);
   top: 50%;
   transform: translateY(-50%);
   z-index: 2;
+  pointer-events: none;
 }
 
 .category {

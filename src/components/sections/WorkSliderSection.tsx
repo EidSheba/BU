@@ -109,14 +109,16 @@ export default function WorkSliderSection() {
                   />
                 </div>
                 <div className={styles.gradient} />
-                <div className={styles.text}>
-                  <span className={styles.category}>{slide.category}</span>
-                  <h2 className={styles.title}>
-                    {slide.client.map((line, k) => (
-                      <span key={k} className={styles.titleLine}>{line}</span>
-                    ))}
-                  </h2>
-                </div>
+              </div>
+
+              {/* Text sits on the card (not imgWrap) so it can straddle the image edge */}
+              <div className={styles.text}>
+                <span className={styles.category}>{slide.category}</span>
+                <h2 className={styles.title}>
+                  {slide.client.map((line, k) => (
+                    <span key={k} className={styles.titleLine}>{line}</span>
+                  ))}
+                </h2>
               </div>
             </div>
           ))}
