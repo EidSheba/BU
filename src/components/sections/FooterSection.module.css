@@ -4,61 +4,6 @@
   overflow: hidden;
 }
 
-/* ── CTA headline area ─────────────────────────────── */
-.cta {
-  padding: clamp(5rem, 10vh, 9rem) clamp(2rem, 6vw, 7rem) clamp(4rem, 7vh, 7rem);
-  border-bottom: 1px solid #1a1a1a;
-}
-
-.ctaHeadline {
-  font-size: clamp(3rem, 8vw, 9rem);
-  font-weight: 800;
-  line-height: 0.95;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
-  margin-bottom: clamp(2.5rem, 5vh, 5rem);
-}
-
-.ctaLine {
-  display: block;
-}
-
-.ctaAccent {
-  color: #02E682;
-}
-
-.ctaBtn {
-  display: inline-flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 1rem 2rem;
-  border: 1px solid #333;
-  background: transparent;
-  color: #fff;
-  font-size: clamp(0.75rem, 1vw, 0.9rem);
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
-  text-decoration: none;
-}
-
-.ctaBtn:hover {
-  background: #02E682;
-  border-color: #02E682;
-  color: #000;
-}
-
-.ctaBtnArrow {
-  display: inline-block;
-  transition: transform 0.3s ease;
-}
-
-.ctaBtn:hover .ctaBtnArrow {
-  transform: translateX(6px);
-}
-
 /* ── Marquee strip ─────────────────────────────────── */
 .marqueeWrap {
   border-bottom: 1px solid #1a1a1a;
