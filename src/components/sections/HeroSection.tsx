@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import LoadingScreen from "@/components/LoadingScreen";
 
 type Lang = "en" | "ar";
 
@@ -70,6 +71,8 @@ export default function HeroSection() {
 
   return (
     <>
+      <LoadingScreen ready={videoReady} />
+
       {/* ── Sidebar overlay ── */}
       {menuOpen && (
         <div
