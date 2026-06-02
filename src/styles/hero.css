@@ -28,6 +28,12 @@
   object-fit: cover;
   object-position: center 30%;
   filter: saturate(1.15) brightness(0.72);
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.hero-video--ready {
+  opacity: 1;
 }
 
 .hero-overlay {

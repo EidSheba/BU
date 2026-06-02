@@ -49,6 +49,7 @@ const content = {
 
 export default function HeroSection() {
   const [lang, setLang] = useState<Lang>("en");
+  const [videoReady, setVideoReady] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -130,12 +131,14 @@ export default function HeroSection() {
         {/* ── Cinematic video background ── */}
         <div className="hero-bg">
           <video
-            className="hero-video"
+            className={`hero-video${videoReady ? " hero-video--ready" : ""}`}
             src="/videos/backgroundVideo.mp4"
             autoPlay
             muted
             loop
             playsInline
+            preload="auto"
+            onCanPlay={() => setVideoReady(true)}
           />
           <div className="hero-overlay" />
           <div className="hero-glow" />
