@@ -88,10 +88,10 @@ body {
 
 /* gs-card mirrors StackSection .card */
 .gs-card {
+  position: -webkit-sticky;
   position: sticky;
   top: 0;
   overflow: hidden;
-  will-change: transform;
   background: #000;
   transform: translateY(100vh);
 }
@@ -184,6 +184,7 @@ body {
 }
 
 .secret-section {
+  position: -webkit-sticky;
   position: sticky;
   top: 0;
   height: 100vh;

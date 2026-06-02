@@ -122,7 +122,13 @@ export default function ArchitectSection() {
         );
       }
 
-      copyBlack.style.clipPath = buildPolygon(0);
+      const setClipPath = (val: string) => {
+        copyBlack.style.clipPath = val;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (copyBlack.style as any).webkitClipPath = val;
+      };
+
+      setClipPath(buildPolygon(0));
 
       const fillTrigger = ScrollTrigger.create({
         trigger: copyWrap,
@@ -130,7 +136,7 @@ export default function ArchitectSection() {
         end:   "center 60%",
         scrub: 0.5,
         onUpdate(self: ScrollTrigger) {
-          copyBlack.style.clipPath = buildPolygon(self.progress);
+          setClipPath(buildPolygon(self.progress));
         },
       });
 
