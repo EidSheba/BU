@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import styles from "./LoadingScreen.module.css";
 
@@ -8,15 +8,29 @@ export default function LoadingScreen({ ready }: { ready: boolean }) {
   const [leaving, setLeaving] = useState(false);
   const [gone, setGone] = useState(false);
   const [percent, setPercent] = useState(0);
+  const leavingRef = useRef(false);
 
+  const startLeaving = () => {
+    if (leavingRef.current) return;
+    leavingRef.current = true;
+    setLeaving(true);
+    setTimeout(() => setGone(true), 1100);
+  };
+
+  // Triggered when video is ready
   useEffect(() => {
     if (!ready) return;
-    const t = setTimeout(() => {
-      setLeaving(true);
-      setTimeout(() => setGone(true), 1100);
-    }, 1200);
+    const t = setTimeout(startLeaving, 1200);
     return () => clearTimeout(t);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ready]);
+
+  // Fallback: force exit after bar animation completes (~4.2s)
+  useEffect(() => {
+    const t = setTimeout(startLeaving, 4200);
+    return () => clearTimeout(t);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     const BAR_DELAY = 1100;

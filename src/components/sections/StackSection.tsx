@@ -34,12 +34,12 @@ export default function StackSection() {
           { y: vh },
           {
             y: 0,
-            ease: "power2.out",
+            ease: "none",
             scrollTrigger: {
               trigger: wrapper,
               start: "top top",
               end:   "+=100vh",
-              scrub: 1.5,
+              scrub: 2,
             },
           }
         );
@@ -47,20 +47,21 @@ export default function StackSection() {
         return;
       }
 
-      gsap.set(card, { yPercent: 100 });
+      const vh = window.innerHeight;
+      gsap.set(card, { y: vh });
 
       // Enter: card slides up
       const tEnter = gsap.fromTo(
         card,
-        { yPercent: 100 },
+        { y: vh },
         {
-          yPercent: 0,
-          ease: "power2.out",
+          y: 0,
+          ease: "none",
           scrollTrigger: {
             trigger: wrapper,
             start: "top top",
-            end:   "+=60vh",
-            scrub: 1.5,
+            end:   "+=100vh",
+            scrub: 2,
           },
         }
       );

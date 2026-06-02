@@ -8,10 +8,12 @@ import SecretSection from "@/components/sections/SecretSection";
 import GridSection from "@/components/sections/GridSection";
 import WorkSliderSection from "@/components/sections/WorkSliderSection";
 import FooterSection from "@/components/sections/FooterSection";
+import StickyNavbar from "@/components/StickyNavbar";
 
 export default function Home() {
   return (
     <main>
+      <StickyNavbar />
       <HeroSection />
       <ScrollRevealText
         group1={["we are not just", "a creative agency"]}
