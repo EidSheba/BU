@@ -18,6 +18,17 @@
   will-change: transform;
 }
 
+@media (max-width: 768px) {
+  .section {
+    height: 60vh;
+    background: #000;
+  }
+
+  .image {
+    inset: -50% 0;
+  }
+}
+
 .text {
   position: relative;
   z-index: 2;

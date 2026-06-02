@@ -42,3 +42,6 @@
   from { rotate: 0deg; }
   to   { rotate: 360deg; }
 }
+
+/* Rings overflow the viewport naturally — overflow:hidden on .sticky clips them.
+   No scaling needed: the visual effect is the same as desktop (rings bleed off-screen). */

@@ -84,6 +84,8 @@ body {
   height: 200vh;
 }
 
+/* gs-wrapper and gs-card keep their stacking mechanics on mobile */
+
 /* gs-card mirrors StackSection .card */
 .gs-card {
   position: sticky;
@@ -97,7 +99,7 @@ body {
 .gs-container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 clamp(1.5rem, 5vw, 5rem);
+  padding: 0 clamp(1.5rem, 5vw, 5rem) clamp(3rem, 6vw, 6rem);
 }
 
 .gs-inner {
@@ -110,6 +112,32 @@ body {
   position: relative;
   height: 400px;
   overflow: hidden;
+}
+
+@media (max-width: 1024px) {
+  .gs-inner {
+    grid-auto-rows: 260px;
+  }
+  .gs-cell {
+    height: 260px;
+  }
+}
+
+@media (max-width: 640px) {
+  .gs-inner {
+    grid-template-columns: 1fr;
+    grid-auto-rows: unset;
+  }
+  .gs-cell {
+    height: 155px;
+  }
+  .gs-text-cell {
+    height: 70px;
+  }
+  .gs-heading {
+    font-size: clamp(0.9rem, 4.5vw, 1.4rem);
+    letter-spacing: 0.05em;
+  }
 }
 
 .gs-img {
@@ -310,17 +338,49 @@ body {
   color: #4a4a4a;
 }
 
+@media (max-width: 1024px) {
+  .architect-copy-primary {
+    font-size: clamp(1.3rem, 2.5vw, 2rem);
+  }
+}
+
 @media (max-width: 768px) {
+  .architect-section {
+    gap: clamp(3rem, 7vh, 6rem);
+    padding: clamp(4rem, 10vh, 7rem) clamp(1.25rem, 4vw, 3rem);
+  }
+
   .architect-row {
     flex-direction: column;
+    gap: 2.5rem;
   }
 
   .architect-video-wrap {
     flex: none;
     width: 100%;
+    aspect-ratio: 16 / 9;
+  }
+
+  .architect-copy {
+    width: 100%;
+  }
+
+  .architect-copy-primary {
+    font-size: clamp(1.2rem, 5vw, 1.6rem);
   }
 
   .architect-word {
     font-size: clamp(1.8rem, 10vw, 3rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .architect-word {
+    font-size: clamp(1.2rem, 8vw, 1.8rem);
+    letter-spacing: 0;
+  }
+
+  .architect-copy-primary {
+    font-size: clamp(1.1rem, 5.5vw, 1.5rem);
   }
 }

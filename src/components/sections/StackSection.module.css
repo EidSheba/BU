@@ -98,3 +98,47 @@
   cursor: pointer;
   border: none;
 }
+
+/* ── Mobile: slide-in animation preserved, full content height ── */
+@media (max-width: 768px) {
+  .wrapper {
+    height: auto;
+  }
+
+  .card {
+    position: relative;
+    height: auto;
+    overflow: visible;
+  }
+
+  .inner {
+    height: auto;
+    padding: 2.5rem 1.5rem 2rem;
+    justify-content: flex-start;
+    gap: 1.5rem;
+  }
+
+  .heading {
+    font-size: clamp(1.6rem, 6vw, 2.4rem);
+    margin-bottom: 0;
+  }
+
+  .cols {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    flex: none;
+  }
+
+  .colHeading {
+    font-size: clamp(1.2rem, 4vw, 1.6rem);
+  }
+
+  .body p {
+    font-size: clamp(0.82rem, 3.2vw, 0.9rem);
+    line-height: 1.65;
+  }
+
+  .footer {
+    padding-top: 1.5rem;
+  }
+}

@@ -47,3 +47,24 @@
   letter-spacing: -0.02em;
   transform-origin: center center;
 }
+
+@media (max-width: 640px) {
+  .line {
+    font-size: clamp(1.5rem, 7vw, 2.8rem);
+    padding: 0 0.5rem;
+  }
+
+  .storytellers {
+    font-size: clamp(2.6rem, 10vw, 5rem);
+  }
+}
+
+@media (max-width: 400px) {
+  .line {
+    font-size: clamp(1.25rem, 7.5vw, 2.2rem);
+  }
+
+  .storytellers {
+    font-size: clamp(2rem, 10.5vw, 3.5rem);
+  }
+}

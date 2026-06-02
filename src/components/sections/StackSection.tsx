@@ -14,7 +14,7 @@ export default function StackSection() {
     let gsap: any, ScrollTrigger: any;
     const triggers: { kill: () => void }[] = [];
 
-    async function init() {
+    const init = async () => {
       ({ gsap } = await import("gsap"));
       ({ ScrollTrigger } = await import("gsap/ScrollTrigger"));
       gsap.registerPlugin(ScrollTrigger);
@@ -24,6 +24,28 @@ export default function StackSection() {
       const leftCol  = leftColRef.current;
       const rightCol = rightColRef.current;
       if (!wrapper || !card || !leftCol || !rightCol) return;
+
+      // Mobile: slide in from viewport bottom, card is full natural height
+      if (window.innerWidth < 768) {
+        const vh = window.innerHeight;
+        gsap.set(card, { y: vh });
+        const t = gsap.fromTo(
+          card,
+          { y: vh },
+          {
+            y: 0,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: wrapper,
+              start: "top top",
+              end:   "+=100vh",
+              scrub: 1.5,
+            },
+          }
+        );
+        if (t.scrollTrigger) triggers.push(t.scrollTrigger);
+        return;
+      }
 
       gsap.set(card, { yPercent: 100 });
 
@@ -44,22 +66,24 @@ export default function StackSection() {
       );
       if (tEnter.scrollTrigger) triggers.push(tEnter.scrollTrigger);
 
-      // Exit: scrubbed against the card's natural scroll-away (top→bottom leaves viewport)
-      const tExit = gsap.fromTo(
-        [leftCol, rightCol],
-        { xPercent: 0 },
-        {
-          xPercent: (i: number) => (i === 0 ? -115 : 115),
-          ease: "none",
-          scrollTrigger: {
-            trigger: card,
-            start: "top top",
-            end:   "bottom top",
-            scrub: 1,
-          },
-        }
-      );
-      if (tExit.scrollTrigger) triggers.push(tExit.scrollTrigger);
+      // Exit: columns slide left/right — desktop only
+      if (window.innerWidth >= 768) {
+        const tExit = gsap.fromTo(
+          [leftCol, rightCol],
+          { xPercent: 0 },
+          {
+            xPercent: (i: number) => (i === 0 ? -115 : 115),
+            ease: "none",
+            scrollTrigger: {
+              trigger: card,
+              start: "top top",
+              end:   "bottom top",
+              scrub: 1,
+            },
+          }
+        );
+        if (tExit.scrollTrigger) triggers.push(tExit.scrollTrigger);
+      }
     }
 
     init();

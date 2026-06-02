@@ -97,7 +97,7 @@ export default function GridSection() {
     let gsap: any, ScrollTrigger: any;
     const triggers: { kill: () => void }[] = [];
 
-    async function init() {
+    const init = async () => {
       ({ gsap }          = await import("gsap"));
       ({ ScrollTrigger } = await import("gsap/ScrollTrigger"));
       gsap.registerPlugin(ScrollTrigger);
@@ -125,7 +125,7 @@ export default function GridSection() {
       );
 
       if (t.scrollTrigger) triggers.push(t.scrollTrigger);
-    }
+    };
 
     init();
     return () => triggers.forEach((t) => t.kill());

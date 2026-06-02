@@ -123,3 +123,58 @@
   background: #02E682;
   width: 2.8rem;
 }
+
+/* ── Mobile layout ── */
+@media (max-width: 768px) {
+  /* Image fills top portion of card with top gap */
+  .imgWrap {
+    left: 0;
+    right: 0;
+    top: 8%;
+    bottom: 30%;
+  }
+
+  .gradient {
+    background: linear-gradient(
+      to bottom,
+      transparent         60%,
+      rgba(0, 0, 0, 0.5)  100%
+    );
+  }
+
+  /* Text sits below the image */
+  .text {
+    left: 1.5rem;
+    right: 1.5rem;
+    bottom: 4rem;
+    top: auto;
+    transform: none;
+  }
+
+  .category {
+    font-size: 0.65rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .title {
+    font-size: clamp(1.4rem, 5.5vw, 2rem);
+  }
+
+  /* Dots at very bottom */
+  .dots {
+    bottom: 1.2rem;
+    left: 1.5rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .text {
+    left: 1.25rem;
+    right: 1.25rem;
+    bottom: 3.5rem;
+  }
+
+  .title {
+    font-size: clamp(1.2rem, 6vw, 1.6rem);
+  }
+}
