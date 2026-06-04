@@ -1,4 +1,5 @@
 import StickyNavbar from "@/components/StickyNavbar";
+import AtAGlanceSection from "@/components/sections/AtAGlanceSection";
 import FooterSection from "@/components/sections/FooterSection";
 
 export const metadata = {
@@ -10,7 +11,8 @@ export default function AboutPage() {
   return (
     <main>
       <StickyNavbar />
-      <div style={{ minHeight: "100vh" }} />
+      <div style={{ paddingTop: "80px" }} />
+      <AtAGlanceSection />
       <FooterSection />
     </main>
   );

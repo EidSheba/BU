@@ -1,0 +1,262 @@
+/* ═══════════════════════════════════════════════════════════════
+   AT A GLANCE  —  Senior redesign
+   White intro  ▸  Dark pinned stats panels
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Wrapper ────────────────────────────────────────────────── */
+.section {
+  background: #fff;
+  /* overflow:hidden would break position:sticky on .sticky child */
+}
+
+/* ── Title ──────────────────────────────────────────────────── */
+.titleWrap {
+  text-align: center;
+  padding: clamp(4rem, 8vw, 7rem) 2rem clamp(1.5rem, 3vw, 2.5rem);
+  line-height: 1;
+}
+
+.titleThin {
+  display: block;
+  font-size: clamp(1.8rem, 4vw, 3.5rem);
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  color: #0a0a0a;
+  text-transform: uppercase;
+}
+
+.titleBold {
+  display: block;
+  font-size: clamp(2rem, 5.5vw, 5rem);
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  color: #0a0a0a;
+  text-transform: uppercase;
+  margin-top: -0.05em;
+  white-space: nowrap;
+}
+
+/* ── 16 YEARS hero ──────────────────────────────────────────── */
+.heroStat {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1.5rem, 3.5vw, 3.5rem);
+  padding: 0 clamp(1.5rem, 6vw, 5rem) clamp(3rem, 6vw, 5rem);
+  max-width: 1100px;
+  margin: 0 auto;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s var(--ease-gentle), transform 0.8s var(--ease-gentle);
+}
+.heroStat.visible { opacity: 1; transform: translateY(0); }
+
+.heroLeft {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  flex-shrink: 0;
+}
+
+.heroNumber {
+  font-size: clamp(3.5rem, 8vw, 7rem);
+  font-weight: 900;
+  line-height: 1;
+  color: #3dcc60;
+  letter-spacing: -0.02em;
+}
+
+.heroLabel {
+  font-size: clamp(0.55rem, 1vw, 0.7rem);
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  color: #888;
+  text-transform: uppercase;
+  margin-top: 0.3em;
+  text-align: right;
+}
+
+.heroDesc {
+  font-size: clamp(1.2rem, 2.8vw, 2.2rem);
+  font-weight: 900;
+  line-height: 1.1;
+  text-transform: uppercase;
+  color: #0a0a0a;
+}
+
+.descLine { display: block; }
+
+/* ═══════════════════════════════════════════════════════════════
+   DARK PINNED STATS
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Outer scroll driver — 120vh × 3 panels */
+.scrollDriver {
+  height: 360vh;
+}
+
+/* Sticky viewport container — pinned for the whole scroll */
+.sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  background: #0a0a0a;
+  will-change: transform;
+}
+
+/* ── Individual panel ───────────────────────────────────────── */
+.panel {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 0 clamp(3rem, 6vw, 7rem);
+  opacity: 0;
+  /* panels animate via GSAP — no CSS transition here */
+  pointer-events: none;
+}
+
+.panel.active {
+  pointer-events: auto;
+}
+
+/* ── Left: giant photo-clipped number ───────────────────────── */
+.numWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  will-change: transform;
+}
+
+.bigNum {
+  display: block;
+  font-size: clamp(10rem, 22vw, 22rem);
+  font-weight: 900;
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  /* photo visible through the text — set via --bg-photo CSS var */
+  background-image: var(--bg-photo);
+  background-size: cover;
+  background-position: center;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  will-change: transform;
+}
+
+.statLabel {
+  display: block;
+  font-size: clamp(0.6rem, 1vw, 0.8rem);
+  font-weight: 700;
+  letter-spacing: 0.35em;
+  color: #555;
+  text-transform: uppercase;
+  margin-top: 1rem;
+  padding-left: 0.25rem;
+}
+
+/* ── Right: copy block ──────────────────────────────────────── */
+.copyBlock {
+  padding-left: clamp(2rem, 5vw, 6rem);
+  border-left: 1px solid #222;
+  will-change: transform, opacity;
+}
+
+.copyIndex {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  color: #3dcc60;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.copyTitle {
+  display: block;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 900;
+  line-height: 1.05;
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.01em;
+}
+
+.copyDesc {
+  font-size: clamp(0.85rem, 1.3vw, 1rem);
+  font-weight: 400;
+  line-height: 1.7;
+  color: #666;
+  text-transform: none;
+  max-width: 32ch;
+}
+
+/* ── Progress dots ──────────────────────────────────────────── */
+.progress {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  z-index: 10;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #333;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.dotActive {
+  background: #3dcc60;
+  transform: scale(1.4);
+}
+
+/* ── Panel index indicator ──────────────────────────────────── */
+.panelNum {
+  position: absolute;
+  right: clamp(3rem, 6vw, 7rem);
+  bottom: 2.5rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: #333;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Mobile ─────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .panel {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    align-content: center;
+    gap: 2rem;
+    padding: 0 1.5rem;
+  }
+
+  .bigNum {
+    font-size: clamp(7rem, 28vw, 12rem);
+  }
+
+  .copyBlock {
+    padding-left: 0;
+    border-left: none;
+    border-top: 1px solid #222;
+    padding-top: 1.5rem;
+  }
+
+  .heroStat {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .heroLeft { align-items: flex-start; }
+  .heroLabel { text-align: left; }
+}
