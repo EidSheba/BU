@@ -1,0 +1,94 @@
+/* ═══════════════════════════════════════════════════════════════
+   CLIENTS  —  Infinite marquee
+   ═══════════════════════════════════════════════════════════════ */
+
+.section {
+  background: #0a0a0a;
+  padding: clamp(4rem, 8vw, 7rem) 0;
+  overflow: hidden;
+}
+
+/* ── Header ─────────────────────────────────────────────────── */
+.header {
+  text-align: center;
+  margin-bottom: clamp(3rem, 5vw, 4.5rem);
+  padding: 0 2rem;
+}
+
+.title {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: #fff;
+  text-transform: uppercase;
+  line-height: 1;
+  margin: 0;
+}
+
+/* ── Marquee track ──────────────────────────────────────────── */
+.track {
+  display: flex;
+  width: 100%;
+  /* fade edges */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 8%,
+    #000 92%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 8%,
+    #000 92%,
+    transparent 100%
+  );
+}
+
+.track:hover .list {
+  animation-play-state: paused;
+}
+
+.list {
+  display: flex;
+  align-items: center;
+  gap: clamp(3rem, 6vw, 6rem);
+  padding: 0 clamp(1.5rem, 3vw, 3rem);
+  list-style: none;
+  margin: 0;
+  flex-shrink: 0;
+  animation: marquee 28s linear infinite;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-100%); }
+}
+
+/* ── Individual logo ────────────────────────────────────────── */
+.item {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  width: 140px;
+  height: 70px;
+  object-fit: contain;
+}
+
+/* ── Mobile ─────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .logo {
+    width: 100px;
+    height: 50px;
+  }
+
+  .list {
+    gap: clamp(2rem, 5vw, 4rem);
+    animation-duration: 20s;
+  }
+}

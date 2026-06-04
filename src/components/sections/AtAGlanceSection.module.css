@@ -276,9 +276,11 @@
 
   .heroStat {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    text-align: center;
   }
 
-  .heroLeft { align-items: flex-start; }
-  .heroLabel { text-align: left; }
+  .heroLeft { align-items: center; }
+  .heroLabel { text-align: center; }
+  .heroDesc { text-align: center; }
 }
