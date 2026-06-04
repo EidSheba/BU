@@ -1,6 +1,8 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
 
 type Lang = "en" | "ar";
@@ -10,13 +12,25 @@ const navItems = {
   ar: ["الرئيسية", "من نحن", "خدماتنا", "مشاريعنا", "وظائف", "تواصل معنا"],
 };
 
+const navRoutes: Record<string, string> = {
+  HOME: "/",
+  ABOUT: "/about",
+  "الرئيسية": "/",
+  "من نحن": "/about",
+};
+
 export default function StickyNavbar() {
-  const [visible, setVisible] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
+  const isHome = pathname === "/";
+  const [visible, setVisible] = useState(!isHome);
   const [lang, setLang] = useState<Lang>("en");
   const [menuOpen, setMenuOpen] = useState(false);
   const lastScrollY = useRef(0);
 
   useEffect(() => {
+    if (!isHome) return;
+
     const onScroll = () => {
       const currentY = window.scrollY;
       const scrollingUp = currentY < lastScrollY.current;
@@ -32,7 +46,7 @@ export default function StickyNavbar() {
 
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [isHome]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) =>
@@ -75,23 +89,28 @@ export default function StickyNavbar() {
           </svg>
         </button>
         <nav className="sidebar-nav">
-          {items.map((item, i) => (
-            <a
-              key={item}
-              href="#"
-              className="sidebar-link"
-              style={{ animationDelay: `${i * 60}ms` }}
-              onClick={() => setMenuOpen(false)}
-            >
-              {item}
-            </a>
-          ))}
+          {items.map((item, i) => {
+            const href = navRoutes[item] ?? null;
+            return (
+              <button
+                key={item}
+                type="button"
+                className={`sidebar-link sidebar-link--${i + 1}`}
+                onClick={() => {
+                  setMenuOpen(false);
+                  if (href) router.push(href);
+                }}
+              >
+                {item}
+              </button>
+            );
+          })}
         </nav>
       </aside>
 
       <header className={`sticky-nav${visible ? " sticky-nav--visible" : ""}`}>
         <div className="sticky-nav-inner">
-          <div className="hero-logo">
+          <Link href="/" className="hero-logo">
             <Image
               src="/images/bu_logo_4.png"
               alt="Business Umbrella logo"
@@ -99,7 +118,7 @@ export default function StickyNavbar() {
               height={52}
               className="hero-logo-img"
             />
-          </div>
+          </Link>
 
           <div className="hero-nav-right">
             <button

@@ -288,11 +288,31 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   opacity: 0;
   animation: slide-up 350ms var(--ease-smooth) both;
+  cursor: pointer;
+  background: none;
+  border-top: none;
+  border-inline: none;
+  width: 100%;
+  text-align: start;
+  transition: padding-inline-start 200ms var(--ease-smooth), color 200ms ease;
 }
 
 .sidebar--open .sidebar-link {
   opacity: 1;
 }
+
+.sidebar-link:hover {
+  padding-inline-start: 0.75rem;
+  color: rgba(255, 255, 255, 0.65);
+  transition: padding-inline-start 200ms var(--ease-smooth), color 200ms ease;
+}
+
+.sidebar-link--1 { animation-delay: 0ms; }
+.sidebar-link--2 { animation-delay: 60ms; }
+.sidebar-link--3 { animation-delay: 120ms; }
+.sidebar-link--4 { animation-delay: 180ms; }
+.sidebar-link--5 { animation-delay: 240ms; }
+.sidebar-link--6 { animation-delay: 300ms; }
 
 /* RTL support */
 

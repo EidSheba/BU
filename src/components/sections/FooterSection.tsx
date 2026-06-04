@@ -1,7 +1,15 @@
 import Image from "next/image";
+import Link from "next/link";
 import styles from "./FooterSection.module.css";
 
-const NAV = ["Home", "About", "Services", "Projects", "Career", "Contact"];
+const NAV: { label: string; href: string }[] = [
+  { label: "Home",     href: "/" },
+  { label: "About",    href: "/about" },
+  { label: "Services", href: "#" },
+  { label: "Projects", href: "#" },
+  { label: "Career",   href: "#" },
+  { label: "Contact",  href: "#" },
+];
 
 const MARQUEE_ITEMS = [
   "Strategy", "Creative", "Events", "Media", "Film & Content",
@@ -73,8 +81,8 @@ export default function FooterSection() {
         {/* Navigation */}
         <div className={styles.col}>
           <span className={styles.colLabel}>Navigation</span>
-          {NAV.map((item) => (
-            <a key={item} href="#" className={styles.navLink}>{item}</a>
+          {NAV.map(({ label, href }) => (
+            <Link key={label} href={href} className={styles.navLink}>{label}</Link>
           ))}
         </div>
 

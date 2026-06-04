@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import LoadingScreen from "@/components/LoadingScreen";
 
@@ -9,6 +10,13 @@ type Lang = "en" | "ar";
 const navItems = {
   en: ["HOME", "ABOUT", "SERVICES", "PROJECTS", "CAREER", "CONTACT"],
   ar: ["الرئيسية", "من نحن", "خدماتنا", "مشاريعنا", "وظائف", "تواصل معنا"],
+};
+
+const navRoutes: Record<string, string> = {
+  HOME: "/",
+  ABOUT: "/about",
+  "الرئيسية": "/",
+  "من نحن": "/about",
 };
 
 const content = {
@@ -49,6 +57,7 @@ const content = {
 };
 
 export default function HeroSection() {
+  const router = useRouter();
   const [lang, setLang] = useState<Lang>("en");
   const [videoReady, setVideoReady] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -116,17 +125,22 @@ export default function HeroSection() {
         </button>
 
         <nav className="sidebar-nav">
-          {items.map((item, i) => (
-            <a
-              key={item}
-              href="#"
-              className="sidebar-link"
-              style={{ animationDelay: `${i * 60}ms` }}
-              onClick={() => setMenuOpen(false)}
-            >
-              {item}
-            </a>
-          ))}
+          {items.map((item, i) => {
+            const href = navRoutes[item] ?? null;
+            return (
+              <button
+                key={item}
+                type="button"
+                className={`sidebar-link sidebar-link--${i + 1}`}
+                onClick={() => {
+                  setMenuOpen(false);
+                  if (href) router.push(href);
+                }}
+              >
+                {item}
+              </button>
+            );
+          })}
         </nav>
       </aside>
 
