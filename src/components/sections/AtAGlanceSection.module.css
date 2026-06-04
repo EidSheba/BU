@@ -36,6 +36,26 @@
   white-space: nowrap;
 }
 
+@keyframes slideFromLeft {
+  from { transform: translateX(-90px); opacity: 0; }
+  to   { transform: translateX(0);     opacity: 1; }
+}
+
+@keyframes slideFromRight {
+  from { transform: translateX(90px); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+
+.titleLeft {
+  display: inline-block;
+  animation: slideFromLeft 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.titleRight {
+  display: inline-block;
+  animation: slideFromRight 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.12s both;
+}
+
 /* ── 16 YEARS hero ──────────────────────────────────────────── */
 .heroStat {
   display: flex;
@@ -46,10 +66,12 @@
   max-width: 1100px;
   margin: 0 auto;
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.8s var(--ease-gentle), transform 0.8s var(--ease-gentle);
+  transform: translateX(60px);
+  transition: opacity 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform, opacity;
 }
-.heroStat.visible { opacity: 1; transform: translateY(0); }
+.heroStat.visible { opacity: 1; transform: translateX(0); }
 
 .heroLeft {
   display: flex;
@@ -90,9 +112,9 @@
    DARK PINNED STATS
    ═══════════════════════════════════════════════════════════════ */
 
-/* Outer scroll driver — 120vh × 3 panels */
+/* Outer scroll driver — 80vh × 3 panels */
 .scrollDriver {
-  height: 360vh;
+  height: 240vh;
 }
 
 /* Sticky viewport container — pinned for the whole scroll */

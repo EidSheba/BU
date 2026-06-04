@@ -51,7 +51,7 @@ export default function AtAGlanceSection() {
     if (!el) return;
     const obs = new IntersectionObserver(
       ([e]) => { if (e.isIntersecting) { el.classList.add(styles.visible); obs.disconnect(); } },
-      { threshold: 0.15 },
+      { threshold: 0.05 },
     );
     obs.observe(el);
     return () => obs.disconnect();
@@ -87,6 +87,7 @@ export default function AtAGlanceSection() {
       /* Animate first panel in immediately */
       if (numWrapRefs.current[0]) gsap.to(numWrapRefs.current[0], { y: 0, duration: 1, ease: "power3.out", delay: 0.1 });
       if (copyRefs.current[0])    gsap.to(copyRefs.current[0],    { x: 0, opacity: 1, duration: 0.8, ease: "power3.out", delay: 0.3 });
+      if (panelRefs.current[0])   panelRefs.current[0].classList.add(styles.active);
       setActiveIdx(0);
 
       /* Native CSS sticky handles pinning — GSAP only tracks scroll progress */
@@ -151,7 +152,11 @@ export default function AtAGlanceSection() {
 
       {/* ── White intro ─────────────────────────────────────── */}
       <div className={styles.titleWrap}>
-        <span className={styles.titleBold}>BUSINESS UMBRELLA</span>
+        <span className={styles.titleBold}>
+          <span className={styles.titleLeft}>BUSINESS</span>
+          {" "}
+          <span className={styles.titleRight}>UMBRELLA</span>
+        </span>
       </div>
 
       <div ref={heroRef} className={styles.heroStat}>
