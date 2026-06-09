@@ -1,20 +1,20 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Umberella — Creative Experiential Powerhouse",
   description: "A world-class creative agency delivering extraordinary live experiences.",
+  openGraph: {
+    title: "Umberella — Creative Experiential Powerhouse",
+    description: "A world-class creative agency delivering extraordinary live experiences.",
+    images: [{ url: "/images/bu_logo_4.png" }],
+  },
+  twitter: {
+    card: "summary",
+    title: "Umberella — Creative Experiential Powerhouse",
+    description: "A world-class creative agency delivering extraordinary live experiences.",
+    images: ["/images/bu_logo_4.png"],
+  },
 };
 
 export default function RootLayout({
@@ -25,9 +25,16 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className="h-full antialiased"
     >
       <head>
+        <link
+          rel="preload"
+          as="font"
+          href="/fonts/Amazing Grotesk Demi.otf"
+          type="font/otf"
+          crossOrigin="anonymous"
+        />
         <link
           rel="preload"
           as="video"

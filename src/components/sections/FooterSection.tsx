@@ -5,7 +5,7 @@ import styles from "./FooterSection.module.css";
 const NAV: { label: string; href: string }[] = [
   { label: "Home",     href: "/" },
   { label: "About",    href: "/about" },
-  { label: "Services", href: "#" },
+  { label: "Services", href: "/services" },
   { label: "Projects", href: "#" },
   { label: "Career",   href: "#" },
   { label: "Contact",  href: "#" },
@@ -26,7 +26,7 @@ export default function FooterSection() {
       <div className={styles.marqueeWrap} aria-hidden="true">
         <div className={styles.marqueeTrack}>
           {MARQUEE_ITEMS.map((item, i) => (
-            <span key={i} className={styles.marqueeItem}>
+            <span key={`${item}-${i}`} className={styles.marqueeItem}>
               {item}<span>·</span>
             </span>
           ))}
@@ -114,7 +114,7 @@ export default function FooterSection() {
 
       {/* ── Bottom bar ── */}
       <div className={styles.bottom}>
-        <span className={styles.copyright}>
+        <span className={styles.copyright} suppressHydrationWarning>
           © {new Date().getFullYear()} Business Umbrella. All rights reserved.
         </span>
         <div className={styles.legal}>

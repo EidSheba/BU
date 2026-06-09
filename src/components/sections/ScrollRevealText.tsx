@@ -14,7 +14,9 @@ export default function ScrollRevealText({ group1, group2 }: Props) {
   const g2Refs       = useRef<(HTMLParagraphElement | null)[]>([]);
 
   useEffect(() => {
-    const handleScroll = () => {
+    let ticking = false;
+
+    const update = () => {
       const el = containerRef.current;
       if (!el) return;
       const s = Math.max(0, -el.getBoundingClientRect().top);
@@ -94,8 +96,17 @@ export default function ScrollRevealText({ group1, group2 }: Props) {
       });
     };
 
+    const handleScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        update();
+        ticking = false;
+      });
+    };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
+    update();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 

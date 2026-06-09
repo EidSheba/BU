@@ -1,0 +1,273 @@
+/* ─── Services Showcase ─────────────────────────────────────────── */
+
+.section {
+  background: #050505;
+}
+
+/* ── Stats row ── */
+.statsRow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(2.5rem, 5vw, 5rem) clamp(1rem, 3vw, 2.5rem);
+  border-right: 1px solid rgba(255, 255, 255, 0.07);
+  text-align: center;
+  transition: background 250ms ease;
+}
+
+.stat:last-child {
+  border-right: none;
+}
+
+.stat:hover {
+  background: rgba(2, 230, 130, 0.03);
+}
+
+.statVal {
+  font-size: clamp(2.2rem, 4.5vw, 4.5rem);
+  font-weight: 800;
+  color: #02E682;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.statLbl {
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.28);
+  line-height: 1.5;
+}
+
+/* ── Parallax banner ── */
+.banner {
+  position: relative;
+  height: clamp(260px, 40vw, 520px);
+  overflow: hidden;
+}
+
+.bannerImgWrap {
+  position: absolute;
+  top: -25%;
+  left: 0;
+  right: 0;
+  bottom: -25%;
+  will-change: transform;
+}
+
+.bannerImg {
+  object-fit: cover;
+  object-position: center 40%;
+  filter: brightness(0.55) saturate(0.85);
+}
+
+.bannerOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(5, 5, 5, 0.7) 0%,
+    rgba(5, 5, 5, 0.2) 50%,
+    rgba(5, 5, 5, 0.5) 100%
+  );
+  z-index: 1;
+}
+
+.bannerQuote {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: clamp(1.1rem, 2.2vw, 1.9rem);
+  font-weight: 600;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.88);
+  letter-spacing: -0.01em;
+  line-height: 1.5;
+  padding: 0 clamp(2rem, 8vw, 12rem);
+}
+
+/* ── CTA ── */
+.cta {
+  position: relative;
+  padding: clamp(5rem, 9vw, 10rem) clamp(2rem, 6vw, 8rem) clamp(4rem, 7vw, 8rem);
+  overflow: hidden;
+}
+
+.ctaInner {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+}
+
+.ctaEyebrow {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #02E682;
+  margin-bottom: 2rem;
+}
+
+.ctaTitle {
+  font-size: clamp(2.5rem, 6vw, 6.5rem);
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.04em;
+  line-height: 1.02;
+  margin-bottom: 1.5rem;
+  font-style: normal;
+}
+
+.ctaAccent {
+  font-style: italic;
+  color: #02E682;
+  display: block;
+}
+
+.ctaSub {
+  font-size: clamp(0.83rem, 1.05vw, 0.95rem);
+  color: rgba(255, 255, 255, 0.35);
+  line-height: 1.85;
+  margin-bottom: 3rem;
+}
+
+.ctaActions {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  flex-wrap: wrap;
+}
+
+.ctaBtnFill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1.05rem 2.4rem;
+  background: #02E682;
+  color: #050505;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 2px;
+  transition: background 200ms ease, transform 200ms ease, gap 220ms ease;
+  will-change: transform;
+}
+
+.ctaBtnFill:hover {
+  background: #00d470;
+  transform: translateY(-2px);
+  gap: 1rem;
+}
+
+.arrow {
+  display: inline-block;
+  font-size: 1rem;
+  transition: transform 220ms ease;
+  line-height: 1;
+}
+
+.ctaBtnFill:hover .arrow {
+  transform: translate(3px, -3px);
+}
+
+.ctaBtnLine {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.4);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  padding-bottom: 3px;
+  transition: color 200ms ease, border-color 200ms ease;
+}
+
+.ctaBtnLine:hover {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Decorative dot grid */
+.ctaDots {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 30px 30px;
+  -webkit-mask-image: radial-gradient(ellipse 75% 90% at 85% 50%, black 10%, transparent 70%);
+  mask-image: radial-gradient(ellipse 75% 90% at 85% 50%, black 10%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Green glow */
+.ctaGlow {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  background: radial-gradient(
+    ellipse 60% 65% at 85% 50%,
+    rgba(2, 230, 130, 0.042) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .statsRow {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .stat:nth-child(2) {
+    border-right: none;
+  }
+
+  .stat:nth-child(3),
+  .stat:nth-child(4) {
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+  }
+
+  .stat:nth-child(4) {
+    border-right: none;
+  }
+
+  .ctaTitle {
+    font-size: clamp(2rem, 9vw, 3.5rem);
+  }
+
+  .ctaActions {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+
+  .ctaBtnFill {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .bannerQuote {
+    font-size: clamp(0.9rem, 3.5vw, 1.3rem);
+  }
+}

@@ -2,6 +2,14 @@
 @import "../styles/hero.css";
 @import "../styles/animations.css";
 
+@font-face {
+  font-family: "Amazing Grotesk";
+  src: url("/fonts/Amazing Grotesk Demi.otf") format("opentype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ─── Design tokens ─────────────────────────────────────────── */
 :root {
   /* Colors */
@@ -14,8 +22,8 @@
   --color-border: #e2e8f0;
 
   /* Typography */
-  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), monospace;
+  --font-sans: "Amazing Grotesk", system-ui, sans-serif;
+  --font-mono: "Amazing Grotesk", monospace;
 
   /* Spacing scale */
   --section-padding: clamp(4rem, 8vw, 8rem);

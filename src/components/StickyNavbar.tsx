@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
-import { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
 
 type Lang = "en" | "ar";
 
@@ -15,38 +15,18 @@ const navItems = {
 const navRoutes: Record<string, string> = {
   HOME: "/",
   ABOUT: "/about",
+  SERVICES: "/services",
+  PROJECTS: "/projects",
   "الرئيسية": "/",
   "من نحن": "/about",
+  "خدماتنا": "/services",
+  "مشاريعنا": "/projects",
 };
 
 export default function StickyNavbar() {
-  const pathname = usePathname();
   const router = useRouter();
-  const isHome = pathname === "/";
-  const [visible, setVisible] = useState(!isHome);
   const [lang, setLang] = useState<Lang>("en");
   const [menuOpen, setMenuOpen] = useState(false);
-  const lastScrollY = useRef(0);
-
-  useEffect(() => {
-    if (!isHome) return;
-
-    const onScroll = () => {
-      const currentY = window.scrollY;
-      const scrollingUp = currentY < lastScrollY.current;
-
-      if (scrollingUp && currentY > 60) {
-        setVisible(true);
-      } else if (!scrollingUp) {
-        setVisible(false);
-      }
-
-      lastScrollY.current = currentY;
-    };
-
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [isHome]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) =>
@@ -108,7 +88,7 @@ export default function StickyNavbar() {
         </nav>
       </aside>
 
-      <header className={`sticky-nav${visible ? " sticky-nav--visible" : ""}`}>
+      <header className="sticky-nav sticky-nav--visible">
         <div className="sticky-nav-inner">
           <Link href="/" className="hero-logo">
             <Image

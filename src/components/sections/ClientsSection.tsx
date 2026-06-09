@@ -28,7 +28,7 @@ export default function ClientsSection() {
         {[0, 1].map((copy) => (
           <ul key={copy} className={styles.list} aria-hidden={copy === 1 ? "true" : undefined}>
             {LOGOS.map((logo, i) => (
-              <li key={i} className={styles.item}>
+              <li key={`${logo.src}-${i}`} className={styles.item}>
                 <Image
                   src={logo.src}
                   alt={logo.alt}
