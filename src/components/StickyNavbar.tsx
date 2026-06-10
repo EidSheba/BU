@@ -17,10 +17,12 @@ const navRoutes: Record<string, string> = {
   ABOUT: "/about",
   SERVICES: "/services",
   PROJECTS: "/projects",
+  CONTACT: "/contact",
   "الرئيسية": "/",
   "من نحن": "/about",
   "خدماتنا": "/services",
   "مشاريعنا": "/projects",
+  "تواصل معنا": "/contact",
 };
 
 export default function StickyNavbar() {

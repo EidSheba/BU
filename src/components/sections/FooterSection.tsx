@@ -6,9 +6,9 @@ const NAV: { label: string; href: string }[] = [
   { label: "Home",     href: "/" },
   { label: "About",    href: "/about" },
   { label: "Services", href: "/services" },
-  { label: "Projects", href: "#" },
+  { label: "Projects", href: "/projects" },
   { label: "Career",   href: "#" },
-  { label: "Contact",  href: "#" },
+  { label: "Contact",  href: "/contact" },
 ];
 
 const MARQUEE_ITEMS = [
