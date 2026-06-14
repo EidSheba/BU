@@ -7,13 +7,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Umberella — Creative Experiential Powerhouse",
     description: "A world-class creative agency delivering extraordinary live experiences.",
-    images: [{ url: "/images/bu_logo_4.png" }],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Umberella — Creative Experiential Powerhouse",
     description: "A world-class creative agency delivering extraordinary live experiences.",
-    images: ["/images/bu_logo_4.png"],
   },
 };
 
