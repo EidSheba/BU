@@ -1,0 +1,53 @@
+.section {
+  background: #000;
+  width: 100%;
+  padding: 4rem 1.5rem 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.25rem;
+}
+
+.eyebrow {
+  font-family: var(--font-sans), sans-serif;
+  font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin: 0;
+}
+
+.logoLink {
+  display: block;
+  /* cap at native width so it never upscales and pixelates */
+  width: clamp(200px, 45vw, 560px);
+  outline: none;
+}
+
+.logoWrap {
+  position: relative;
+  width: 100%;
+  /* native ratio 657×307 */
+  aspect-ratio: 657 / 307;
+}
+
+.logo {
+  object-fit: contain;
+  transition: opacity 0.3s ease;
+}
+
+.logoLink:hover .logo,
+.logoLink:focus-visible .logo {
+  opacity: 0.8;
+}
+
+/* ── Mobile ── */
+@media (max-width: 640px) {
+  .section {
+    padding: 3.5rem 1.25rem 4rem;
+    gap: 1.75rem;
+  }
+  .logoLink {
+    width: clamp(180px, 80vw, 360px);
+  }
+}

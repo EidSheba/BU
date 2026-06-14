@@ -7,6 +7,7 @@ import ArchitectSection from "@/components/sections/ArchitectSection";
 import SecretSection from "@/components/sections/SecretSection";
 import GridSection from "@/components/sections/GridSection";
 import WorkSliderSection from "@/components/sections/WorkSliderSection";
+import ComingExpoSection from "@/components/sections/ComingExpoSection";
 import FooterSection from "@/components/sections/FooterSection";
 import StickyNavbar from "@/components/StickyNavbar";
 
@@ -15,6 +16,7 @@ export default function Home() {
     <main>
       <StickyNavbar />
       <HeroSection />
+      <ComingExpoSection />
       <ScrollRevealText
         group1={["we are not just", "a creative agency"]}
         group2={["we are strategy-led", "storytellers"]}
