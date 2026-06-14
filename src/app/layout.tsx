@@ -3,15 +3,15 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Umberella — Creative Experiential Powerhouse",
-  description: "A world-class creative agency delivering extraordinary live experiences.",
+  description: "Business Umbrella specializes in exhibitions, conferences, and live events — delivering end-to-end event management, creative production, and brand experiences across Saudi Arabia and the region.",
   openGraph: {
     title: "Umberella — Creative Experiential Powerhouse",
-    description: "A world-class creative agency delivering extraordinary live experiences.",
+    description: "Business Umbrella specializes in exhibitions, conferences, and live events — delivering end-to-end event management, creative production, and brand experiences across Saudi Arabia and the region.",
   },
   twitter: {
     card: "summary_large_image",
     title: "Umberella — Creative Experiential Powerhouse",
-    description: "A world-class creative agency delivering extraordinary live experiences.",
+    description: "Business Umbrella specializes in exhibitions, conferences, and live events — delivering end-to-end event management, creative production, and brand experiences across Saudi Arabia and the region.",
   },
 };
 
