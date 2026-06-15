@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://bu-ngfj.vercel.app"),
   title: "Umberella — Creative Experiential Powerhouse",
   description: "Business Umbrella specializes in exhibitions, conferences, and live events — delivering end-to-end event management, creative production, and brand experiences across Saudi Arabia and the region.",
   openGraph: {
