@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import styles from "./ClientsSection.module.css";
+import { useLanguage } from "@/hooks/useLanguage";
 
 const LOGOS = [
   { src: "/images/suadia.png",   alt: "Saudi Arabia" },
@@ -17,16 +18,17 @@ const LOGOS = [
 ];
 
 export default function ClientsSection() {
+  const lang = useLanguage();
   return (
     <section className={styles.section}>
       <div className={styles.header}>
-        <h2 className={styles.title}>OUR CLIENTS</h2>
+        <h2 className={styles.title}>{lang === "ar" ? "عملاؤنا" : "OUR CLIENTS"}</h2>
       </div>
 
       <div className={styles.track} aria-label="Client logos">
         {/* duplicate for seamless loop */}
         {[0, 1].map((copy) => (
-          <ul key={copy} className={styles.list} aria-hidden={copy === 1 ? "true" : undefined}>
+          <ul key={copy} className={styles.list} aria-hidden={copy === 1}>
             {LOGOS.map((logo, i) => (
               <li key={`${logo.src}-${i}`} className={styles.item}>
                 <Image

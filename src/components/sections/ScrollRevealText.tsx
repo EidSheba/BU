@@ -2,16 +2,28 @@
 
 import { useEffect, useRef } from "react";
 import styles from "./ScrollRevealText.module.css";
+import { useLanguage } from "@/hooks/useLanguage";
 
 interface Props {
   group1: string[];
   group2: string[];
+  group1_ar?: string[];
+  group2_ar?: string[];
 }
 
-export default function ScrollRevealText({ group1, group2 }: Props) {
+export default function ScrollRevealText({ group1, group2, group1_ar, group2_ar }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const g1Refs       = useRef<(HTMLParagraphElement | null)[]>([]);
   const g2Refs       = useRef<(HTMLParagraphElement | null)[]>([]);
+  const lang = useLanguage();
+
+  const activeG1 = lang === "ar" && group1_ar ? group1_ar : group1;
+  const activeG2 = lang === "ar" && group2_ar ? group2_ar : group2;
+
+  useEffect(() => {
+    g1Refs.current = g1Refs.current.slice(0, activeG1.length);
+    g2Refs.current = g2Refs.current.slice(0, activeG2.length);
+  }, [activeG1.length, activeG2.length]);
 
   useEffect(() => {
     let ticking = false;
@@ -46,7 +58,6 @@ export default function ScrollRevealText({ group1, group2 }: Props) {
         const revealEnd   = revealStart + 150;
 
         if (i === 0) {
-          // "we are strategy-led" → exits upward
           const exitStart = 1200;
           const exitEnd   = 1450;
           let clip: number, ty: number;
@@ -61,7 +72,6 @@ export default function ScrollRevealText({ group1, group2 }: Props) {
           if (wrapper) wrapper.style.overflow = "hidden";
 
         } else {
-          // "storytellers" → shrinks to nothing (end of page)
           const shrinkStart = 1500;
           const shrinkEnd   = 2000;
           if (s < revealStart) {
@@ -108,15 +118,15 @@ export default function ScrollRevealText({ group1, group2 }: Props) {
     window.addEventListener("scroll", handleScroll, { passive: true });
     update();
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [lang]);
 
   return (
     <div ref={containerRef} className={styles.container}>
       <div className={styles.sticky}>
         <div className={styles.textCenter}>
           <div className={styles.group}>
-            {group1.map((line, i) => (
-              <div key={i} className={styles.lineWrapper}>
+            {activeG1.map((line, i) => (
+              <div key={`${lang}-g1-${i}`} className={styles.lineWrapper}>
                 <p ref={(el) => { g1Refs.current[i] = el; }} className={styles.line}>
                   {line}
                 </p>
@@ -124,8 +134,8 @@ export default function ScrollRevealText({ group1, group2 }: Props) {
             ))}
           </div>
           <div className={styles.group}>
-            {group2.map((line, i) => (
-              <div key={i} className={styles.lineWrapper}>
+            {activeG2.map((line, i) => (
+              <div key={`${lang}-g2-${i}`} className={styles.lineWrapper}>
                 <p
                   ref={(el) => { g2Refs.current[i] = el; }}
                   className={`${styles.line} ${i === 1 ? styles.storytellers : ""}`}

@@ -393,3 +393,33 @@ body {
     font-size: clamp(1.1rem, 5.5vw, 1.5rem);
   }
 }
+
+/* ─── RTL (Arabic) overrides ─────────────────────────────── */
+
+/* Zero out letter-spacing — Arabic glyphs don't need it */
+[dir="rtl"] .gs-heading,
+[dir="rtl"] .architect-word,
+[dir="rtl"] .architect-copy-primary,
+[dir="rtl"] .secret-our,
+[dir="rtl"] .secret-ing {
+  letter-spacing: 0;
+}
+
+/* Flip left/right text alignment helpers in RTL */
+[dir="rtl"] .architect-word--left {
+  text-align: right;
+}
+[dir="rtl"] .architect-word--right {
+  text-align: left;
+}
+
+/* Arabic headline: allow text to wrap naturally */
+[dir="rtl"] .architect-headline--ar .architect-word {
+  white-space: normal;
+  word-break: keep-all;
+}
+
+/* Tight inline-block wrapper for Arabic word measurement */
+.ar-word-inner {
+  display: inline-block;
+}

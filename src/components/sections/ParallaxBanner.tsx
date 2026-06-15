@@ -2,17 +2,20 @@
 
 import { useEffect, useRef } from "react";
 import styles from "./ParallaxBanner.module.css";
+import { useLanguage } from "@/hooks/useLanguage";
 
 interface Props {
   image: string;
   text: string;
+  arText?: string;
   textColor?: string;
 }
 
-export default function ParallaxBanner({ image, text, textColor }: Props) {
+export default function ParallaxBanner({ image, text, arText, textColor }: Props) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const imageRef   = useRef<HTMLDivElement>(null);
   const textRef    = useRef<HTMLSpanElement>(null);
+  const lang = useLanguage();
 
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -53,10 +56,12 @@ export default function ParallaxBanner({ image, text, textColor }: Props) {
     return () => { trigger?.kill(); };
   }, [image, textColor]);
 
+  const displayText = lang === "ar" && arText ? arText : text;
+
   return (
     <section ref={sectionRef} className={styles.section}>
       <div ref={imageRef} className={styles.image} />
-      <span ref={textRef} className={styles.text}>{text}</span>
+      <span ref={textRef} className={styles.text}>{displayText}</span>
     </section>
   );
 }

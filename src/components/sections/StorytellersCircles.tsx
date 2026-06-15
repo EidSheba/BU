@@ -2,16 +2,20 @@
 
 import { useEffect, useRef } from "react";
 import styles from "./StorytellersCircles.module.css";
+import { useLanguage } from "@/hooks/useLanguage";
 
-const WORD = "STORYTELLERS";
+const WORD_EN = "STORYTELLERS";
+const WORD_AR = "رواةالقصص"; // 9 isolated Arabic characters (isolated form in SVG <text>)
 
 interface RingProps {
   radius: number;
   fontSize: number;
+  word: string;
+  isAr: boolean;
 }
 
-function Ring({ radius, fontSize }: RingProps) {
-  const letters = WORD.split("");
+function Ring({ radius, fontSize, word, isAr }: RingProps) {
+  const letters = Array.from(word); // Unicode-aware split
   const angleStep = 360 / letters.length;
   const size = (radius + fontSize * 1.4) * 2;
   const half = size / 2;
@@ -31,7 +35,9 @@ function Ring({ radius, fontSize }: RingProps) {
             transform={`rotate(${angle}) translate(0, ${-radius})`}
             textAnchor="middle"
             dominantBaseline="auto"
-            fontFamily="'Helvetica Neue', Helvetica, Arial, sans-serif"
+            fontFamily={isAr
+              ? "'Amazing Grotesk', 'Noto Naskh Arabic', serif"
+              : "'Helvetica Neue', Helvetica, Arial, sans-serif"}
             fontSize={fontSize}
             fontWeight="900"
             fill="#d0d0d0"
@@ -61,8 +67,10 @@ const SCROLL_OFFSET = 0.30 * SCROLL_SPAN; // = 0.12
 
 export default function StorytellersCircles() {
   const ringRefs = useRef<(HTMLDivElement | null)[]>([]);
-
   const containerRef = useRef<HTMLDivElement>(null);
+  const lang = useLanguage();
+  const isAr = lang === "ar";
+  const word = isAr ? WORD_AR : WORD_EN;
 
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -127,7 +135,7 @@ export default function StorytellersCircles() {
             ref={(el) => { ringRefs.current[i] = el; }}
             className={`${styles.ring} ${i === 0 ? styles.ringOuter : styles.ringInner}`}
           >
-            <Ring radius={ring.radius} fontSize={ring.fontSize} />
+            <Ring radius={ring.radius} fontSize={ring.fontSize} word={word} isAr={isAr} />
           </div>
         ))}
       </div>

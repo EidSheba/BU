@@ -1,10 +1,16 @@
+"use client";
+
 import Image from "next/image";
 import styles from "./ComingExpoSection.module.css";
+import { useLanguage } from "@/hooks/useLanguage";
 
 export default function ComingExpoSection() {
+  const lang = useLanguage();
   return (
     <section className={styles.section}>
-      <p className={styles.eyebrow}>Our Coming Expo</p>
+      <p className={styles.eyebrow}>
+        {lang === "ar" ? "معرضنا القادم" : "Our Coming Expo"}
+      </p>
 
       <a
         href="https://umbrella.sa/iec360/"

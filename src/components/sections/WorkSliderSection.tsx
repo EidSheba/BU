@@ -3,26 +3,35 @@
 import { useEffect, useRef } from "react";
 import Image from "next/image";
 import styles from "./WorkSliderSection.module.css";
+import { useLanguage } from "@/hooks/useLanguage";
 
 const SLIDES = [
   {
-    category: "ADVERTISING",
-    client: ["MINISTRY OF TOURISM", "EGYPT"],
+    category_en: "ADVERTISING",
+    category_ar: "إعلانات",
+    client_en: ["MINISTRY OF TOURISM", "EGYPT"],
+    client_ar: ["وزارة السياحة", "مصر"],
     image: "/images/grid-event-1.jpg",
   },
   {
-    category: "CREATIVE",
-    client: ["NILE", "HOSPITALITY GROUP"],
+    category_en: "CREATIVE",
+    category_ar: "إبداع",
+    client_en: ["NILE", "HOSPITALITY GROUP"],
+    client_ar: ["مجموعة", "نايل للضيافة"],
     image: "/images/grid-creative-1.jpg",
   },
   {
-    category: "EVENTS",
-    client: ["WORLD FUTURE", "ENERGY SUMMIT"],
+    category_en: "EVENTS",
+    category_ar: "فعاليات",
+    client_en: ["WORLD FUTURE", "ENERGY SUMMIT"],
+    client_ar: ["قمة الطاقة", "العالمية المستقبلية"],
     image: "/images/grid-perf-1.jpg",
   },
   {
-    category: "FILM & CONTENT",
-    client: ["RED SEA", "FILM FESTIVAL"],
+    category_en: "FILM & CONTENT",
+    category_ar: "أفلام ومحتوى",
+    client_en: ["RED SEA", "FILM FESTIVAL"],
+    client_ar: ["مهرجان البحر", "الأحمر السينمائي"],
     image: "/images/grid-film-1.jpg",
   },
 ];
@@ -33,6 +42,7 @@ export default function WorkSliderSection() {
   const outerRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const dotsRef  = useRef<(HTMLSpanElement | null)[]>([]);
+  const lang = useLanguage();
 
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -48,7 +58,6 @@ export default function WorkSliderSection() {
       const track = trackRef.current;
       if (!outer || !track) return;
 
-      // Slide the whole track left: 0% → −(N−1)/N × 100%
       const endXPercent = -((N - 1) / N) * 100;
 
       const anim = gsap.fromTo(
@@ -87,21 +96,16 @@ export default function WorkSliderSection() {
   }, []);
 
   return (
-    <div ref={outerRef} className={styles.outer}>
+    <div ref={outerRef} className={styles.outer} dir="ltr">
       <div className={styles.section}>
-
-        {/* Single track — all cards sit side-by-side, track slides left */}
-        <div
-          ref={trackRef}
-          className={styles.track}
-        >
+        <div ref={trackRef} className={styles.track}>
           {SLIDES.map((slide, i) => (
             <div key={i} className={styles.card}>
               <div className={styles.imgWrap}>
                 <div className={styles.imgInner}>
                   <Image
                     src={slide.image}
-                    alt={slide.client.join(" ")}
+                    alt={slide.client_en.join(" ")}
                     fill
                     sizes="65vw"
                     className={styles.img}
@@ -111,11 +115,12 @@ export default function WorkSliderSection() {
                 <div className={styles.gradient} />
               </div>
 
-              {/* Text sits on the card (not imgWrap) so it can straddle the image edge */}
               <div className={styles.text}>
-                <span className={styles.category}>{slide.category}</span>
+                <span className={styles.category}>
+                  {lang === "ar" ? slide.category_ar : slide.category_en}
+                </span>
                 <h2 className={styles.title}>
-                  {slide.client.map((line, k) => (
+                  {(lang === "ar" ? slide.client_ar : slide.client_en).map((line, k) => (
                     <span key={k} className={styles.titleLine}>{line}</span>
                   ))}
                 </h2>
@@ -124,7 +129,6 @@ export default function WorkSliderSection() {
           ))}
         </div>
 
-        {/* Dots stay fixed — never move with the track */}
         <div className={styles.dots}>
           {SLIDES.map((_, j) => (
             <span
@@ -134,7 +138,6 @@ export default function WorkSliderSection() {
             />
           ))}
         </div>
-
       </div>
     </div>
   );

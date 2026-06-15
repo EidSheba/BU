@@ -20,24 +20,30 @@ export default function Home() {
       <ScrollRevealText
         group1={["we are not just", "a creative agency"]}
         group2={["we are strategy-led", "storytellers"]}
+        group1_ar={["لسنا مجرد", "وكالة إبداعية"]}
+        group2_ar={["نقود بالاستراتيجية", "رواة القصص"]}
       />
       <StorytellersCircles />
       <StackSection />
       <ParallaxBanner
         image="/images/parallax-1.jpg"
         text="Business Umbrella"
+        arText="بيزنس أمبريلا"
       />
       <ParallaxBanner
         image="/images/parallax-2.jpg"
         text="We Create"
+        arText="نخلق"
       />
       <ParallaxBanner
         image="/images/parallax-3.jpg"
         text="We Inspire"
+        arText="نُلهم"
       />
       <ParallaxBanner
         image="/images/parallax-4.jpg"
         text="We Deliver"
+        arText="نُنجز"
         textColor="#ffffff"
       />
       <ArchitectSection />

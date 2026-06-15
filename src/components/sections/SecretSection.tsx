@@ -1,10 +1,12 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { useLanguage } from "@/hooks/useLanguage";
 
 export default function SecretSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const revealRef  = useRef<HTMLDivElement>(null);
+  const lang = useLanguage();
 
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -20,10 +22,14 @@ export default function SecretSection() {
       const reveal  = revealRef.current;
       if (!section || !reveal) return;
 
-      // Use the sticky wrapper as trigger so fill spans entry + sticky phase
       const wrapper = section.closest<HTMLElement>(".secret-scroll-space");
+      const isRtl   = lang === "ar";
 
-      reveal.style.clipPath = "inset(0 100% 0 0)";
+      // RTL: reveal sweeps right→left; LTR: left→right
+      const hidden  = isRtl ? "inset(0 0 0 100%)" : "inset(0 100% 0 0)";
+      const visible = "inset(0 0 0 0)";
+
+      reveal.style.clipPath = hidden;
 
       const t = ScrollTrigger.create({
         trigger: wrapper ?? section,
@@ -31,7 +37,10 @@ export default function SecretSection() {
         end:     "top top",
         scrub:   0.5,
         onUpdate(self: { progress: number }) {
-          reveal.style.clipPath = `inset(0 ${(1 - self.progress) * 100}% 0 0)`;
+          const p = self.progress;
+          reveal.style.clipPath = isRtl
+            ? `inset(0 0 0 ${(1 - p) * 100}%)`
+            : `inset(0 ${(1 - p) * 100}% 0 0)`;
         },
       });
 
@@ -40,17 +49,20 @@ export default function SecretSection() {
 
     init();
     return () => triggers.forEach((t) => t.kill());
-  }, []);
+  }, [lang]);
+
+  const line1 = lang === "ar" ? "سرّنا"      : "OUR SECRET";
+  const line2 = lang === "ar" ? "المكوّن؟"   : "INGREDIENT?";
 
   return (
     <section ref={sectionRef} className="secret-section">
       <div className="secret-text-wrap">
-        <p className="secret-our secret-dim">OUR SECRET</p>
-        <p className="secret-ing secret-dim">INGREDINT?</p>
+        <p className="secret-our secret-dim">{line1}</p>
+        <p className="secret-ing secret-dim">{line2}</p>
       </div>
       <div ref={revealRef} className="secret-text-wrap secret-reveal-layer">
-        <p className="secret-our secret-white">OUR SECRET</p>
-        <p className="secret-ing secret-green">INGREDINT?</p>
+        <p className="secret-our secret-white">{line1}</p>
+        <p className="secret-ing secret-green">{line2}</p>
       </div>
     </section>
   );

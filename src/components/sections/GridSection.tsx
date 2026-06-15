@@ -2,13 +2,13 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { useLanguage } from "@/hooks/useLanguage";
 
 type ImgCell  = { type: "img";  srcs: string[]; alt: string };
-type TextCell = { type: "text"; label: string;  heading: string };
+type TextCell = { type: "text"; label: string; heading_en: string; heading_ar: string };
 type Cell = ImgCell | TextCell;
 
 const CELLS: Cell[] = [
-  // Row 1 — img | text | img
   {
     type: "img", alt: "event stage",
     srcs: [
@@ -19,7 +19,7 @@ const CELLS: Cell[] = [
       "/images/grid-event-5.jpg",
     ],
   },
-  { type: "text", label: "", heading: "STRATEGY" },
+  { type: "text", label: "", heading_en: "STRATEGY", heading_ar: "استراتيجية" },
   {
     type: "img", alt: "creative",
     srcs: [
@@ -30,8 +30,7 @@ const CELLS: Cell[] = [
       "/images/grid-creative-5.jpg",
     ],
   },
-  // Row 2 — text | img | text
-  { type: "text", label: "", heading: "CREATIVE" },
+  { type: "text", label: "", heading_en: "CREATIVE", heading_ar: "إبداع" },
   {
     type: "img", alt: "performance",
     srcs: [
@@ -42,8 +41,7 @@ const CELLS: Cell[] = [
       "/images/grid-perf-5.jpg",
     ],
   },
-  { type: "text", label: "", heading: "EVENTS" },
-  // Row 3 — img | text | img
+  { type: "text", label: "", heading_en: "EVENTS", heading_ar: "فعاليات" },
   {
     type: "img", alt: "media",
     srcs: [
@@ -54,7 +52,7 @@ const CELLS: Cell[] = [
       "/images/grid-media-5.jpg",
     ],
   },
-  { type: "text", label: "", heading: "MEDIA" },
+  { type: "text", label: "", heading_en: "MEDIA", heading_ar: "إعلام" },
   {
     type: "img", alt: "design",
     srcs: [
@@ -65,8 +63,7 @@ const CELLS: Cell[] = [
       "/images/grid-design-5.jpg",
     ],
   },
-  // Row 4 — text | img | text
-  { type: "text", label: "", heading: "CULTURE" },
+  { type: "text", label: "", heading_en: "CULTURE", heading_ar: "ثقافة" },
   {
     type: "img", alt: "film",
     srcs: [
@@ -77,21 +74,20 @@ const CELLS: Cell[] = [
       "/images/grid-film-4.jpg",
     ],
   },
-  { type: "text", label: "", heading: "IMPACT" },
+  { type: "text", label: "", heading_en: "IMPACT", heading_ar: "أثر" },
 ];
 
 export default function GridSection() {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const cardRef    = useRef<HTMLDivElement>(null);
   const [idx, setIdx] = useState(0);
+  const lang = useLanguage();
 
-  // Cycle images every 500ms
   useEffect(() => {
     const id = setInterval(() => setIdx((i) => i + 1), 500);
     return () => clearInterval(id);
   }, []);
 
-  // Card slide-in via GSAP ScrollTrigger
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let gsap: any, ScrollTrigger: any;
@@ -131,7 +127,6 @@ export default function GridSection() {
     return () => triggers.forEach((t) => t.kill());
   }, []);
 
-
   return (
     <div ref={wrapperRef} className="gs-wrapper">
       <div ref={cardRef} className="gs-card">
@@ -157,7 +152,9 @@ export default function GridSection() {
                 </div>
               ) : (
                 <div key={i} className="gs-cell gs-text-cell">
-                  <h3 className="gs-heading">{cell.heading}</h3>
+                  <h3 className="gs-heading">
+                    {lang === "ar" ? cell.heading_ar : cell.heading_en}
+                  </h3>
                 </div>
               )
             )}

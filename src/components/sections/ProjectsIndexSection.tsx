@@ -4,13 +4,14 @@ import { useEffect, useRef } from "react";
 import Link from "next/link";
 import styles from "./ProjectsIndexSection.module.css";
 import { PROJECTS_DATA } from "@/data/projects";
+import { useLanguage } from "@/hooks/useLanguage";
 
 export default function ProjectsIndexSection() {
   const listRef = useRef<HTMLDivElement>(null);
+  const lang = useLanguage();
 
-  // Scroll reveal for rows
   useEffect(() => {
-    let triggers: { kill: () => void }[] = [];
+    const triggers: { kill: () => void }[] = [];
     (async () => {
       const { gsap } = await import("gsap");
       const { ScrollTrigger } = await import("gsap/ScrollTrigger");
@@ -34,7 +35,6 @@ export default function ProjectsIndexSection() {
 
   return (
     <section className={styles.section}>
-
       <div ref={listRef} className={styles.list}>
         {PROJECTS_DATA.map((proj) => (
           <Link
@@ -45,16 +45,17 @@ export default function ProjectsIndexSection() {
           >
             <span className={styles.rowNum}>{proj.id}</span>
             <span className={styles.rowTitleWrap}>
-              <span className={styles.rowTitle}>{proj.title}</span>
+              <span className={styles.rowTitle}>
+                {lang === "ar" ? proj.title_ar : proj.title}
+              </span>
             </span>
             <span className={styles.rowAction}>
-              View Project
+              {lang === "ar" ? "عرض المشروع" : "View Project"}
               <span className={styles.rowActionArrow} aria-hidden="true">↗</span>
             </span>
           </Link>
         ))}
       </div>
-
     </section>
   );
 }
