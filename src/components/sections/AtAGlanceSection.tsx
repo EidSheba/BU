@@ -99,12 +99,15 @@ export default function AtAGlanceSection() {
           const panelF     = progress * PANEL_COUNT;
           const currentIdx = Math.min(Math.floor(panelF), PANEL_COUNT - 1);
           const panelProg  = panelF - Math.floor(panelF);
+          // Snapshot once — mutating activePanelRef inside the loop below would
+          // corrupt wasActive checks for panels visited later in the same tick
+          // (e.g. a fast scroll that jumps back more than one panel at once).
+          const prevIdx = activePanelRef.current;
 
           panelRefs.current.forEach((panel, i) => {
             if (!panel) return;
             const isActive  = i === currentIdx;
-            // Use ref-based tracking — immune to React className re-renders
-            const wasActive = activePanelRef.current === i;
+            const wasActive = i === prevIdx;
 
             if (isActive && !wasActive) {
               gsap.killTweensOf([panel, numWrapRefs.current[i], copyRefs.current[i]]);
@@ -114,8 +117,6 @@ export default function AtAGlanceSection() {
               gsap.to(numWrapRefs.current[i], { y: 0,  duration: 0.8, ease: "power3.out" });
               gsap.to(copyRefs.current[i],    { x: 0, opacity: 1, duration: 0.7, delay: 0.15, ease: "power3.out" });
               panel.style.pointerEvents = "auto";
-              activePanelRef.current = i;
-              setActiveIdx(i);
             }
 
             if (!isActive && wasActive) {
@@ -128,6 +129,11 @@ export default function AtAGlanceSection() {
               gsap.to(numWrapRefs.current[i], { y: panelProg * -20, duration: 0.1, ease: "none", overwrite: "auto" });
             }
           });
+
+          if (currentIdx !== prevIdx) {
+            activePanelRef.current = currentIdx;
+            setActiveIdx(currentIdx);
+          }
         },
       });
 

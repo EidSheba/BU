@@ -10,11 +10,13 @@
   padding: 1.1rem 0;
   overflow: hidden;
   white-space: nowrap;
+  direction: ltr;
 }
 
 .marqueeTrack {
   display: inline-flex;
   gap: 0;
+  direction: ltr;
   animation: marquee 22s linear infinite;
 }
 

@@ -25,10 +25,23 @@ const navRoutes: Record<string, string> = {
   "تواصل معنا": "/contact",
 };
 
+const LANG_STORAGE_KEY = "bu-lang";
+
+function getInitialLang(): Lang {
+  if (typeof window === "undefined") return "en";
+  const stored = window.localStorage.getItem(LANG_STORAGE_KEY) as Lang | null;
+  if (stored === "ar" || stored === "en") return stored;
+  return document.documentElement.dir === "rtl" ? "ar" : "en";
+}
+
 export default function StickyNavbar() {
   const router = useRouter();
   const [lang, setLang] = useState<Lang>("en");
   const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    setLang(getInitialLang());
+  }, []);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) =>
@@ -41,6 +54,11 @@ export default function StickyNavbar() {
     document.documentElement.lang = lang;
     document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
   }, [lang]);
+
+  const changeLang = (next: Lang) => {
+    setLang(next);
+    window.localStorage.setItem(LANG_STORAGE_KEY, next);
+  };
 
   const items = navItems[lang];
   const isAr = lang === "ar";
@@ -107,7 +125,7 @@ export default function StickyNavbar() {
               type="button"
               className="hero-lang"
               aria-label={isAr ? "Switch to English" : "Switch to Arabic"}
-              onClick={() => setLang(isAr ? "en" : "ar")}
+              onClick={() => changeLang(isAr ? "en" : "ar")}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
