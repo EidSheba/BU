@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 type Lang = "en" | "ar";
 
@@ -38,6 +38,7 @@ export default function StickyNavbar() {
   const router = useRouter();
   const [lang, setLang] = useState<Lang>("en");
   const [menuOpen, setMenuOpen] = useState(false);
+  const sidebarRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setLang(getInitialLang());
@@ -53,6 +54,19 @@ export default function StickyNavbar() {
   useEffect(() => {
     document.documentElement.lang = lang;
     document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+
+    // Flipping dir swaps which side the closed sidebar sits off-screen on
+    // (translateX(110%) <-> translateX(-110%)). Without this, the CSS
+    // transition animates that sign flip, sliding it across the viewport.
+    const el = sidebarRef.current;
+    if (el) {
+      el.style.transition = "none";
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          el.style.transition = "";
+        });
+      });
+    }
   }, [lang]);
 
   const changeLang = (next: Lang) => {
@@ -74,6 +88,7 @@ export default function StickyNavbar() {
       )}
 
       <aside
+        ref={sidebarRef}
         className={`sidebar ${menuOpen ? "sidebar--open" : ""}`}
         aria-label="Navigation menu"
       >
@@ -139,8 +154,12 @@ export default function StickyNavbar() {
             <button
               type="button"
               className="hero-hamburger"
-              aria-label={isAr ? "فتح القائمة" : "Open menu"}
-              onClick={() => setMenuOpen(true)}
+              aria-label={
+                menuOpen
+                  ? (isAr ? "إغلاق القائمة" : "Close menu")
+                  : (isAr ? "فتح القائمة" : "Open menu")
+              }
+              onClick={() => setMenuOpen((open) => !open)}
             >
               <span />
               <span />
