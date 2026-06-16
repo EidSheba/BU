@@ -92,17 +92,6 @@ export default function StickyNavbar() {
         className={`sidebar ${menuOpen ? "sidebar--open" : ""}`}
         aria-label="Navigation menu"
       >
-        <button
-          type="button"
-          className="sidebar-close"
-          aria-label={isAr ? "إغلاق القائمة" : "Close menu"}
-          onClick={() => setMenuOpen(false)}
-        >
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <line x1="2" y1="2" x2="18" y2="18" stroke="white" strokeWidth="2" strokeLinecap="round" />
-            <line x1="18" y1="2" x2="2" y2="18" stroke="white" strokeWidth="2" strokeLinecap="round" />
-          </svg>
-        </button>
         <nav className="sidebar-nav">
           {items.map((item, i) => {
             const href = navRoutes[item] ?? null;
