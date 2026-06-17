@@ -1,22 +1,10 @@
 "use client";
-import { useState, useEffect } from "react";
 
-export type Lang = "en" | "ar";
+export type { Lang } from "@/contexts/LangContext";
+export { useLang as useLanguageCtx } from "@/contexts/LangContext";
 
-export function useLanguage(): Lang {
-  const [lang, setLang] = useState<Lang>("en");
+import { useLang } from "@/contexts/LangContext";
 
-  useEffect(() => {
-    const update = () =>
-      setLang(document.documentElement.dir === "rtl" ? "ar" : "en");
-    update();
-    const obs = new MutationObserver(update);
-    obs.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["dir"],
-    });
-    return () => obs.disconnect();
-  }, []);
-
-  return lang;
+export function useLanguage() {
+  return useLang().lang;
 }

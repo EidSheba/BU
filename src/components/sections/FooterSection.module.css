@@ -35,7 +35,7 @@
 }
 
 .marqueeItem span {
-  color: #02E682;
+  color: #057a02;
   margin-right: 3rem;
 }
 
@@ -99,8 +99,8 @@
 }
 
 .socialLink:hover {
-  border-color: #02E682;
-  color: #02E682;
+  border-color: #057a02;
+  color: #057a02;
 }
 
 /* Nav column */
@@ -111,11 +111,11 @@
 }
 
 .colLabel {
-  font-size: clamp(0.6rem, 0.8vw, 0.72rem);
+  font-size: clamp(0.8rem, 1vw, 0.95rem);
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #02E682;
+  color: #057a02;
   margin-bottom: 1.2rem;
 }
 
@@ -160,42 +160,24 @@
 }
 
 a.contactValue:hover {
-  color: #02E682;
+  color: #057a02;
 }
 
 /* ── Bottom bar ────────────────────────────────────── */
 .bottom {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   padding: 1.5rem clamp(2rem, 6vw, 7rem);
 }
 
 .copyright {
-  font-size: clamp(0.65rem, 0.85vw, 0.75rem);
+  font-size: clamp(0.55rem, 2.5vw, 0.75rem);
   font-weight: 400;
   letter-spacing: 0.1em;
   color: #444;
   text-transform: uppercase;
-}
-
-.legal {
-  display: flex;
-  gap: 2rem;
-}
-
-.legalLink {
-  font-size: clamp(0.65rem, 0.85vw, 0.75rem);
-  font-weight: 400;
-  letter-spacing: 0.1em;
-  color: #444;
-  text-decoration: none;
-  text-transform: uppercase;
-  transition: color 0.25s ease;
-}
-
-.legalLink:hover {
-  color: #fff;
+  white-space: nowrap;
 }
 
 /* ── Responsive ────────────────────────────────────── */

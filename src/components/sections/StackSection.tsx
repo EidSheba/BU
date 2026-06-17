@@ -18,7 +18,7 @@ const t = {
     rightLabel: "Event Concept",
     rightHead: "& Design",
     rightBody: [
-      "At entourage, we create large-scale event experiences where storytelling takes center stage. From global conferences to mega shows and iconic sporting and cultural events, we build narratives that spark dialogue, inspire emotion, and leave a lasting legacy.",
+      "At Business Umbrella, we create large-scale event experiences where storytelling takes center stage. From global conferences to mega shows and iconic sporting and cultural events, we build narratives that spark dialogue, inspire emotion, and leave a lasting legacy.",
       "Every detail, agenda design, stage content, keynote curation, and show flow, is crafted to deliver meaning with momentum. We design the entire event journey to ensure every moment, from arrival to final impression, reinforces the message and deepens audience connection.",
       "We combine creative direction, scenography, immersive tech, and live show production to bring stories to life in unforgettable ways. Whether it’s a stadium-scale spectacle, a world-class forum, or a high-impact government summit, our events are built not just to impress but to influence.",
       "We don’t just build shows, we script experiences that resonate long after the curtain close.",

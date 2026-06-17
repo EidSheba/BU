@@ -2,6 +2,7 @@
 @import "../styles/hero.css";
 @import "../styles/animations.css";
 
+
 @font-face {
   font-family: "Amazing Grotesk";
   src: url("/fonts/Amazing Grotesk Demi.otf") format("opentype");
@@ -237,7 +238,7 @@ body {
 
 .secret-dim   { color: #444; }
 .secret-white { color: #ffffff; }
-.secret-green { color: #02E682; }
+.secret-green { color: #057a02; }
 
 /* ─── Architect Section ──────────────────────────────────────── */
 

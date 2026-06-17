@@ -38,7 +38,7 @@
 }
 
 .row:hover .rowNum {
-  color: #02E682;
+  color: #057a02;
 }
 
 .rowTitleWrap {
@@ -57,7 +57,7 @@
 }
 
 .row:hover .rowTitle {
-  color: #02E682;
+  color: #057a02;
   transform: translateX(0.4rem);
 }
 
@@ -85,8 +85,8 @@
 
 .row:hover .rowAction {
   color: #050505;
-  background: #02E682;
-  border-color: #02E682;
+  background: #057a02;
+  border-color: #057a02;
 }
 
 .row:hover .rowActionArrow {

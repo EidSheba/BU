@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import HeroSection from "@/components/sections/HeroSection";
 import ScrollRevealText from "@/components/sections/ScrollRevealText";
 import StorytellersCircles from "@/components/sections/StorytellersCircles";
@@ -10,6 +11,24 @@ import WorkSliderSection from "@/components/sections/WorkSliderSection";
 import ComingExpoSection from "@/components/sections/ComingExpoSection";
 import FooterSection from "@/components/sections/FooterSection";
 import StickyNavbar from "@/components/StickyNavbar";
+
+export const metadata: Metadata = {
+  title: "Business Umbrella | Event Management & Creative Agency — Saudi Arabia",
+  description:
+    "Saudi Arabia's leading event management and creative agency. 500+ events, 15+ countries, 16 years of transforming visions into unforgettable live experiences, conferences, and brand activations.",
+  openGraph: {
+    title: "Business Umbrella | Event Management & Creative Agency",
+    description:
+      "Saudi Arabia's leading event management and creative agency. 500+ events, 15+ countries, 16 years of transforming visions into unforgettable live experiences.",
+    url: "https://umbrella.sa",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Business Umbrella | Event Management & Creative Agency",
+    description:
+      "Saudi Arabia's leading event management and creative agency. 500+ events, 15+ countries, 16 years of transforming visions into unforgettable live experiences.",
+  },
+};
 
 export default function Home() {
   return (

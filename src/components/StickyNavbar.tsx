@@ -4,8 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
-
-type Lang = "en" | "ar";
+import { useLang } from "@/contexts/LangContext";
 
 const navItems = {
   en: ["HOME", "ABOUT", "SERVICES", "PROJECTS", "CAREER", "CONTACT"],
@@ -17,32 +16,21 @@ const navRoutes: Record<string, string> = {
   ABOUT: "/about",
   SERVICES: "/services",
   PROJECTS: "/projects",
+  CAREER: "/career",
   CONTACT: "/contact",
   "الرئيسية": "/",
   "من نحن": "/about",
   "خدماتنا": "/services",
   "مشاريعنا": "/projects",
+  "وظائف": "/career",
   "تواصل معنا": "/contact",
 };
 
-const LANG_STORAGE_KEY = "bu-lang";
-
-function getInitialLang(): Lang {
-  if (typeof window === "undefined") return "en";
-  const stored = window.localStorage.getItem(LANG_STORAGE_KEY) as Lang | null;
-  if (stored === "ar" || stored === "en") return stored;
-  return document.documentElement.dir === "rtl" ? "ar" : "en";
-}
-
 export default function StickyNavbar() {
   const router = useRouter();
-  const [lang, setLang] = useState<Lang>("en");
+  const { lang, changeLang } = useLang();
   const [menuOpen, setMenuOpen] = useState(false);
   const sidebarRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    setLang(getInitialLang());
-  }, []);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) =>
@@ -51,13 +39,8 @@ export default function StickyNavbar() {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
+  // Suppress sidebar transition when dir flips to avoid it sliding across the viewport
   useEffect(() => {
-    document.documentElement.lang = lang;
-    document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
-
-    // Flipping dir swaps which side the closed sidebar sits off-screen on
-    // (translateX(110%) <-> translateX(-110%)). Without this, the CSS
-    // transition animates that sign flip, sliding it across the viewport.
     const el = sidebarRef.current;
     if (el) {
       el.style.transition = "none";
@@ -68,11 +51,6 @@ export default function StickyNavbar() {
       });
     }
   }, [lang]);
-
-  const changeLang = (next: Lang) => {
-    setLang(next);
-    window.localStorage.setItem(LANG_STORAGE_KEY, next);
-  };
 
   const items = navItems[lang];
   const isAr = lang === "ar";

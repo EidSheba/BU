@@ -112,7 +112,7 @@ export default function ContactSection() {
             <div className={styles.success}>
               <span className={styles.successIcon}>
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                  <path d="M5 13l4 4L19 7" stroke="#02E682" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M5 13l4 4L19 7" stroke="#057a02" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </span>
               <h3 className={styles.successTitle}>{t.successTitle}</h3>

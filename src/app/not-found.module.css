@@ -1,0 +1,270 @@
+/* ─── 404 Page ────────────────────────────────────────────── */
+
+.root {
+  position: relative;
+  min-height: 100vh;
+  background: #050505;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 7rem 2rem 5rem;
+  font-family: var(--font-sans);
+}
+
+/* ── Background grid ── */
+.grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.028) 1px, transparent 1px);
+  background-size: 64px 64px;
+  pointer-events: none;
+}
+
+/* ── Noise texture ── */
+.noise {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* ── Moving scanline ── */
+.scanline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(to right, transparent, rgba(5, 122, 2, 0.18), transparent);
+  animation: scan 8s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes scan {
+  0%   { top: -3px; opacity: 0; }
+  5%   { opacity: 1; }
+  95%  { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+/* ── Radial vignette ── */
+.vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.65) 100%);
+  pointer-events: none;
+}
+
+/* ── Content wrapper ── */
+.content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* ── Eyebrow ── */
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.28);
+  margin-bottom: 2.5rem;
+}
+
+.dot {
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #057a02;
+  box-shadow: 0 0 8px #057a02;
+  animation: pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 6px #057a02; }
+  50%       { box-shadow: 0 0 18px #057a02, 0 0 36px rgba(5, 122, 2, 0.35); }
+}
+
+/* ── Giant 404 ── */
+.number {
+  position: relative;
+  font-size: clamp(9rem, 24vw, 22rem);
+  font-weight: 800;
+  line-height: 0.85;
+  letter-spacing: -0.045em;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.12);
+  user-select: none;
+  animation: glitchBase 5s steps(1) infinite;
+}
+
+/* Green ghost layer */
+.number::before {
+  content: "404";
+  position: absolute;
+  inset: 0;
+  color: transparent;
+  -webkit-text-stroke: 1.5px #057a02;
+  opacity: 0;
+  animation: glitchGreen 5s steps(1) infinite;
+}
+
+/* Red ghost layer */
+.number::after {
+  content: "404";
+  position: absolute;
+  inset: 0;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(255, 40, 40, 0.5);
+  opacity: 0;
+  animation: glitchRed 5s steps(1) infinite;
+}
+
+@keyframes glitchBase {
+  0%, 90%, 100% { transform: none; }
+  91% { transform: translate(-3px, 1px) skewX(-1deg); }
+  92% { transform: translate(3px, -1px) skewX(1deg); }
+  93% { transform: translate(-2px, 2px); }
+  94% { transform: none; }
+}
+
+@keyframes glitchGreen {
+  0%, 90%, 100% { opacity: 0; transform: none; clip-path: none; }
+  91% { opacity: 1; transform: translate(-6px, 0); clip-path: inset(15% 0 55% 0); }
+  92% { opacity: 1; transform: translate(6px, 0);  clip-path: inset(60% 0 10% 0); }
+  93% { opacity: 1; transform: translate(-3px, 0); clip-path: inset(35% 0 40% 0); }
+  94% { opacity: 0; }
+}
+
+@keyframes glitchRed {
+  0%, 90%, 100% { opacity: 0; transform: none; clip-path: none; }
+  91% { opacity: 1; transform: translate(6px, 0);  clip-path: inset(55% 0 15% 0); }
+  92% { opacity: 1; transform: translate(-6px, 0); clip-path: inset(10% 0 60% 0); }
+  93% { opacity: 1; transform: translate(3px, 0);  clip-path: inset(40% 0 35% 0); }
+  94% { opacity: 0; }
+}
+
+/* ── Divider line ── */
+.divider {
+  width: clamp(80px, 12vw, 160px);
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(5, 122, 2, 0.6), transparent);
+  margin: 2.5rem 0;
+}
+
+/* ── Heading ── */
+.heading {
+  font-size: clamp(1.4rem, 3.5vw, 2.4rem);
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  margin: 0 0 1.2rem;
+}
+
+/* ── Subtitle ── */
+.sub {
+  font-size: clamp(0.85rem, 1.5vw, 1rem);
+  color: rgba(255, 255, 255, 0.38);
+  line-height: 1.7;
+  max-width: 420px;
+  margin: 0 0 3rem;
+}
+
+/* ── Back button ── */
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.9rem 2.4rem;
+  background: transparent;
+  border: 1px solid rgba(5, 122, 2, 0.5);
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-decoration: none;
+  overflow: hidden;
+  transition: border-color 0.3s, color 0.3s;
+}
+
+.btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #057a02;
+  transform: translateX(-101%);
+  transition: transform 0.35s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.btn:hover {
+  border-color: #057a02;
+}
+
+.btn:hover::before {
+  transform: translateX(0);
+}
+
+.btnText {
+  position: relative;
+  z-index: 1;
+}
+
+.btnArrow {
+  position: relative;
+  z-index: 1;
+  font-size: 1rem;
+  transition: transform 0.3s;
+}
+
+.btn:hover .btnArrow {
+  transform: translateX(4px);
+}
+
+/* RTL */
+[dir="rtl"] .btn:hover .btnArrow {
+  transform: translateX(-4px);
+}
+
+/* ── Bottom coordinates ── */
+.coords {
+  position: absolute;
+  bottom: 2.5rem;
+  left: clamp(1.5rem, 4vw, 4rem);
+  font-size: 0.52rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.15);
+  pointer-events: none;
+}
+
+.coordsRight {
+  left: auto;
+  right: clamp(1.5rem, 4vw, 4rem);
+}
+
+/* ── Mobile ── */
+@media (max-width: 600px) {
+  .coords { display: none; }
+  .number {
+    -webkit-text-stroke-width: 1px;
+  }
+}
