@@ -4,18 +4,10 @@ import Image from "next/image";
 import styles from "./ClientsSection.module.css";
 import { useLanguage } from "@/hooks/useLanguage";
 
-const LOGOS = [
-  { src: "/images/suadia.png",   alt: "Saudi Arabia" },
-  { src: "/images/uk.png",       alt: "United Kingdom" },
-  { src: "/images/sa.svg",       alt: "SA" },
-  { src: "/images/uk.svg",       alt: "UK" },
-  { src: "/images/bu_logo_4.png", alt: "Business Umbrella" },
-  { src: "/images/suadia.png",   alt: "Saudi Arabia" },
-  { src: "/images/uk.png",       alt: "United Kingdom" },
-  { src: "/images/sa.svg",       alt: "SA" },
-  { src: "/images/uk.svg",       alt: "UK" },
-  { src: "/images/bu_logo_4.png", alt: "Business Umbrella" },
-];
+const LOGOS = Array.from({ length: 10 }, () => ({
+  src: "/images/bu_logo_4.png",
+  alt: "Business Umbrella",
+}));
 
 export default function ClientsSection() {
   const lang = useLanguage();
@@ -30,12 +22,13 @@ export default function ClientsSection() {
         {[0, 1].map((copy) => (
           <ul key={copy} className={styles.list} aria-hidden={copy === 1}>
             {LOGOS.map((logo, i) => (
-              <li key={`${logo.src}-${i}`} className={styles.item}>
+              <li key={i} className={styles.item}>
                 <Image
                   src={logo.src}
                   alt={logo.alt}
-                  width={140}
-                  height={70}
+                  width={0}
+                  height={0}
+                  sizes="200px"
                   className={styles.logo}
                 />
               </li>
