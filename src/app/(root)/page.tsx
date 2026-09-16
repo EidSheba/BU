@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import HeroSection from "@/components/sections/HeroSection";
 import ScrollRevealText from "@/components/sections/ScrollRevealText";
-import StorytellersCircles from "@/components/sections/StorytellersCircles";
 import StackSection from "@/components/sections/StackSection";
 import ArchitectSection from "@/components/sections/ArchitectSection";
 import SecretSection from "@/components/sections/SecretSection";
@@ -38,7 +37,6 @@ export default function Home() {
         group2={["one umbrella", "endless ideas"]}
         group2_ar={["مظلة واحدة", "أفكار بلا حدود"]}
       />
-      <StorytellersCircles />
       <StackSection />
       <ArchitectSection />
       <div className="secret-scroll-space">
