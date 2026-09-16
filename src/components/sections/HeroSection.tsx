@@ -82,9 +82,11 @@ export default function HeroSection() {
           d.vx += (dx / dist) * f;
           d.vy += (dy / dist) * f;
         }
-        d.vx *= 0.95; d.vy *= 0.95;
-        d.vx += (Math.random() - 0.5) * 0.03;
-        d.vy += (Math.random() - 0.5) * 0.03;
+        // ponytail: damped random walk — light damping + steady noise keeps every
+        // dot wandering forever instead of settling; bump noise if it reads too calm.
+        d.vx *= 0.985; d.vy *= 0.985;
+        d.vx += (Math.random() - 0.5) * 0.06;
+        d.vy += (Math.random() - 0.5) * 0.06;
         d.x += d.vx; d.y += d.vy;
         if (d.x < 0 || d.x > w) { d.vx *= -1; d.x = Math.max(0, Math.min(w, d.x)); }
         if (d.y < 0 || d.y > h) { d.vy *= -1; d.y = Math.max(0, Math.min(h, d.y)); }

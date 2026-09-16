@@ -51,8 +51,8 @@ export default function SecretSection() {
     return () => triggers.forEach((t) => t.kill());
   }, [lang]);
 
-  const line1 = lang === "ar" ? "سرّنا"      : "OUR SECRET";
-  const line2 = lang === "ar" ? "المكوّن؟"   : "INGREDIENT?";
+  const line1 = lang === "ar" ? "قصص"    : "OUR";
+  const line2 = lang === "ar" ? "نجاحنا" : "SUCCESS STORIES";
 
   return (
     <section ref={sectionRef} className="secret-section">

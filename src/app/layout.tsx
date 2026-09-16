@@ -72,12 +72,6 @@ export default async function RootLayout({
           type="font/otf"
           crossOrigin="anonymous"
         />
-        <link
-          rel="preload"
-          as="video"
-          href="/videos/backgroundVideo.mp4"
-          type="video/mp4"
-        />
       </head>
       <body className="min-h-full flex flex-col" suppressHydrationWarning>
         <Script

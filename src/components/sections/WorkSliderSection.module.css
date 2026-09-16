@@ -1,7 +1,88 @@
-/* ── Outer scroll container — provides scroll distance for GSAP ── */
+/* ── Centered header, reused from ProjectsHero's left column ── */
+.wrap {
+  background: #000;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: clamp(1.2rem, 2.4vw, 2rem);
+  max-width: 720px;
+  margin: 0 auto;
+  padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 5vw, 3rem);
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.eyebrowDot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #057a02;
+  flex-shrink: 0;
+}
+
+.headline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 0.96;
+}
+
+.hRow {
+  font-size: clamp(2.1rem, 4.4vw, 3.8rem);
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.03em;
+}
+
+.hRowAccent {
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(2, 230, 130, 0.85);
+}
+
+.sub {
+  font-size: clamp(0.88rem, 1.15vw, 1.05rem);
+  color: rgba(255, 255, 255, 0.46);
+  line-height: 1.9;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 0.5rem;
+  padding: 0.85rem 1.9rem;
+  border: 1px solid rgba(2, 230, 130, 0.5);
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #ffffff;
+  text-decoration: none;
+  transition: background-color 200ms ease, border-color 200ms ease;
+}
+
+.cta:hover {
+  background: rgba(2, 230, 130, 0.12);
+  border-color: rgba(2, 230, 130, 0.9);
+}
+
+/* ── Outer scroll container — height set inline per slide count ── */
 .outer {
   position: relative;
-  height: 500vh; /* 4 slides: 3 transitions + 1 viewport + 1 dwell = 5×100vh */
 }
 
 /* ── Sticky viewport-height stage ── */
@@ -14,16 +95,16 @@
   background: #000;
 }
 
-/* ── Horizontal track — all cards sit side by side ── */
+/* ── Horizontal track — all cards sit side by side, width set inline ── */
 .track {
   display: flex;
   height: 100%;
   will-change: transform;
-  width: 400vw; /* N × 100vw  (N = 4 slides) */
 }
 
 /* ── Each card = one viewport-width slice of the track ── */
 .card {
+  display: block;
   flex: 0 0 100vw;
   position: relative;
   height: 100%;
@@ -86,18 +167,13 @@
 }
 
 .title {
-  display: flex;
-  flex-direction: column;
+  max-width: 22ch;
   font-size: clamp(1.6rem, 2.5vw, 3rem);
   font-weight: 800;
   color: #ffffff;
   line-height: 1.05;
   letter-spacing: 0.03em;
   text-transform: uppercase;
-}
-
-.titleLine {
-  display: block;
 }
 
 /* ── Dots — fixed in the dark left strip ── */

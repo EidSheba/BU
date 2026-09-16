@@ -81,9 +81,6 @@ export default function ArchitectSection() {
       </div>
 
       <div className="architect-row">
-        <div className="architect-video-wrap">
-          <video className="architect-video" src="/videos/backgroundVideo.mp4" autoPlay muted loop playsInline />
-        </div>
         <div className="architect-copy">
           <div className="architect-stats">
             {STATS.map((s) => (

@@ -5,7 +5,6 @@ import StorytellersCircles from "@/components/sections/StorytellersCircles";
 import StackSection from "@/components/sections/StackSection";
 import ArchitectSection from "@/components/sections/ArchitectSection";
 import SecretSection from "@/components/sections/SecretSection";
-import GridSection from "@/components/sections/GridSection";
 import WorkSliderSection from "@/components/sections/WorkSliderSection";
 import ComingExpoSection from "@/components/sections/ComingExpoSection";
 import FooterSection from "@/components/sections/FooterSection";
@@ -45,7 +44,6 @@ export default function Home() {
       <div className="secret-scroll-space">
         <SecretSection />
       </div>
-      <GridSection />
       <WorkSliderSection />
       <FooterSection />
     </main>

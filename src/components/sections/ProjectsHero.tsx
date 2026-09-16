@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type RefObject } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import styles from "./ProjectsHero.module.css";
 import { PROJECTS_DATA } from "@/data/projects";
 import { useLanguage } from "@/hooks/useLanguage";
@@ -19,6 +20,7 @@ const t = {
       { count: 9,   suffix: "",   label: "Cities"    },
       { count: 500, suffix: "K+", label: "Attendees" },
     ],
+    cta: "View All Projects",
   },
   ar: {
     eyebrow: "أعمال مختارة · ١٣ إنتاجاً",
@@ -29,10 +31,18 @@ const t = {
       { count: 9,   suffix: "",   label: "مدن"    },
       { count: 500, suffix: "K+", label: "حضور"   },
     ],
+    cta: "عرض جميع المشاريع",
   },
 };
 
-export default function ProjectsHero() {
+type ProjectsHeroProps = {
+  /** Shows the "View All Projects" CTA. Off by default (used when this hero doubles as a home-page teaser). */
+  showCta?: boolean;
+  /** When set, the intro timeline plays on scroll-into-view of this element instead of immediately. */
+  triggerRef?: RefObject<HTMLElement | null>;
+};
+
+export default function ProjectsHero({ showCta = false, triggerRef }: ProjectsHeroProps) {
   const headRef    = useRef<HTMLDivElement>(null);
   const subRef     = useRef<HTMLParagraphElement>(null);
   const eyebrowRef = useRef<HTMLSpanElement>(null);
@@ -42,6 +52,9 @@ export default function ProjectsHero() {
   const c = t[lang];
 
   useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let scrollTrigger: any;
+
     const init = async () => {
       const { gsap } = await import("gsap");
 
@@ -49,7 +62,10 @@ export default function ProjectsHero() {
       if (subRef.current)     gsap.set(subRef.current,     { opacity: 0, y: 18 });
       if (statsRef.current)   gsap.set(statsRef.current,   { opacity: 0, y: 16 });
 
-      const tl = gsap.timeline({ delay: 0.15 });
+      const tl = gsap.timeline({
+        delay: triggerRef ? 0 : 0.15,
+        paused: !!triggerRef,
+      });
       if (eyebrowRef.current) tl.to(eyebrowRef.current, { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" }, 0);
 
       if (lang === "en") {
@@ -83,9 +99,23 @@ export default function ProjectsHero() {
           }, 0.7);
         });
       }
+
+      if (triggerRef?.current) {
+        const { ScrollTrigger } = await import("gsap/ScrollTrigger");
+        gsap.registerPlugin(ScrollTrigger);
+        scrollTrigger = ScrollTrigger.create({
+          // wrapper is 200vh; the sticky card finishes sliding into place
+          // 100vh (50% of the wrapper) into the scroll — start the intro there.
+          trigger: triggerRef.current,
+          start: "top+=50% top",
+          once: true,
+          onEnter: () => tl.play(),
+        });
+      }
     };
     init();
-  }, [lang]);
+    return () => scrollTrigger?.kill();
+  }, [lang, triggerRef]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -156,6 +186,12 @@ export default function ProjectsHero() {
             </div>
           ))}
         </div>
+
+        {showCta && (
+          <Link href="/projects" className={styles.cta}>
+            {c.cta}
+          </Link>
+        )}
       </div>
 
       <div className={styles.right}>

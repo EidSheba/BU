@@ -2,47 +2,66 @@
 
 import { useEffect, useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import styles from "./WorkSliderSection.module.css";
+import { PROJECTS_DATA } from "@/data/projects";
 import { useLanguage } from "@/hooks/useLanguage";
 
-const SLIDES = [
-  {
-    category_en: "ADVERTISING",
-    category_ar: "إعلانات",
-    client_en: ["MINISTRY OF TOURISM", "EGYPT"],
-    client_ar: ["وزارة السياحة", "مصر"],
-    image: "/images/grid-event-1.jpg",
-  },
-  {
-    category_en: "CREATIVE",
-    category_ar: "إبداع",
-    client_en: ["NILE", "HOSPITALITY GROUP"],
-    client_ar: ["مجموعة", "نايل للضيافة"],
-    image: "/images/grid-creative-1.jpg",
-  },
-  {
-    category_en: "EVENTS",
-    category_ar: "فعاليات",
-    client_en: ["WORLD FUTURE", "ENERGY SUMMIT"],
-    client_ar: ["قمة الطاقة", "العالمية المستقبلية"],
-    image: "/images/grid-perf-1.jpg",
-  },
-  {
-    category_en: "FILM & CONTENT",
-    category_ar: "أفلام ومحتوى",
-    client_en: ["RED SEA", "FILM FESTIVAL"],
-    client_ar: ["مهرجان البحر", "الأحمر السينمائي"],
-    image: "/images/grid-film-1.jpg",
-  },
-];
-
+const SLIDES = PROJECTS_DATA;
 const N = SLIDES.length;
 
+const t = {
+  en: {
+    eyebrow: "Selected Work · 13 Productions",
+    h1: "PROJECTS", h2: "THAT SPEAK", h3: "FOR THEMSELVES",
+    sub: "From government summits to extreme-sport spectacles, every name on this list is a different problem we were trusted to solve — on the ground, on schedule, and always at full scale.",
+    cta: "View All Projects",
+  },
+  ar: {
+    eyebrow: "أعمال مختارة · ١٣ إنتاجاً",
+    h1: "مشاريع", h2: "تتحدث", h3: "عن نفسها",
+    sub: "من قمم حكومية إلى مشاهد رياضية استثنائية، كل اسم في هذه القائمة مشكلة مختلفة وثقنا بنا لحلها — على أرض الواقع، في الوقت المحدد، وبالحجم الكامل دائماً.",
+    cta: "عرض جميع المشاريع",
+  },
+};
+
 export default function WorkSliderSection() {
-  const outerRef = useRef<HTMLDivElement>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
-  const dotsRef  = useRef<(HTMLSpanElement | null)[]>([]);
+  const outerRef  = useRef<HTMLDivElement>(null);
+  const trackRef  = useRef<HTMLDivElement>(null);
+  const dotsRef   = useRef<(HTMLSpanElement | null)[]>([]);
+  const headerRef = useRef<HTMLDivElement>(null);
   const lang = useLanguage();
+  const c = t[lang];
+
+  // Header entrance — fades/rises in once the header scrolls into view.
+  useEffect(() => {
+    let scrollTrigger: { kill: () => void } | undefined;
+
+    async function init() {
+      const { gsap } = await import("gsap");
+      const { ScrollTrigger } = await import("gsap/ScrollTrigger");
+      gsap.registerPlugin(ScrollTrigger);
+
+      const header = headerRef.current;
+      if (!header) return;
+
+      const targets = header.querySelectorAll<HTMLElement>("[data-reveal]");
+      gsap.set(targets, { opacity: 0, y: 24 });
+
+      const tl = gsap.timeline({ paused: true });
+      tl.to(targets, { opacity: 1, y: 0, duration: 0.8, ease: "power2.out", stagger: 0.12 });
+
+      scrollTrigger = ScrollTrigger.create({
+        trigger: header,
+        start: "top 80%",
+        once: true,
+        onEnter: () => tl.play(),
+      });
+    }
+
+    init();
+    return () => scrollTrigger?.kill();
+  }, [lang]);
 
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -96,49 +115,71 @@ export default function WorkSliderSection() {
   }, []);
 
   return (
-    <div ref={outerRef} className={styles.outer} dir="ltr">
-      <div className={styles.section}>
-        <div ref={trackRef} className={styles.track}>
-          {SLIDES.map((slide, i) => (
-            <div key={i} className={styles.card}>
-              <div className={styles.imgWrap}>
-                <div className={styles.imgInner}>
-                  <Image
-                    src={slide.image}
-                    alt={slide.client_en.join(" ")}
-                    fill
-                    sizes="65vw"
-                    className={styles.img}
-                    loading="eager"
-                  />
+    <section className={styles.wrap}>
+      <div ref={headerRef} className={styles.header}>
+        <span data-reveal className={styles.eyebrow}>
+          <span className={styles.eyebrowDot} />
+          {c.eyebrow}
+        </span>
+
+        <h2 data-reveal className={styles.headline}>
+          <span className={styles.hRow}>{c.h1}</span>
+          <span className={`${styles.hRow} ${styles.hRowAccent}`}>{c.h2}</span>
+          <span className={styles.hRow}>{c.h3}</span>
+        </h2>
+
+        <p data-reveal className={styles.sub}>{c.sub}</p>
+
+        <Link data-reveal href="/projects" className={styles.cta}>{c.cta}</Link>
+      </div>
+
+      <div
+        ref={outerRef}
+        className={styles.outer}
+        style={{ height: `${(N + 1) * 100}vh` }}
+        dir="ltr"
+      >
+        <div className={styles.section}>
+          <div ref={trackRef} className={styles.track} style={{ width: `${N * 100}vw` }}>
+            {SLIDES.map((proj) => (
+              <Link key={proj.slug} href={`/projects/${proj.slug}`} className={styles.card}>
+                <div className={styles.imgWrap}>
+                  <div className={styles.imgInner}>
+                    <Image
+                      src={proj.heroImg}
+                      alt={lang === "ar" ? proj.title_ar : proj.title}
+                      fill
+                      sizes="65vw"
+                      className={styles.img}
+                      loading="eager"
+                    />
+                  </div>
+                  <div className={styles.gradient} />
                 </div>
-                <div className={styles.gradient} />
-              </div>
 
-              <div className={styles.text}>
-                <span className={styles.category}>
-                  {lang === "ar" ? slide.category_ar : slide.category_en}
-                </span>
-                <h2 className={styles.title}>
-                  {(lang === "ar" ? slide.client_ar : slide.client_en).map((line, k) => (
-                    <span key={k} className={styles.titleLine}>{line}</span>
-                  ))}
-                </h2>
-              </div>
-            </div>
-          ))}
-        </div>
+                <div className={styles.text}>
+                  <span className={styles.category}>
+                    {lang === "ar" ? proj.category_ar : proj.category} · {proj.year}
+                  </span>
+                  <h3 className={styles.title}>
+                    {lang === "ar" ? proj.title_ar : proj.title}
+                  </h3>
+                </div>
+              </Link>
+            ))}
+          </div>
 
-        <div className={styles.dots}>
-          {SLIDES.map((_, j) => (
-            <span
-              key={j}
-              ref={(el) => { dotsRef.current[j] = el; }}
-              className={`${styles.dot}${j === 0 ? ` ${styles.dotActive}` : ""}`}
-            />
-          ))}
+          <div className={styles.dots}>
+            {SLIDES.map((_, j) => (
+              <span
+                key={j}
+                ref={(el) => { dotsRef.current[j] = el; }}
+                className={`${styles.dot}${j === 0 ? ` ${styles.dotActive}` : ""}`}
+              />
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
