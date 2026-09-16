@@ -21,7 +21,7 @@ export default function ComingExpoSection() {
       >
         <div className={styles.logoWrap}>
           <Image
-            src="/images/IEC-logo-nav.png"
+            src="/images/tujjar.png"
             alt="IEC 360 Expo"
             fill
             className={styles.logo}
