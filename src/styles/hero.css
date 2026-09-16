@@ -160,7 +160,7 @@
   font-weight: 600;
   line-height: 1;
   color: white;
-  letter-spacing: -0.03em;
+  letter-spacing: 0.05em;
   text-shadow: 0 2px 40px rgba(0, 0, 0, 0.5);
   animation: slide-up var(--duration-slow) var(--ease-smooth) 100ms both;
   order: 2;

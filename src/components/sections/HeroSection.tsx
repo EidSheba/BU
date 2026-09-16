@@ -14,7 +14,6 @@ const content = {
         UMBRELLA
       </>
     ),
-    showreel: "WATCH OUR SHOWREEL",
   },
   ar: {
     headline: (
@@ -22,7 +21,6 @@ const content = {
         تحت مظلة واحدة
       </>
     ),
-    showreel: "شاهد شريل أعمالنا",
   },
 };
 
@@ -153,10 +151,6 @@ export default function HeroSection() {
 
         {/* ── Bottom CTA ── */}
         <div className="hero-cta">
-          <button className="hero-showreel">
-            <span className="hero-showreel-icon"></span>
-            <span>{t.showreel}</span>
-          </button>
           <div className="hero-scroll-line" />
         </div>
       </section>
