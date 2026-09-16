@@ -3,7 +3,6 @@ import HeroSection from "@/components/sections/HeroSection";
 import ScrollRevealText from "@/components/sections/ScrollRevealText";
 import StorytellersCircles from "@/components/sections/StorytellersCircles";
 import StackSection from "@/components/sections/StackSection";
-import ParallaxBanner from "@/components/sections/ParallaxBanner";
 import ArchitectSection from "@/components/sections/ArchitectSection";
 import SecretSection from "@/components/sections/SecretSection";
 import GridSection from "@/components/sections/GridSection";
@@ -37,34 +36,11 @@ export default function Home() {
       <HeroSection />
       <ComingExpoSection />
       <ScrollRevealText
-        group1={["we are not just", "a creative agency"]}
-        group2={["we are strategy-led", "storytellers"]}
-        group1_ar={["لسنا مجرد", "وكالة إبداعية"]}
-        group2_ar={["نقود بالاستراتيجية", "رواة القصص"]}
+        group2={["one umbrella", "endless ideas"]}
+        group2_ar={["مظلة واحدة", "أفكار بلا حدود"]}
       />
       <StorytellersCircles />
       <StackSection />
-      <ParallaxBanner
-        image="/images/parallax-1.jpg"
-        text="Business Umbrella"
-        arText="بيزنس أمبريلا"
-      />
-      <ParallaxBanner
-        image="/images/parallax-2.jpg"
-        text="We Create"
-        arText="نخلق"
-      />
-      <ParallaxBanner
-        image="/images/parallax-3.jpg"
-        text="We Inspire"
-        arText="نُلهم"
-      />
-      <ParallaxBanner
-        image="/images/parallax-4.jpg"
-        text="We Deliver"
-        arText="نُنجز"
-        textColor="#ffffff"
-      />
       <ArchitectSection />
       <div className="secret-scroll-space">
         <SecretSection />

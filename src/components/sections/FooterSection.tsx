@@ -54,8 +54,8 @@ export default function FooterSection() {
           </div>
           <p className={styles.tagline}>
             {isAr
-              ? "قوة إبداعية متكاملة تقدم حملات جريئة ومؤثرة في جميع أنحاء الشرق الأوسط وما بعده."
-              : "A creative experiential powerhouse delivering bold, results-driven campaigns across the Middle East and beyond."}
+              ? "تحت مظلة واحدة، نقدم حملات جريئة ومؤثرة في جميع أنحاء الشرق الأوسط وما بعده."
+              : "Under one umbrella, we deliver bold, results-driven campaigns across the Middle East and beyond."}
           </p>
           <div className={styles.socials}>
             {/* TODO: replace href values with real social URLs when provided */}

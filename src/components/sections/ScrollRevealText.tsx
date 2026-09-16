@@ -5,13 +5,13 @@ import styles from "./ScrollRevealText.module.css";
 import { useLanguage } from "@/hooks/useLanguage";
 
 interface Props {
-  group1: string[];
+  group1?: string[];
   group2: string[];
   group1_ar?: string[];
   group2_ar?: string[];
 }
 
-export default function ScrollRevealText({ group1, group2, group1_ar, group2_ar }: Props) {
+export default function ScrollRevealText({ group1 = [], group2, group1_ar, group2_ar }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const g1Refs       = useRef<(HTMLParagraphElement | null)[]>([]);
   const g2Refs       = useRef<(HTMLParagraphElement | null)[]>([]);
@@ -19,6 +19,8 @@ export default function ScrollRevealText({ group1, group2, group1_ar, group2_ar 
 
   const activeG1 = lang === "ar" && group1_ar ? group1_ar : group1;
   const activeG2 = lang === "ar" && group2_ar ? group2_ar : group2;
+  // Without group1, group2 starts immediately instead of waiting 700px for it
+  const skip = activeG1.length ? 0 : 700;
 
   useEffect(() => {
     g1Refs.current = g1Refs.current.slice(0, activeG1.length);
@@ -31,7 +33,7 @@ export default function ScrollRevealText({ group1, group2, group1_ar, group2_ar 
     const update = () => {
       const el = containerRef.current;
       if (!el) return;
-      const s = Math.max(0, -el.getBoundingClientRect().top);
+      const s = Math.max(0, -el.getBoundingClientRect().top) + skip;
 
       // group1: reveal staggered, exit upward
       g1Refs.current.forEach((line, i) => {
@@ -118,10 +120,10 @@ export default function ScrollRevealText({ group1, group2, group1_ar, group2_ar 
     window.addEventListener("scroll", handleScroll, { passive: true });
     update();
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lang]);
+  }, [lang, skip]);
 
   return (
-    <div ref={containerRef} className={styles.container}>
+    <div ref={containerRef} className={styles.container} style={skip ? { height: `calc(${2200 - skip}px + 100vh)` } : undefined}>
       <div className={styles.sticky}>
         <div className={styles.textCenter}>
           <div className={styles.group}>

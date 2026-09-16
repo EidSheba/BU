@@ -79,7 +79,7 @@ export default function LoadingScreen({ ready }: { ready: boolean }) {
             <span className={styles.divider} />
             <span className={styles.umbrella}>Umbrella</span>
           </div>
-          <span className={styles.tagline}>We Architect Human Experiences</span>
+          <span className={styles.tagline}>Under One Umbrella</span>
         </div>
 
         <div className={styles.barOuter}>
