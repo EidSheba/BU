@@ -7,7 +7,7 @@ import { useLanguage } from "@/hooks/useLanguage";
 export default function ComingExpoSection() {
   const lang = useLanguage();
   return (
-    <section className={styles.section}>
+    <section id="coming-expo" className={styles.section}>
       <p className={styles.eyebrow}>
         {lang === "ar" ? "معرضنا القادم" : "Our Coming Expo"}
       </p>

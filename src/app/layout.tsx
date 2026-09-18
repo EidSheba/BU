@@ -68,8 +68,22 @@ export default async function RootLayout({
         <link
           rel="preload"
           as="font"
-          href="/fonts/Amazing Grotesk Demi.otf"
+          href="/fonts/Amazing%20Grotesk%20Demi.otf"
           type="font/otf"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          as="font"
+          href="/fonts/Cairo-700.woff2"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          as="font"
+          href="/fonts/Cairo-400.woff2"
+          type="font/woff2"
           crossOrigin="anonymous"
         />
       </head>
