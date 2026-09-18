@@ -1,45 +1,12 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import LoadingScreen from "@/components/LoadingScreen";
 
-type Lang = "en" | "ar";
-
-const content = {
-  en: {
-    headline: (
-      <>
-        Under one
-        <br />
-        UMBRELLA
-      </>
-    ),
-  },
-  ar: {
-    headline: (
-      <>
-        تحت مظلة واحدة
-      </>
-    ),
-  },
-};
-
 export default function HeroSection() {
-  const [lang, setLang] = useState<Lang>("en");
   const [ready, setReady] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    const update = () => {
-      const { dir } = document.documentElement;
-      setLang(dir === "rtl" ? "ar" : "en");
-    };
-    update();
-
-    const observer = new MutationObserver(update);
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["dir"] });
-    return () => observer.disconnect();
-  }, []);
 
   /* Particle field — drifts, links nearby dots, pushed away by the cursor */
   useEffect(() => {
@@ -96,12 +63,12 @@ export default function HeroSection() {
           const a = dots[i], b = dots[j];
           const dist = Math.hypot(a.x - b.x, a.y - b.y);
           if (dist < LINK) {
-            ctx.strokeStyle = `rgba(255,255,255,${(1 - dist / LINK) * 0.25})`;
+            ctx.strokeStyle = `rgba(74, 222, 128, ${(1 - dist / LINK) * 0.35})`;
             ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
           }
         }
       }
-      ctx.fillStyle = "rgba(255,255,255,0.85)";
+      ctx.fillStyle = "#4ade80";
       for (const d of dots) {
         ctx.beginPath(); ctx.arc(d.x, d.y, 1.6, 0, Math.PI * 2); ctx.fill();
       }
@@ -130,23 +97,22 @@ export default function HeroSection() {
     };
   }, []);
 
-  const t = content[lang];
-
   return (
     <>
       <LoadingScreen ready={ready} />
 
       <section className="hero-section">
-        {/* ── Interactive particle background ── */}
+        {/* ── Interactive particle & image background ── */}
         <div className="hero-bg">
+          <Image
+            src="/images/1umbrella.png"
+            alt="Business Umbrella - Under One Umbrella"
+            fill
+            priority
+            sizes="100vw"
+            className="hero-bg-img"
+          />
           <canvas ref={canvasRef} className="hero-particles" aria-hidden="true" />
-          <div className="hero-overlay" />
-          <div className="hero-glow" />
-        </div>
-
-        {/* ── Centre headline ── */}
-        <div className="hero-content">
-          <h1 className="hero-headline">{t.headline}</h1>
         </div>
 
         {/* ── Bottom CTA ── */}

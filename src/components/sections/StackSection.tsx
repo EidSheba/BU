@@ -1,57 +1,54 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Link from "next/link";
 import styles from "./StackSection.module.css";
 import { useLanguage } from "@/hooks/useLanguage";
 
 const t = {
-  en: {
-    heading: "What We Bring to Life",
-    leftLabel: "Marketing",
-    leftHead: "& Storytelling",
-    leftBody: [
-      "As a leading advertising powerhouse in the Middle East, we create bold, results-driven campaigns that fuse unforgettable storytelling with strategic, high-performance media.",
-      "From high-impact advertising campaigns to multi-channel media planning and buying, we craft narratives and stories that connect deeply and amplify them across every platform that matters.",
-      "Every campaign is powered by insights. Every channel is activated with purpose. Every impression is engineered for impact.",
-      "We don’t just tell your story. We make sure the right people hear it loud and clear.",
-    ],
-    rightLabel: "Event Concept",
-    rightHead: "& Design",
-    rightBody: [
-      "At Business Umbrella, we create large-scale event experiences where storytelling takes center stage. From global conferences to mega shows and iconic sporting and cultural events, we build narratives that spark dialogue, inspire emotion, and leave a lasting legacy.",
-      "Every detail, agenda design, stage content, keynote curation, and show flow, is crafted to deliver meaning with momentum. We design the entire event journey to ensure every moment, from arrival to final impression, reinforces the message and deepens audience connection.",
-      "We combine creative direction, scenography, immersive tech, and live show production to bring stories to life in unforgettable ways. Whether it’s a stadium-scale spectacle, a world-class forum, or a high-impact government summit, our events are built not just to impress but to influence.",
-      "We don’t just build shows, we script experiences that resonate long after the curtain close.",
-    ],
-    btn: "Learn More",
-  },
   ar: {
-    heading: "ما نجسّده في الواقع",
-    leftLabel: "التسويق",
-    leftHead: "وسرد القصص",
+    eyebrow: "عن مظلة الأعمال",
+    heading: "الرؤية والرسالة",
+    leftLabel: "01",
+    leftBadge: "رؤيتنا",
+    leftHead: "الرؤية",
     leftBody: [
-      "بوصفنا قوة إعلانية رائدة في الشرق الأوسط، نبتكر حملات جريئة وفعّالة تمزج بين السرد المبهر والإعلام الاستراتيجي عالي الأداء.",
-      "من حملات الإعلان الكبرى إلى التخطيط الإعلامي متعدد القنوات، نصوغ الروايات والقصص التي تصل إلى الأعماق ونضخّمها عبر كل منصة مؤثرة.",
-      "كل حملة مدفوعة بالبيانات. كل قناة مُفعَّلة بهدف. كل انطباع مهندَس للأثر.",
-      "نحن لا نروي قصتك فحسب — بل نضمن وصولها إلى الأشخاص المناسبين بوضوح لا يُنكَر.",
+      "أن نكون المرجع الأول في تصميم وتنفيذ المعارض والفعاليات، ونقود صناعة التجارب في المملكة من خلال حلول مبتكرة تخلق أثرًا حقيقيًا وتحقق قيمة مستدامة.",
     ],
-    rightLabel: "مفهوم الفعالية",
-    rightHead: "والتصميم",
+    rightLabel: "02",
+    rightBadge: "رسالتنا",
+    rightHead: "الرسالة",
     rightBody: [
-      "في أمبريلا، نصنع تجارب فعاليات واسعة النطاق تتصدّر المشهد السرد. من المؤتمرات العالمية إلى العروض الكبرى والفعاليات الثقافية الأيقونية، نبني روايات تُشعل الحوار وتُلهم المشاعر وترسّخ إرثاً باقياً.",
-      "كل تفصيلة — تصميم جدول الأعمال ومحتوى المسرح وانتقاء الكلمات الرئيسية وتدفق العرض — مُصاغة لتمنح كل لحظة معنى ودفعاً. نصمم رحلة الفعالية بأكملها لضمان أن كل لحظة تُعزّز الرسالة وتُعمّق تواصل الجمهور.",
-      "نجمع الإخراج الإبداعي والتصميم البيئي والتقنية الغامرة والإنتاج الحي لنُحيّي القصص بأساليب لا تُنسى. سواء أكان استعراضاً بحجم الملاعب أم منتدى عالمي الطراز، فعالياتنا مبنية لا لإثارة الإعجاب فحسب، بل للتأثير.",
-      "نحن لا نبني عروضاً فقط — بل نكتب تجارب تتردّد في الأرجاء طويلاً بعد إسدال الستار.",
+      "نقدّم في «مظلة الأعمال» حلولًا متكاملة لتخطيط وتنفيذ المعارض والفعاليات، تجمع بين الإبداع في التصميم والكفاءة في التشغيل، لنحوّل أفكار عملائنا إلى تجارب استثنائية تحقق أهدافهم وتترك أثرًا مستدامًا.",
     ],
-    btn: "اعرف أكثر",
+    btn: "اعرف أكثر عنّا",
+  },
+  en: {
+    eyebrow: "ABOUT BUSINESS UMBRELLA",
+    heading: "Our Vision & Mission",
+    leftLabel: "01",
+    leftBadge: "VISION",
+    leftHead: "Vision",
+    leftBody: [
+      "To be the primary reference in designing and implementing exhibitions and events, and to lead the experience industry in the Kingdom through innovative solutions that create real impact and achieve sustainable value.",
+    ],
+    rightLabel: "02",
+    rightBadge: "MISSION",
+    rightHead: "Mission",
+    rightBody: [
+      'At "Business Umbrella", we provide integrated solutions for planning and implementing exhibitions and events, combining creativity in design and efficiency in operation, to transform our clients\' ideas into exceptional experiences that achieve their goals and leave a sustainable impact.',
+    ],
+    btn: "Learn More About Us",
   },
 };
 
 export default function StackSection() {
   const wrapperRef  = useRef<HTMLDivElement>(null);
   const cardRef     = useRef<HTMLDivElement>(null);
+  const headerRef   = useRef<HTMLDivElement>(null);
   const leftColRef  = useRef<HTMLDivElement>(null);
   const rightColRef = useRef<HTMLDivElement>(null);
+  const footerRef   = useRef<HTMLDivElement>(null);
   const lang = useLanguage();
   const c = t[lang];
 
@@ -67,8 +64,10 @@ export default function StackSection() {
 
       const wrapper  = wrapperRef.current;
       const card     = cardRef.current;
+      const header   = headerRef.current;
       const leftCol  = leftColRef.current;
       const rightCol = rightColRef.current;
+      const footer   = footerRef.current;
       if (!wrapper || !card || !leftCol || !rightCol) return;
 
       if (window.innerWidth < 768) {
@@ -92,42 +91,69 @@ export default function StackSection() {
       if (tEnter.scrollTrigger) triggers.push(tEnter.scrollTrigger);
 
       if (window.innerWidth >= 768) {
-        const tExit = gsap.fromTo([leftCol, rightCol], { xPercent: 0 }, {
-          xPercent: (i: number) => (i === 0 ? -115 : 115),
-          ease: "none",
+        const isRtl = lang === "ar";
+        const tExit = gsap.timeline({
           scrollTrigger: { trigger: card, start: "top top", end: "bottom top", scrub: 1 },
         });
+        tExit.fromTo([leftCol, rightCol], { xPercent: 0 }, {
+          xPercent: (i: number) => (isRtl ? (i === 0 ? 115 : -115) : (i === 0 ? -115 : 115)),
+          ease: "none",
+        }, 0);
+        if (header) {
+          tExit.fromTo(header, { opacity: 1, y: 0 }, { opacity: 0, y: -30, ease: "none" }, 0);
+        }
+        if (footer) {
+          tExit.fromTo(footer, { opacity: 1, y: 0 }, { opacity: 0, y: 25, ease: "none" }, 0);
+        }
         if (tExit.scrollTrigger) triggers.push(tExit.scrollTrigger);
       }
     };
 
     init();
     return () => triggers.forEach((t) => t.kill());
-  }, []);
+  }, [lang]);
 
   return (
     <div ref={wrapperRef} className={styles.wrapper}>
       <div ref={cardRef} className={styles.card}>
         <div className={styles.inner}>
-          <h2 className={styles.heading}>{c.heading}</h2>
+          <div ref={headerRef} className={styles.header}>
+            <span className={styles.eyebrow}>{c.eyebrow}</span>
+            <h2 className={styles.heading}>{c.heading}</h2>
+          </div>
+
           <div className={styles.cols}>
             <div ref={leftColRef} className={styles.col}>
-              <span className={styles.label}>{c.leftLabel}</span>
+              <div className={styles.cardTop}>
+                <span className={styles.numberBadge}>{c.leftLabel}</span>
+                <span className={styles.typeBadge}>{c.leftBadge}</span>
+              </div>
               <h3 className={styles.colHeading}>{c.leftHead}</h3>
               <div className={styles.body}>
                 {c.leftBody.map((p, i) => <p key={i}>{p}</p>)}
               </div>
             </div>
+
             <div ref={rightColRef} className={styles.col}>
-              <span className={styles.label}>{c.rightLabel}</span>
+              <div className={styles.cardTop}>
+                <span className={styles.numberBadge}>{c.rightLabel}</span>
+                <span className={styles.typeBadge}>{c.rightBadge}</span>
+              </div>
               <h3 className={styles.colHeading}>{c.rightHead}</h3>
               <div className={styles.body}>
                 {c.rightBody.map((p, i) => <p key={i}>{p}</p>)}
               </div>
             </div>
           </div>
-          <div className={styles.footer}>
-            <button type="button" className={styles.btn}>{c.btn}</button>
+
+          <div ref={footerRef} className={styles.footer}>
+            <Link href="/about" className={styles.btn}>
+              <span>{c.btn}</span>
+              <svg className={styles.btnArrow} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg>
+            </Link>
           </div>
         </div>
       </div>
