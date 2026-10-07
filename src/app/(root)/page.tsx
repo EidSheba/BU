@@ -5,7 +5,6 @@ import StackSection from "@/components/sections/StackSection";
 import ArchitectSection from "@/components/sections/ArchitectSection";
 import SecretSection from "@/components/sections/SecretSection";
 import WorkSliderSection from "@/components/sections/WorkSliderSection";
-import ComingExpoSection from "@/components/sections/ComingExpoSection";
 import FooterSection from "@/components/sections/FooterSection";
 import StickyNavbar from "@/components/StickyNavbar";
 
@@ -32,7 +31,6 @@ export default function Home() {
     <main>
       <StickyNavbar />
       <HeroSection />
-      <ComingExpoSection />
       <ScrollRevealText
         group2={["one umbrella", "endless ideas"]}
         group2_ar={["مظلة واحدة", "أفكار بلا حدود"]}

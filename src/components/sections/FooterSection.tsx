@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "./FooterSection.module.css";
 import { useLanguage } from "@/hooks/useLanguage";
+import { SERVICES_DATA } from "@/data/services";
 
 const NAV = [
   { label_en: "Home",           label_ar: "الرئيسية",        href: "/" },
@@ -15,15 +16,13 @@ const NAV = [
   { label_en: "Contact",        label_ar: "تواصل معنا",       href: "/contact" },
 ];
 
-const MARQUEE_EN = ["Strategy", "Creative", "Events", "Media", "Film & Content"];
-const MARQUEE_AR = ["استراتيجية", "إبداع", "فعاليات", "إعلام", "أفلام ومحتوى"];
-const REPEAT = 4;
+const REPEAT = 2;
 
 export default function FooterSection() {
   const lang = useLanguage();
   const isAr = lang === "ar";
 
-  const marqueeItems = (isAr ? MARQUEE_AR : MARQUEE_EN);
+  const marqueeItems = SERVICES_DATA.map((s) => (isAr ? s.title_ar : s.title));
   const marqueeRepeated = Array.from({ length: REPEAT }, () => marqueeItems).flat();
 
   return (

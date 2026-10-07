@@ -1,16 +1,12 @@
 .wrapper {
-  margin-top: -100vh;
   position: relative;
   z-index: 20;
-  height: 160vh;
 }
 
 .card {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  height: 100vh;
+  position: relative;
   width: 100%;
+  min-height: 100vh;
   background-color: #ffffff;
   overflow: hidden;
 }

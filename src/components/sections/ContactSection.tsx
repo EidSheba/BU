@@ -3,18 +3,10 @@
 import { useState } from "react";
 import styles from "./ContactSection.module.css";
 import { useLanguage } from "@/hooks/useLanguage";
+import { SERVICES_DATA } from "@/data/services";
 
-const SERVICES_EN = [
-  "Event Management", "Entertainment", "Event Personnel", "Crowd Management",
-  "Conferences & Seminars", "Team Building", "Venue Sourcing", "Event Marketing",
-  "Event Production", "Design Studio", "Event Giveaways", "Other",
-];
-
-const SERVICES_AR = [
-  "إدارة الفعاليات", "الترفيه", "طاقم الفعاليات", "إدارة الحشود",
-  "المؤتمرات والندوات", "بناء الفرق", "إيجاد الأماكن", "تسويق الفعاليات",
-  "إنتاج الفعاليات", "استوديو التصميم", "هدايا الفعاليات", "أخرى",
-];
+const SERVICES_EN = [...SERVICES_DATA.map((s) => s.title), "Other"];
+const SERVICES_AR = [...SERVICES_DATA.map((s) => s.title_ar), "أخرى"];
 
 type FormState = {
   name: string;

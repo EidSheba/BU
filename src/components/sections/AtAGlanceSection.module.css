@@ -56,6 +56,13 @@
   animation: slideFromRight 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.12s both;
 }
 
+/* Arabic is a connected script — uppercase does nothing useful on its
+   glyphs, and any letter-spacing can break the cursive joins. */
+:global(html[dir="rtl"]) .titleBold {
+  letter-spacing: normal;
+  text-transform: none;
+}
+
 /* ── 16 YEARS hero ──────────────────────────────────────────── */
 .heroStat {
   display: flex;
@@ -201,7 +208,7 @@
   display: block;
   font-size: clamp(2rem, 4vw, 3.5rem);
   font-weight: 900;
-  line-height: 1.05;
+  line-height: 1.2;
   text-transform: uppercase;
   color: #fff;
   margin-bottom: 1.5rem;

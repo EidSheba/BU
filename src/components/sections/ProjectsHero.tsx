@@ -43,10 +43,9 @@ type ProjectsHeroProps = {
 };
 
 export default function ProjectsHero({ showCta = false, triggerRef }: ProjectsHeroProps) {
-  const headRef    = useRef<HTMLDivElement>(null);
-  const subRef     = useRef<HTMLParagraphElement>(null);
-  const eyebrowRef = useRef<HTMLSpanElement>(null);
-  const statsRef   = useRef<HTMLDivElement>(null);
+  const headRef  = useRef<HTMLDivElement>(null);
+  const subRef   = useRef<HTMLParagraphElement>(null);
+  const statsRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
   const lang = useLanguage();
   const c = t[lang];
@@ -58,15 +57,13 @@ export default function ProjectsHero({ showCta = false, triggerRef }: ProjectsHe
     const init = async () => {
       const { gsap } = await import("gsap");
 
-      if (eyebrowRef.current) gsap.set(eyebrowRef.current, { opacity: 0, y: 12 });
-      if (subRef.current)     gsap.set(subRef.current,     { opacity: 0, y: 18 });
-      if (statsRef.current)   gsap.set(statsRef.current,   { opacity: 0, y: 16 });
+      if (subRef.current)   gsap.set(subRef.current,   { opacity: 0, y: 18 });
+      if (statsRef.current) gsap.set(statsRef.current, { opacity: 0, y: 16 });
 
       const tl = gsap.timeline({
         delay: triggerRef ? 0 : 0.15,
         paused: !!triggerRef,
       });
-      if (eyebrowRef.current) tl.to(eyebrowRef.current, { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" }, 0);
 
       if (lang === "en") {
         const letters = headRef.current?.querySelectorAll<HTMLElement>("[data-letter]");
@@ -127,11 +124,6 @@ export default function ProjectsHero({ showCta = false, triggerRef }: ProjectsHe
   return (
     <section className={styles.hero}>
       <div className={styles.left}>
-        <span ref={eyebrowRef} className={styles.eyebrow}>
-          <span className={styles.eyebrowDot} />
-          {c.eyebrow}
-        </span>
-
         {lang === "en" ? (
           <div ref={headRef} className={styles.headline} aria-label="Projects that speak for themselves">
             <div className={styles.hRow}>

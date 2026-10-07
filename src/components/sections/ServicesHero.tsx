@@ -27,10 +27,9 @@ const t = {
 };
 
 export default function ServicesHero() {
-  const headRef    = useRef<HTMLDivElement>(null);
-  const subRef     = useRef<HTMLParagraphElement>(null);
-  const eyebrowRef = useRef<HTMLSpanElement>(null);
-  const statsRef   = useRef<HTMLDivElement>(null);
+  const headRef  = useRef<HTMLDivElement>(null);
+  const subRef   = useRef<HTMLParagraphElement>(null);
+  const statsRef = useRef<HTMLDivElement>(null);
   const lang = useLanguage();
   const c = t[lang];
 
@@ -38,9 +37,8 @@ export default function ServicesHero() {
     const init = async () => {
       const { gsap } = await import("gsap");
 
-      if (eyebrowRef.current) gsap.set(eyebrowRef.current, { opacity: 0, y: 12 });
-      if (subRef.current)     gsap.set(subRef.current,     { opacity: 0, y: 18 });
-      if (statsRef.current)   gsap.set(statsRef.current,   { opacity: 0, y: 16 });
+      if (subRef.current)   gsap.set(subRef.current,   { opacity: 0, y: 18 });
+      if (statsRef.current) gsap.set(statsRef.current, { opacity: 0, y: 16 });
 
       const tl = gsap.timeline({ delay: 0.15 });
 
@@ -48,14 +46,12 @@ export default function ServicesHero() {
         const letters = headRef.current?.querySelectorAll<HTMLElement>("[data-letter]");
         if (letters?.length) {
           gsap.set(letters, { y: "115%" });
-          if (eyebrowRef.current) tl.to(eyebrowRef.current, { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" }, 0);
           tl.to(letters, { y: "0%", duration: 1.25, ease: "power4.out", stagger: { amount: 0.32 } }, 0.1);
         }
       } else {
         const words = headRef.current?.querySelectorAll<HTMLElement>("[data-word]");
         if (words?.length) {
           gsap.set(words, { y: "100%", opacity: 0 });
-          if (eyebrowRef.current) tl.to(eyebrowRef.current, { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" }, 0);
           tl.to(words, { y: "0%", opacity: 1, duration: 1.1, ease: "power4.out", stagger: { amount: 0.25 } }, 0.1);
         }
       }
@@ -91,11 +87,6 @@ export default function ServicesHero() {
       </div>
 
       <div className={styles.inner}>
-        <span ref={eyebrowRef} className={styles.eyebrow}>
-          <span className={styles.eyebrowDot} />
-          {c.eyebrow}
-        </span>
-
         {lang === "en" ? (
           <div ref={headRef} className={styles.headline} aria-label="Our Services">
             <div className={styles.hRow}>

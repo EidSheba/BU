@@ -126,6 +126,19 @@
   margin-top: 0.5rem;
 }
 
+/* Arabic is a connected script — wide letter-spacing and uppercase
+   (which does nothing useful on Arabic glyphs) break legibility. */
+:global(html[dir="rtl"]) .business,
+:global(html[dir="rtl"]) .umbrella {
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+:global(html[dir="rtl"]) .tagline {
+  letter-spacing: 0.05em;
+  text-transform: none;
+}
+
 /* ── Progress bar ── */
 .barOuter {
   display: flex;

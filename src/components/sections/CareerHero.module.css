@@ -91,18 +91,25 @@
 .headline {
   display: flex;
   flex-direction: column;
-  line-height: 0.88;
+  line-height: 1;
+  gap: 0.35rem;
   margin-bottom: clamp(2rem, 3.5vw, 4rem);
 }
 
 .hRow {
   display: flex;
   overflow: hidden;
+  margin-top: clamp(-2.75rem, -6.75vw, -7.5rem);
+}
+
+.hRow:first-child {
+  margin-top: 0;
 }
 
 .lWrap {
   overflow: hidden;
   display: inline-block;
+  padding: 0.18em 0;
 }
 
 .lChar {
@@ -112,7 +119,7 @@
   color: #ffffff;
   letter-spacing: -0.035em;
   will-change: transform;
-  line-height: 1;
+  line-height: 1.5;
 }
 
 /* ── Bottom row ── */

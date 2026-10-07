@@ -137,7 +137,7 @@ export default function ArchitectSection() {
         },
       });
 
-      tl.fromTo(headline, { rowGap: window.innerHeight * 0.08 }, { rowGap: 0, ease: "none" }, 0)
+      tl.fromTo(headline, { rowGap: window.innerHeight * 0.08 }, { rowGap: 28, ease: "none" }, 0)
         .fromTo(left,  { x: 0 }, { x:  dir * gap / 2, ease: "none" }, 0)
         .fromTo(right, { x: 0 }, { x: -dir * gap / 2, ease: "none" }, 0);
 
@@ -177,11 +177,6 @@ export default function ArchitectSection() {
 
       {/* Header Container */}
       <div className="architect-header-container">
-        <div className="architect-eyebrow">
-          <span className="architect-dot" />
-          <span>{c.eyebrow}</span>
-        </div>
-
         <div ref={headlineRef} className="architect-headline">
           <div className="architect-headline-row">
             <span ref={leftRef} className="architect-word architect-word--left">
@@ -212,9 +207,8 @@ export default function ArchitectSection() {
               <span className="architect-crosshair architect-crosshair--bl">+</span>
               <span className="architect-crosshair architect-crosshair--br">+</span>
 
-              {/* Card top bar: Index & Category */}
+              {/* Card top bar: Category */}
               <div className="architect-card-header">
-                <span className="architect-card-index">{s.index} //</span>
                 <span className="architect-card-tag">{s.tag[lang]}</span>
               </div>
 

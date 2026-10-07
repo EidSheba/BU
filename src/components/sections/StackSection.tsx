@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useRef } from "react";
 import Link from "next/link";
 import styles from "./StackSection.module.css";
 import { useLanguage } from "@/hooks/useLanguage";
@@ -43,87 +42,20 @@ const t = {
 };
 
 export default function StackSection() {
-  const wrapperRef  = useRef<HTMLDivElement>(null);
-  const cardRef     = useRef<HTMLDivElement>(null);
-  const headerRef   = useRef<HTMLDivElement>(null);
-  const leftColRef  = useRef<HTMLDivElement>(null);
-  const rightColRef = useRef<HTMLDivElement>(null);
-  const footerRef   = useRef<HTMLDivElement>(null);
   const lang = useLanguage();
   const c = t[lang];
 
-  useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    let gsap: any, ScrollTrigger: any;
-    const triggers: { kill: () => void }[] = [];
-
-    const init = async () => {
-      ({ gsap } = await import("gsap"));
-      ({ ScrollTrigger } = await import("gsap/ScrollTrigger"));
-      gsap.registerPlugin(ScrollTrigger);
-
-      const wrapper  = wrapperRef.current;
-      const card     = cardRef.current;
-      const header   = headerRef.current;
-      const leftCol  = leftColRef.current;
-      const rightCol = rightColRef.current;
-      const footer   = footerRef.current;
-      if (!wrapper || !card || !leftCol || !rightCol) return;
-
-      if (window.innerWidth < 768) {
-        const vh = window.innerHeight;
-        gsap.set(card, { y: vh });
-        const t = gsap.fromTo(card, { y: vh }, {
-          y: 0, ease: "none",
-          scrollTrigger: { trigger: wrapper, start: "top top", end: "+=100vh", scrub: 2 },
-        });
-        if (t.scrollTrigger) triggers.push(t.scrollTrigger);
-        return;
-      }
-
-      const vh = window.innerHeight;
-      gsap.set(card, { y: vh });
-
-      const tEnter = gsap.fromTo(card, { y: vh }, {
-        y: 0, ease: "none",
-        scrollTrigger: { trigger: wrapper, start: "top top", end: "+=100vh", scrub: 2 },
-      });
-      if (tEnter.scrollTrigger) triggers.push(tEnter.scrollTrigger);
-
-      if (window.innerWidth >= 768) {
-        const isRtl = lang === "ar";
-        const tExit = gsap.timeline({
-          scrollTrigger: { trigger: card, start: "top top", end: "bottom top", scrub: 1 },
-        });
-        tExit.fromTo([leftCol, rightCol], { xPercent: 0 }, {
-          xPercent: (i: number) => (isRtl ? (i === 0 ? 115 : -115) : (i === 0 ? -115 : 115)),
-          ease: "none",
-        }, 0);
-        if (header) {
-          tExit.fromTo(header, { opacity: 1, y: 0 }, { opacity: 0, y: -30, ease: "none" }, 0);
-        }
-        if (footer) {
-          tExit.fromTo(footer, { opacity: 1, y: 0 }, { opacity: 0, y: 25, ease: "none" }, 0);
-        }
-        if (tExit.scrollTrigger) triggers.push(tExit.scrollTrigger);
-      }
-    };
-
-    init();
-    return () => triggers.forEach((t) => t.kill());
-  }, [lang]);
-
   return (
-    <div ref={wrapperRef} className={styles.wrapper}>
-      <div ref={cardRef} className={styles.card}>
+    <div className={styles.wrapper}>
+      <div className={styles.card}>
         <div className={styles.inner}>
-          <div ref={headerRef} className={styles.header}>
+          <div className={styles.header}>
             <span className={styles.eyebrow}>{c.eyebrow}</span>
             <h2 className={styles.heading}>{c.heading}</h2>
           </div>
 
           <div className={styles.cols}>
-            <div ref={leftColRef} className={styles.col}>
+            <div className={styles.col}>
               <div className={styles.cardTop}>
                 <span className={styles.numberBadge}>{c.leftLabel}</span>
                 <span className={styles.typeBadge}>{c.leftBadge}</span>
@@ -134,7 +66,7 @@ export default function StackSection() {
               </div>
             </div>
 
-            <div ref={rightColRef} className={styles.col}>
+            <div className={styles.col}>
               <div className={styles.cardTop}>
                 <span className={styles.numberBadge}>{c.rightLabel}</span>
                 <span className={styles.typeBadge}>{c.rightBadge}</span>
@@ -146,7 +78,7 @@ export default function StackSection() {
             </div>
           </div>
 
-          <div ref={footerRef} className={styles.footer}>
+          <div className={styles.footer}>
             <Link href="/about" className={styles.btn}>
               <span>{c.btn}</span>
               <svg className={styles.btnArrow} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">

@@ -42,7 +42,11 @@ export const SERVICES_DATA: ServiceData[] = [
       "تقارير ما بعد الفعالية والتحليلات",
     ],
     heroImg: "/images/serv1.png",
-    gallery: ["/images/grid-event-2.jpg", "/images/grid-event-3.jpg", "/images/grid-event-4.jpg"],
+    gallery: [
+      "/images/grid-event-2.jpg",
+      "/images/grid-event-3.jpg",
+      "/images/grid-event-4.jpg",
+    ],
   },
   {
     id: "02",
@@ -72,7 +76,11 @@ export const SERVICES_DATA: ServiceData[] = [
       "تفعيلات الترفيه الاستثنائية والمفاجآت",
     ],
     heroImg: "/images/serv2.png",
-    gallery: ["/images/grid-perf-2.jpg", "/images/grid-perf-3.jpg", "/images/grid-perf-4.jpg"],
+    gallery: [
+      "/images/grid-perf-2.jpg",
+      "/images/grid-perf-3.jpg",
+      "/images/grid-perf-4.jpg",
+    ],
   },
   {
     id: "03",
@@ -102,7 +110,11 @@ export const SERVICES_DATA: ServiceData[] = [
       "فرق الإشراف وإدارة الأرضية",
     ],
     heroImg: "/images/serv3.png",
-    gallery: ["/images/grid-event-3.jpg", "/images/grid-event-4.jpg", "/images/grid-event-5.jpg"],
+    gallery: [
+      "/images/grid-event-3.jpg",
+      "/images/grid-event-4.jpg",
+      "/images/grid-event-5.jpg",
+    ],
   },
   {
     id: "04",
@@ -132,7 +144,11 @@ export const SERVICES_DATA: ServiceData[] = [
       "التنسيق مع الجهات الأمنية المحلية",
     ],
     heroImg: "/images/serv4.png",
-    gallery: ["/images/grid-event-1.jpg", "/images/grid-event-4.jpg", "/images/parallax-1.jpg"],
+    gallery: [
+      "/images/grid-event-1.jpg",
+      "/images/grid-event-4.jpg",
+      "/images/parallax-1.jpg",
+    ],
   },
   {
     id: "05",
@@ -161,8 +177,12 @@ export const SERVICES_DATA: ServiceData[] = [
       "تنسيق الجلسات المتخصصة",
       "توثيق محتوى المؤتمر بعد انتهائه",
     ],
-    heroImg: "/images/serv5.png",
-    gallery: ["/images/grid-event-1.jpg", "/images/grid-event-2.jpg", "/images/parallax-2.jpg"],
+    heroImg: "/images/serv6.png",
+    gallery: [
+      "/images/grid-event-1.jpg",
+      "/images/grid-event-2.jpg",
+      "/images/parallax-2.jpg",
+    ],
   },
   {
     id: "06",
@@ -191,8 +211,12 @@ export const SERVICES_DATA: ServiceData[] = [
       "برامج الانخراط الثقافي",
       "تقارير النتائج القابلة للقياس",
     ],
-    heroImg: "/images/serv6.png",
-    gallery: ["/images/grid-event-2.jpg", "/images/grid-event-5.jpg", "/images/parallax-3.jpg"],
+    heroImg: "/images/serv5.png",
+    gallery: [
+      "/images/grid-event-2.jpg",
+      "/images/grid-event-5.jpg",
+      "/images/parallax-3.jpg",
+    ],
   },
   {
     id: "07",
@@ -222,7 +246,11 @@ export const SERVICES_DATA: ServiceData[] = [
       "استقطاب أماكن دولية",
     ],
     heroImg: "/images/serv7.png",
-    gallery: ["/images/parallax-1.jpg", "/images/parallax-3.jpg", "/images/parallax-4.jpg"],
+    gallery: [
+      "/images/parallax-1.jpg",
+      "/images/parallax-3.jpg",
+      "/images/parallax-4.jpg",
+    ],
   },
   {
     id: "08",
@@ -252,7 +280,11 @@ export const SERVICES_DATA: ServiceData[] = [
       "تقارير ما بعد الفعالية وتحليل العائد على الاستثمار",
     ],
     heroImg: "/images/serv8.png",
-    gallery: ["/images/grid-media-2.jpg", "/images/grid-media-3.jpg", "/images/grid-media-4.jpg"],
+    gallery: [
+      "/images/grid-media-2.jpg",
+      "/images/grid-media-3.jpg",
+      "/images/grid-media-4.jpg",
+    ],
   },
   {
     id: "09",
@@ -282,7 +314,11 @@ export const SERVICES_DATA: ServiceData[] = [
       "التجهيز التقني والإدارة الميدانية",
     ],
     heroImg: "/images/serv9.png",
-    gallery: ["/images/grid-film-2.jpg", "/images/grid-film-3.jpg", "/images/parallax-1.jpg"],
+    gallery: [
+      "/images/grid-film-2.jpg",
+      "/images/grid-film-3.jpg",
+      "/images/parallax-1.jpg",
+    ],
   },
   {
     id: "10",
@@ -312,7 +348,11 @@ export const SERVICES_DATA: ServiceData[] = [
       "الأصول التصميمية ما بعد الفعالية",
     ],
     heroImg: "/images/serv10.png",
-    gallery: ["/images/grid-design-2.jpg", "/images/grid-design-3.jpg", "/images/grid-creative-1.jpg"],
+    gallery: [
+      "/images/grid-design-2.jpg",
+      "/images/grid-design-3.jpg",
+      "/images/grid-creative-1.jpg",
+    ],
   },
   {
     id: "11",
@@ -342,7 +382,11 @@ export const SERVICES_DATA: ServiceData[] = [
       "تنسيق هدايا البريميوم وكبار الشخصيات",
     ],
     heroImg: "/images/serv11.png",
-    gallery: ["/images/grid-creative-2.jpg", "/images/grid-creative-3.jpg", "/images/grid-design-4.jpg"],
+    gallery: [
+      "/images/grid-creative-2.jpg",
+      "/images/grid-creative-3.jpg",
+      "/images/grid-design-4.jpg",
+    ],
   },
   {
     id: "12",
@@ -372,6 +416,10 @@ export const SERVICES_DATA: ServiceData[] = [
       "خدمات لوجستية شاملة للهدايا والتسليم",
     ],
     heroImg: "/images/serv12.png",
-    gallery: ["/images/grid-creative-4.jpg", "/images/grid-creative-5.jpg", "/images/grid-design-3.jpg"],
+    gallery: [
+      "/images/grid-creative-4.jpg",
+      "/images/grid-creative-5.jpg",
+      "/images/grid-design-3.jpg",
+    ],
   },
 ];

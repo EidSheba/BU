@@ -45,17 +45,24 @@
 .headline {
   display: flex;
   flex-direction: column;
-  line-height: 0.96;
+  line-height: 1.1;
+  gap: 0.8rem;
 }
 
 .hRow {
   display: flex;
   overflow: hidden;
+  margin-top: clamp(-1.05rem, -2.2vw, -1.9rem);
+}
+
+.hRow:first-child {
+  margin-top: 0;
 }
 
 .lWrap {
   overflow: hidden;
   display: inline-block;
+  padding: 0.18em 0;
 }
 
 .lChar {
@@ -65,7 +72,7 @@
   color: #ffffff;
   letter-spacing: -0.03em;
   will-change: transform;
-  line-height: 1;
+  line-height: 1.5;
 }
 
 .hRowAccent .lChar {
@@ -122,7 +129,9 @@
   text-transform: uppercase;
   color: #ffffff;
   text-decoration: none;
-  transition: background-color 200ms ease, border-color 200ms ease;
+  transition:
+    background-color 200ms ease,
+    border-color 200ms ease;
 }
 
 .cta:hover {
@@ -250,8 +259,12 @@
 }
 
 @keyframes reelDashGrow {
-  from { transform: scaleX(0); }
-  to   { transform: scaleX(1); }
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
 }
 
 /* ── Responsive ── */

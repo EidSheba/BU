@@ -6,8 +6,6 @@ import { useLanguage } from "@/hooks/useLanguage";
 
 /* ── Option keys (language-independent, so switching language keeps selections) ── */
 const PROJECT_TYPES = ["exhibition", "event", "conference", "launch", "activation", "other"] as const;
-const VISITORS = ["lt500", "500-2k", "2k-10k", "10k-50k", "gt50k"] as const;
-const BOOTH_SIDES = ["inline", "corner", "peninsula", "island", "unsure"] as const;
 const BUDGETS = ["lt50", "50-100", "100-250", "250-500", "500-1m", "gt1m", "unsure"] as const;
 const CONTACT_METHODS = ["phone", "email", "whatsapp"] as const;
 
@@ -44,18 +42,10 @@ const t = {
     startDate:      "Start Date",
     endDate:        "End Date",
     visitors:       "Expected Attendance",
-    visitorOpts: {
-      "lt500": "Less than 500", "500-2k": "500 – 2,000", "2k-10k": "2,000 – 10,000",
-      "10k-50k": "10,000 – 50,000", "gt50k": "More than 50,000",
-    } as Record<(typeof VISITORS)[number], string>,
+    phVisitors:     "e.g. 500",
     boothTitle:     "Booth Specifications",
     boothArea:      "Booth Area (m²)",
     phBoothArea:    "e.g. 36",
-    boothSides:     "Booth Type",
-    sidesOpts: {
-      inline: "Inline — 1 open side", corner: "Corner — 2 open sides",
-      peninsula: "Peninsula — 3 open sides", island: "Island — 4 open sides", unsure: "Not sure yet",
-    } as Record<(typeof BOOTH_SIDES)[number], string>,
     brief:          "Project Brief",
     phBrief:        "Describe your objectives, target audience, key requirements and any ideas or references you have in mind.",
 
@@ -141,18 +131,10 @@ const t = {
     startDate:      "تاريخ البداية",
     endDate:        "تاريخ النهاية",
     visitors:       "عدد الحضور المتوقع",
-    visitorOpts: {
-      "lt500": "أقل من 500", "500-2k": "500 – 2,000", "2k-10k": "2,000 – 10,000",
-      "10k-50k": "10,000 – 50,000", "gt50k": "أكثر من 50,000",
-    } as Record<(typeof VISITORS)[number], string>,
+    phVisitors:     "مثال: 500",
     boothTitle:     "مواصفات الجناح",
     boothArea:      "مساحة الجناح (م²)",
     phBoothArea:    "مثال: 36",
-    boothSides:     "نوع الجناح",
-    sidesOpts: {
-      inline: "داخلي — واجهة مفتوحة واحدة", corner: "زاوية — واجهتان مفتوحتان",
-      peninsula: "شبه جزيرة — 3 واجهات مفتوحة", island: "جزيرة — 4 واجهات مفتوحة", unsure: "غير محدد بعد",
-    } as Record<(typeof BOOTH_SIDES)[number], string>,
     brief:          "وصف المشروع",
     phBrief:        "صف أهدافك، الجمهور المستهدف، المتطلبات الأساسية وأي أفكار أو مراجع لديك.",
 
@@ -217,7 +199,6 @@ type QuoteForm = {
   endDate: string;
   visitors: string;
   boothArea: string;
-  boothSides: string;
   brief: string;
   budget: string;
   deadline: string;
@@ -235,7 +216,7 @@ type QuoteForm = {
 const EMPTY_FORM: QuoteForm = {
   projectType: "",
   eventName: "", city: "", venue: "", startDate: "", endDate: "", visitors: "",
-  boothArea: "", boothSides: "", brief: "",
+  boothArea: "", brief: "",
   budget: "", deadline: "", files: [], notes: "",
   fullName: "", company: "", jobTitle: "", email: "", phone: "", contactVia: "",
   consent: false,
@@ -274,30 +255,6 @@ function Field({
       {children}
       {hint && <span className={styles.hint}>{hint}</span>}
     </label>
-  );
-}
-
-function Select({
-  value, onChange, options, placeholder, required = true,
-}: {
-  value: string;
-  onChange: (v: string) => void;
-  options: [string, string][];
-  placeholder: string;
-  required?: boolean;
-}) {
-  return (
-    <div className={styles.selectWrap}>
-      <select
-        className={`${styles.input} ${styles.select} ${value ? styles.hasValue : ""}`}
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        required={required}
-      >
-        <option value="" disabled>{placeholder}</option>
-        {options.map(([k, l]) => <option key={k} value={k}>{l}</option>)}
-      </select>
-    </div>
   );
 }
 
@@ -423,11 +380,10 @@ export default function QuoteFormSection() {
         [c.city, form.city],
         [c.venue, form.venue],
         [`${c.startDate} / ${c.endDate}`, `${form.startDate} → ${form.endDate}`],
-        [c.visitors, labelOf(c.visitorOpts, form.visitors)],
+        [c.visitors, form.visitors || c.notProvided],
         ...(isExhibition
           ? ([
               [c.boothArea, form.boothArea ? `${form.boothArea} m²` : c.notProvided],
-              [c.boothSides, labelOf(c.sidesOpts, form.boothSides)],
             ] as [string, string][])
           : []),
         [c.brief, form.brief],
@@ -571,8 +527,9 @@ export default function QuoteFormSection() {
                         value={form.endDate} onChange={(e) => set("endDate", e.target.value)} required />
                     </Field>
                     <Field label={c.visitors} required className={styles.colSpan2}>
-                      <Select value={form.visitors} onChange={(v) => set("visitors", v)}
-                        options={VISITORS.map((k) => [k, c.visitorOpts[k]])} placeholder={c.selectDefault} />
+                      <input className={styles.input} type="number" min={1} inputMode="numeric"
+                        placeholder={c.phVisitors} value={form.visitors}
+                        onChange={(e) => set("visitors", e.target.value)} required />
                     </Field>
                   </div>
 
@@ -580,14 +537,10 @@ export default function QuoteFormSection() {
                     <div className={styles.subCard}>
                       <p className={styles.subCardTitle}>{c.boothTitle}</p>
                       <div className={styles.grid2}>
-                        <Field label={c.boothArea} required>
+                        <Field label={c.boothArea} required className={styles.colSpan2}>
                           <input className={styles.input} type="number" min={1} inputMode="numeric"
                             placeholder={c.phBoothArea} value={form.boothArea}
                             onChange={(e) => set("boothArea", e.target.value)} required />
-                        </Field>
-                        <Field label={c.boothSides} required>
-                          <Select value={form.boothSides} onChange={(v) => set("boothSides", v)}
-                            options={BOOTH_SIDES.map((k) => [k, c.sidesOpts[k]])} placeholder={c.selectDefault} />
                         </Field>
                       </div>
                     </div>

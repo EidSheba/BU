@@ -3,8 +3,11 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import styles from "./LoadingScreen.module.css";
+import { useLanguage } from "@/hooks/useLanguage";
 
 export default function LoadingScreen({ ready }: { ready: boolean }) {
+  const lang = useLanguage();
+  const isAr = lang === "ar";
   const [leaving, setLeaving] = useState(false);
   const [gone, setGone] = useState(false);
   const [percent, setPercent] = useState(0);
@@ -75,11 +78,11 @@ export default function LoadingScreen({ ready }: { ready: boolean }) {
 
         <div className={styles.words}>
           <div className={styles.splitRow}>
-            <span className={styles.business}>Business</span>
+            <span className={styles.business}>{isAr ? "مظلة" : "Business"}</span>
             <span className={styles.divider} />
-            <span className={styles.umbrella}>Umbrella</span>
+            <span className={styles.umbrella}>{isAr ? "الأعمال" : "Umbrella"}</span>
           </div>
-          <span className={styles.tagline}>Under One Umbrella</span>
+          <span className={styles.tagline}>{isAr ? "تحت مظلة واحدة" : "Under One Umbrella"}</span>
         </div>
 
         <div className={styles.barOuter}>

@@ -8,7 +8,7 @@ const PANELS = [
   {
     value: 200, suffix: "+",
     label_en: "PROFESSIONALS", label_ar: "متخصص",
-    photo: "/images/parallax-1.jpg",
+    photo: "/images/serv3.png",
     title_en: "WORLD-CLASS\nTEAM",
     title_ar: "فريق\nعالمي المستوى",
     desc_en: "Over 200 event specialists, creative directors, and production experts — all driven by a single goal: exceed your expectations.",
@@ -18,7 +18,7 @@ const PANELS = [
   {
     value: 26, suffix: "",
     label_en: "COUNTRIES", label_ar: "دولة",
-    photo: "/images/parallax-2.jpg",
+    photo: "/images/serv8.png",
     title_en: "GLOBAL\nFOOTPRINT",
     title_ar: "انتشار\nعالمي",
     desc_en: "From Riyadh to London, we deliver best-in-class events across 26 countries — bringing regional expertise to every stage.",
@@ -28,7 +28,7 @@ const PANELS = [
   {
     value: 150, suffix: "+",
     label_en: "EVENTS", label_ar: "فعالية",
-    photo: "/images/parallax-3.jpg",
+    photo: "/images/serv1.png",
     title_en: "EVENTS\nDELIVERED",
     title_ar: "فعاليات\nمنجزة",
     desc_en: "Conferences, brand activations, integrated marketing campaigns, and social gatherings — every event crafted to leave a lasting impression.",
@@ -149,9 +149,9 @@ export default function AtAGlanceSection() {
 
       <div className={styles.titleWrap}>
         <span className={styles.titleBold}>
-          <span className={styles.titleLeft}>BUSINESS</span>
+          <span className={styles.titleLeft}>{lang === "ar" ? "مظلة" : "BUSINESS"}</span>
           {" "}
-          <span className={styles.titleRight}>UMBRELLA</span>
+          <span className={styles.titleRight}>{lang === "ar" ? "الأعمال" : "UMBRELLA"}</span>
         </span>
       </div>
 

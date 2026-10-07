@@ -193,7 +193,7 @@ textarea {
 
 .secret-scroll-space {
   position: relative;
-  height: 200vh;
+  height: 100vh;
 }
 
 .secret-section {
@@ -237,7 +237,7 @@ textarea {
   font-size: clamp(3rem, 10vw, 10rem);
   font-weight: 900;
   letter-spacing: -0.03em;
-  line-height: 0.9;
+  line-height: 1.05;
   text-transform: uppercase;
 }
 
@@ -635,10 +635,6 @@ textarea {
 /* Arabic card alignment */
 [dir="rtl"] .architect-card-body {
   text-align: right;
-}
-
-[dir="rtl"] .architect-card-header {
-  flex-direction: row-reverse;
 }
 
 [dir="rtl"] .architect-stat-value-wrap {

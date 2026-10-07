@@ -117,11 +117,6 @@ export default function WorkSliderSection() {
   return (
     <section className={styles.wrap}>
       <div ref={headerRef} className={styles.header}>
-        <span data-reveal className={styles.eyebrow}>
-          <span className={styles.eyebrowDot} />
-          {c.eyebrow}
-        </span>
-
         <h2 data-reveal className={styles.headline}>
           <span className={styles.hRow}>{c.h1}</span>
           <span className={`${styles.hRow} ${styles.hRowAccent}`}>{c.h2}</span>
