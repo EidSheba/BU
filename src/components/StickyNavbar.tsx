@@ -7,8 +7,8 @@ import { useState, useEffect, useRef } from "react";
 import { useLang } from "@/contexts/LangContext";
 
 const navItems = {
-  en: ["HOME", "ABOUT", "SERVICES", "PROJECTS", "CAREER", "CONTACT"],
-  ar: ["الرئيسية", "من نحن", "خدماتنا", "مشاريعنا", "وظائف", "تواصل معنا"],
+  en: ["HOME", "ABOUT", "SERVICES", "PROJECTS", "CAREER", "GET A QUOTE", "CONTACT"],
+  ar: ["الرئيسية", "من نحن", "خدماتنا", "مشاريعنا", "وظائف", "طلب تسعيرة", "تواصل معنا"],
 };
 
 const navRoutes: Record<string, string> = {
@@ -17,12 +17,14 @@ const navRoutes: Record<string, string> = {
   SERVICES: "/services",
   PROJECTS: "/projects",
   CAREER: "/career",
+  "GET A QUOTE": "/quote",
   CONTACT: "/contact",
   "الرئيسية": "/",
   "من نحن": "/about",
   "خدماتنا": "/services",
   "مشاريعنا": "/projects",
   "وظائف": "/career",
+  "طلب تسعيرة": "/quote",
   "تواصل معنا": "/contact",
 };
 

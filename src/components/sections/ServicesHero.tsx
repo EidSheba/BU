@@ -7,7 +7,7 @@ import { useLanguage } from "@/hooks/useLanguage";
 
 const t = {
   en: {
-    eyebrow: "11 Disciplines · Full-Spectrum Event Solutions",
+    eyebrow: "12 Disciplines · Full-Spectrum Event Solutions",
     sub: "We craft extraordinary experiences across every discipline — delivering bold, results-driven campaigns for our clients worldwide.",
     stats: [
       { count: 500, suffix: "+", label: "Events" },
@@ -16,7 +16,7 @@ const t = {
     ],
   },
   ar: {
-    eyebrow: "١١ تخصصاً · حلول فعاليات شاملة",
+    eyebrow: "١٢ تخصصاً · حلول فعاليات شاملة",
     sub: "نصنع تجارب استثنائية عبر كل التخصصات — نقدم حملات جريئة وفعّالة لعملائنا حول العالم.",
     stats: [
       { count: 500, suffix: "+", label: "فعالية" },

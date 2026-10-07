@@ -2,7 +2,6 @@
 
 import { useEffect, useRef } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import styles from "./ServicesListSection.module.css";
 import { SERVICES_DATA } from "@/data/services";
 import { useLanguage } from "@/hooks/useLanguage";
@@ -91,9 +90,8 @@ export default function ServicesListSection() {
 
       <div ref={gridRef} className={styles.grid}>
         {SERVICES_DATA.map((svc) => (
-          <Link
+          <div
             key={svc.id}
-            href={`/services/${svc.slug}`}
             data-card
             data-id={svc.id}
             className={styles.card}
@@ -113,10 +111,10 @@ export default function ServicesListSection() {
                 {lang === "ar" ? svc.title_ar : svc.title}
               </h3>
               <p className={styles.cardDesc}>
-                {(lang === "ar" ? svc.overview_ar : svc.overview).slice(0, 90) + "…"}
+                {lang === "ar" ? svc.overview_ar : svc.overview}
               </p>
             </div>
-          </Link>
+          </div>
         ))}
       </div>
 

@@ -163,6 +163,11 @@ a.contactValue:hover {
   color: #057a02;
 }
 
+/* An ltr-forced value (e.g. phone number) still aligns with its rtl label */
+:global(html[dir="rtl"]) .contactValue[dir="ltr"] {
+  text-align: right;
+}
+
 /* ── Bottom bar ────────────────────────────────────── */
 .bottom {
   display: flex;

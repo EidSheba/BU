@@ -71,6 +71,7 @@ const t = {
 
     /* submit */
     submitBtn:  "Submit Application",
+    errorRequired: "Please fill in all required fields.",
 
     /* success */
     successTitle: "Application Received!",
@@ -135,6 +136,7 @@ const t = {
     noFile:    "لم يتم اختيار ملف",
 
     submitBtn:  "إرسال الطلب",
+    errorRequired: "يرجى تعبئة جميع الحقول المطلوبة.",
 
     successTitle: "تم استلام طلبك!",
     successSub:   "شكراً لتقديمك. سيراجع فريقنا طلبك ويتواصل معك خلال 3 أيام عمل.",
@@ -244,6 +246,7 @@ function FileUploadField({
   accept,
   file,
   noFileText,
+  required,
   onChange,
 }: {
   id: string;
@@ -252,6 +255,7 @@ function FileUploadField({
   accept: string;
   file: File | null;
   noFileText: string;
+  required?: boolean;
   onChange: (f: File | null) => void;
 }) {
   return (
@@ -261,6 +265,7 @@ function FileUploadField({
         type="file"
         accept={accept}
         className={styles.fileInputHidden}
+        required={required}
         onChange={(e) => onChange(e.target.files?.[0] ?? null)}
       />
       <label htmlFor={id} className={styles.fileLabel}>
@@ -287,6 +292,7 @@ export default function CareerFormSection() {
 
   const [form, setForm] = useState<FormData>(EMPTY_FORM);
   const [submitted, setSubmitted] = useState(false);
+  const [showErrors, setShowErrors] = useState(false);
   const uid = useId();
 
   /* helpers */
@@ -305,8 +311,17 @@ export default function CareerFormSection() {
   const removeExp = (i: number) =>
     setForm((f) => ({ ...f, experiences: f.experiences.filter((_, idx) => idx !== i) }));
 
-  function handleSubmit(e: React.FormEvent) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const formEl = e.currentTarget;
+    if (!formEl.checkValidity()) {
+      setShowErrors(true);
+      const firstInvalid = formEl.querySelector<HTMLElement>(":invalid");
+      firstInvalid?.scrollIntoView({ behavior: "smooth", block: "center" });
+      firstInvalid?.focus({ preventScroll: true });
+      return;
+    }
+    setShowErrors(false);
     setSubmitted(true);
   }
 
@@ -324,7 +339,7 @@ export default function CareerFormSection() {
           <button
             type="button"
             className={styles.successBack}
-            onClick={() => { setForm(EMPTY_FORM); setSubmitted(false); }}
+            onClick={() => { setForm(EMPTY_FORM); setShowErrors(false); setSubmitted(false); }}
           >
             {c.successBack}
           </button>
@@ -345,7 +360,11 @@ export default function CareerFormSection() {
         <p className={styles.sectionSub}>{c.sub}</p>
       </div>
 
-      <form className={styles.form} onSubmit={handleSubmit} noValidate>
+      <form
+        className={`${styles.form} ${showErrors ? styles.showErrors : ""}`}
+        onSubmit={handleSubmit}
+        noValidate
+      >
 
         {/* ── Personal Info ── */}
         <div className={styles.group}>
@@ -467,52 +486,57 @@ export default function CareerFormSection() {
               </div>
 
               <div className={styles.grid2}>
-                <Field label={c.companyName}>
+                <Field label={c.companyName} required>
                   <input
                     className={styles.input}
                     type="text"
                     placeholder={c.phCompany}
                     value={exp.company}
                     onChange={(e) => setExp(i, "company", e.target.value)}
+                    required
                   />
                 </Field>
 
-                <Field label={c.position}>
+                <Field label={c.position} required>
                   <input
                     className={styles.input}
                     type="text"
                     placeholder={c.phPosition}
                     value={exp.position}
                     onChange={(e) => setExp(i, "position", e.target.value)}
+                    required
                   />
                 </Field>
 
-                <Field label={c.startDate}>
+                <Field label={c.startDate} required>
                   <input
                     className={styles.input}
                     type="date"
                     aria-label={c.startDate}
                     value={exp.startDate}
                     onChange={(e) => setExp(i, "startDate", e.target.value)}
+                    required
                   />
                 </Field>
 
-                <Field label={c.endDate}>
+                <Field label={c.endDate} required>
                   <input
                     className={styles.input}
                     type="date"
                     aria-label={c.endDate}
                     value={exp.endDate}
                     onChange={(e) => setExp(i, "endDate", e.target.value)}
+                    required
                   />
                 </Field>
 
-                <Field label={c.responsibilities} className={styles.colSpan2}>
+                <Field label={c.responsibilities} required className={styles.colSpan2}>
                   <textarea
                     className={styles.textarea}
                     placeholder={c.phResponsibilities}
                     value={exp.responsibilities}
                     onChange={(e) => setExp(i, "responsibilities", e.target.value)}
+                    required
                   />
                 </Field>
               </div>
@@ -566,7 +590,7 @@ export default function CareerFormSection() {
           <p className={styles.groupTitle}>{c.groupDocs}</p>
 
           <div className={styles.grid2}>
-            <Field label={c.uploadCv}>
+            <Field label={c.uploadCv} required>
               <FileUploadField
                 id={`${uid}-cv`}
                 label={c.uploadCv}
@@ -574,6 +598,7 @@ export default function CareerFormSection() {
                 accept=".pdf,.doc,.docx"
                 file={form.cvFile}
                 noFileText={c.noFile}
+                required
                 onChange={(f) => set("cvFile", f)}
               />
             </Field>
@@ -586,6 +611,7 @@ export default function CareerFormSection() {
                 accept=".jpg,.jpeg,.png,.webp"
                 file={form.photoFile}
                 noFileText={c.noFile}
+                required
                 onChange={(f) => set("photoFile", f)}
               />
             </Field>
@@ -593,6 +619,9 @@ export default function CareerFormSection() {
         </div>
 
         {/* ── Submit ── */}
+        {showErrors && (
+          <p className={styles.errorMsg} role="alert">{c.errorRequired}</p>
+        )}
         <div className={styles.submitRow}>
           <button type="submit" className={styles.submitBtn}>
             {c.submitBtn}

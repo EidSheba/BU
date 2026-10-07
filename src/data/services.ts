@@ -24,7 +24,7 @@ export const SERVICES_DATA: ServiceData[] = [
     overview:
       "We take full ownership of your event from the first brief to the final bow. Our end-to-end management covers every detail — logistics, timelines, vendor coordination, on-site operations — so you can stay focused on your audience while we make the magic happen behind the scenes.",
     overview_ar:
-      "نتولى إدارة فعاليتك بالكامل من اللحظة الأولى حتى الخطوة الأخيرة. تشمل إدارتنا الشاملة كل التفاصيل — اللوجستيات والجداول الزمنية وتنسيق الموردين والعمليات الميدانية — لتتفرغ لجمهورك بينما نصنع السحر خلف الكواليس.",
+      "نضمن تجربة ناجحة وفعالة تحقق جميع الأهداف! بغض النظر عن نوع الحدث أو مقياسه، فإن شركة مظلة الأعمال لديها الأدوات والمهارات اللازمة لتنظيم أحداث رائعة.",
     features: [
       "Event concept & creative direction",
       "Budget planning & financial oversight",
@@ -41,7 +41,7 @@ export const SERVICES_DATA: ServiceData[] = [
       "تقييم المخاطر والتخطيط للطوارئ",
       "تقارير ما بعد الفعالية والتحليلات",
     ],
-    heroImg: "/images/grid-event-1.jpg",
+    heroImg: "/images/serv1.png",
     gallery: ["/images/grid-event-2.jpg", "/images/grid-event-3.jpg", "/images/grid-event-4.jpg"],
   },
   {
@@ -54,7 +54,7 @@ export const SERVICES_DATA: ServiceData[] = [
     overview:
       "From headline musical acts and stand-up comedy to immersive theatrical performances, we curate world-class entertainment that transforms any gathering into an unforgettable experience. We source, manage, and deliver talent that fits your brand and moves your audience.",
     overview_ar:
-      "من الفعاليات الموسيقية الكبرى والكوميديا الارتجالية إلى العروض المسرحية الغامرة، ننسّق ترفيهاً عالمي المستوى يحوّل أي تجمّع إلى تجربة لا تُنسى. نستقطب المواهب وننسّقها ونسلّمها بما يتناسب مع علامتك التجارية ويأسر جمهورك.",
+      "لدينا ما يناسب كل الأذواق، ونقوم باستمرار بتحديث منتجاتنا وخدماتنا الترفيهية حتى تتمكن من الاختيار من قائمة الخدمات الكاملة لدينا لإنشاء الحزمة المثالية المخصصة لك.",
     features: [
       "Artist & performer sourcing",
       "Contract negotiation & rider management",
@@ -71,20 +71,20 @@ export const SERVICES_DATA: ServiceData[] = [
       "اختيار الفرق الموسيقية الحية",
       "تفعيلات الترفيه الاستثنائية والمفاجآت",
     ],
-    heroImg: "/images/grid-perf-1.jpg",
+    heroImg: "/images/serv2.png",
     gallery: ["/images/grid-perf-2.jpg", "/images/grid-perf-3.jpg", "/images/grid-perf-4.jpg"],
   },
   {
     id: "03",
     slug: "event-personnel",
     title: "Event Personnel",
-    title_ar: "كوادر الفعاليات",
+    title_ar: "القوى البشرية للفعاليات",
     tagline: "The right people, in the right place.",
     tagline_ar: "الشخص المناسب في المكان المناسب.",
     overview:
       "Every great event runs on great people. We supply fully trained, professional event staff — from brand ambassadors and hosts to security teams and technical crew. Our personnel are briefed, uniformed, and ready to represent your brand with excellence.",
     overview_ar:
-      "يقوم كل فعالية ناجحة على أكتاف كوادر متميزة. نوفر طاقماً احترافياً مؤهلاً بالكامل — من سفراء العلامة التجارية والمضيفين إلى فرق الأمن وطاقم التقنية. كوادرنا مُجهّزون ومُوحَّدون وجاهزون لتمثيل علامتك التجارية بأعلى مستويات التميز.",
+      "نحن نقدم موظفين متفانين مدربين خصيصاً للفعالية والموقع، ونقوم بتقييم الخدمة المقدمة باستمرار، مستمعين لآراء عملائنا، ومراجعة الخدمات الحالية لنتجاوز التوقعات المستقبلية.",
     features: [
       "Brand ambassadors & hostesses",
       "Registration & welcome desk teams",
@@ -101,20 +101,20 @@ export const SERVICES_DATA: ServiceData[] = [
       "كوادر ثنائية ومتعددة اللغات",
       "فرق الإشراف وإدارة الأرضية",
     ],
-    heroImg: "/images/grid-event-2.jpg",
+    heroImg: "/images/serv3.png",
     gallery: ["/images/grid-event-3.jpg", "/images/grid-event-4.jpg", "/images/grid-event-5.jpg"],
   },
   {
     id: "04",
     slug: "crowd-management",
     title: "Crowd Management",
-    title_ar: "إدارة الحشود",
+    title_ar: "الأمن وإدارة الحشود",
     tagline: "Safety by design. Control with care.",
     tagline_ar: "السلامة بالتصميم. السيطرة بالاحترافية.",
     overview:
       "Managing thousands of people requires precision planning and real-time decision-making. We engineer crowd flow, entry systems, and emergency protocols that prioritize safety without compromising the guest experience — at any scale.",
     overview_ar:
-      "إدارة آلاف الأشخاص تستلزم تخطيطاً دقيقاً وقرارات فورية. نهندس تدفق الحشود وأنظمة الدخول وبروتوكولات الطوارئ بما يضمن السلامة دون التأثير على تجربة الضيوف — في أي نطاق.",
+      "نؤمن أنه من الضروري أن يستمتع الحضور بتجربة لا تُنسى في بيئة آمنة ومحمية، لذلك نضمن أن تسير الفعالية بسلاسة وأمان.",
     features: [
       "Crowd flow mapping & access design",
       "Entry & exit system management",
@@ -131,7 +131,7 @@ export const SERVICES_DATA: ServiceData[] = [
       "إدارة الحواجز والطوابير",
       "التنسيق مع الجهات الأمنية المحلية",
     ],
-    heroImg: "/images/grid-event-3.jpg",
+    heroImg: "/images/serv4.png",
     gallery: ["/images/grid-event-1.jpg", "/images/grid-event-4.jpg", "/images/parallax-1.jpg"],
   },
   {
@@ -144,7 +144,7 @@ export const SERVICES_DATA: ServiceData[] = [
     overview:
       "We design and deliver professional conferences and seminars that inspire, educate, and connect. From intimate executive summits to large-scale industry forums — we handle everything from speaker management to technical production and delegate experience.",
     overview_ar:
-      "نصمم ونُنفّذ مؤتمرات وندوات احترافية تُلهم وتُعلّم وتربط. من القمم التنفيذية الصغيرة إلى المنتديات الصناعية الكبرى — نتولى كل شيء من إدارة المتحدثين إلى الإنتاج التقني وتجربة المشاركين.",
+      "يمتلك فريق فعاليات الأعمال لدينا ثروة من الخبرة والأصالة، مما يجعل الحضور في الفعالية الخاصة بكم أمراً حيوياً وقيّماً للجمهور.",
     features: [
       "Conference concept & agenda design",
       "Speaker sourcing & management",
@@ -161,20 +161,20 @@ export const SERVICES_DATA: ServiceData[] = [
       "تنسيق الجلسات المتخصصة",
       "توثيق محتوى المؤتمر بعد انتهائه",
     ],
-    heroImg: "/images/grid-event-5.jpg",
+    heroImg: "/images/serv5.png",
     gallery: ["/images/grid-event-1.jpg", "/images/grid-event-2.jpg", "/images/parallax-2.jpg"],
   },
   {
     id: "06",
     slug: "team-building",
     title: "Team Building",
-    title_ar: "بناء الفرق",
+    title_ar: "أنشطة بناء فريق العمل",
     tagline: "Build teams. Build culture. Build success.",
     tagline_ar: "ابنِ فرقاً. ابنِ ثقافة. ابنِ نجاحاً.",
     overview:
       "Exceptional organisations are built on exceptional teams. We design immersive team-building experiences that foster trust, sharpen collaboration, and ignite motivation — from outdoor adventures to indoor workshops and corporate games.",
     overview_ar:
-      "المؤسسات الاستثنائية تُبنى على فرق استثنائية. نصمم تجارب بناء فرق غامرة تُعزز الثقة وتصقل التعاون وتُشعل الدافعية — من المغامرات الميدانية إلى ورش العمل الداخلية والألعاب المؤسسية.",
+      "من الأمور الأساسية لتحديد كيفية مساهمة الأفراد في ديناميكيات الفريق، وهي أيضاً متعة كبيرة. يمكننا الرد على أي طلب، ومعظم منتجاتنا تتسم بالمرونة ويمكن استخدامها في أي مواقع داخلية وخارجية.",
     features: [
       "Custom activity design & facilitation",
       "Indoor & outdoor challenge programmes",
@@ -191,20 +191,20 @@ export const SERVICES_DATA: ServiceData[] = [
       "برامج الانخراط الثقافي",
       "تقارير النتائج القابلة للقياس",
     ],
-    heroImg: "/images/grid-event-4.jpg",
+    heroImg: "/images/serv6.png",
     gallery: ["/images/grid-event-2.jpg", "/images/grid-event-5.jpg", "/images/parallax-3.jpg"],
   },
   {
     id: "07",
     slug: "venue-sourcing",
     title: "Venue Sourcing",
-    title_ar: "توفير الأماكن",
+    title_ar: "توفير القاعات والخيام",
     tagline: "The right space changes everything.",
     tagline_ar: "المكان المناسب يُغيّر كل شيء.",
     overview:
       "Location sets the tone for every event. We leverage an exclusive network of venues — from iconic landmarks and luxury hotels to unconventional spaces and private estates — to find the perfect match for your event vision, capacity, and budget.",
     overview_ar:
-      "الموقع يحدد طابع كل فعالية. نستفيد من شبكتنا الحصرية من الأماكن — من المعالم الأيقونية والفنادق الفاخرة إلى الفضاءات غير التقليدية والمجمعات الخاصة — لإيجاد المكان المثالي الذي يناسب رؤيتك وسعتك وميزانيتك.",
+      "نحن نوفر أماكن تتناسب تماماً مع الحدث الخاص بكم والفئة المستهدفة من الضيوف، ونتفاوض بشأن الأسعار التنافسية نيابة عنكم.",
     features: [
       "Venue research & shortlisting",
       "Site visits & assessment",
@@ -221,20 +221,20 @@ export const SERVICES_DATA: ServiceData[] = [
       "خيارات الفعاليات الافتراضية والهجينة",
       "استقطاب أماكن دولية",
     ],
-    heroImg: "/images/parallax-2.jpg",
+    heroImg: "/images/serv7.png",
     gallery: ["/images/parallax-1.jpg", "/images/parallax-3.jpg", "/images/parallax-4.jpg"],
   },
   {
     id: "08",
     slug: "event-marketing",
     title: "Event Marketing",
-    title_ar: "تسويق الفعاليات",
+    title_ar: "التسويق للفعالية",
     tagline: "Reach the right people. Make noise that matters.",
     tagline_ar: "الوصول للجمهور المناسب. ضجيج يصنع فارقاً.",
     overview:
       "A great event deserves a great audience. We build integrated marketing campaigns that create buzz before, during, and after your event — combining digital strategy, content creation, influencer partnerships, and PR to maximise reach and impact.",
     overview_ar:
-      "الفعالية الرائعة تستحق جمهوراً رائعاً. نبني حملات تسويقية متكاملة تصنع الضجة قبل الفعالية وخلالها وبعدها — بدمج الاستراتيجية الرقمية وصناعة المحتوى وشراكات المؤثرين والعلاقات العامة لتعظيم النطاق والأثر.",
+      "من المفهوم الترويجي إلى المشاركة وجهاً لوجه، يمكن أن تشارككم شركة مظلة الأعمال لدعم تفاعل المستهلك المستمر والدائم.",
     features: [
       "Pre-event digital campaigns",
       "Social media strategy & management",
@@ -251,20 +251,20 @@ export const SERVICES_DATA: ServiceData[] = [
       "التغطية المباشرة للفعالية وإنتاج المحتوى",
       "تقارير ما بعد الفعالية وتحليل العائد على الاستثمار",
     ],
-    heroImg: "/images/parallax-3.jpg",
+    heroImg: "/images/serv8.png",
     gallery: ["/images/grid-media-2.jpg", "/images/grid-media-3.jpg", "/images/grid-media-4.jpg"],
   },
   {
     id: "09",
     slug: "event-production",
     title: "Event Production",
-    title_ar: "إنتاج الفعاليات",
+    title_ar: "التصنيع والإنتاج للفعالية",
     tagline: "Technical excellence. Seamless delivery.",
     tagline_ar: "تميّز تقني. تسليم سلس.",
     overview:
       "We bring your vision to life with cutting-edge production — from stage design and lighting rigs to high-resolution AV systems and live streaming. Our technical teams work quietly behind the scenes so your event shines in the spotlight.",
     overview_ar:
-      "نُحيّي رؤيتك بإنتاج متطور — من تصميم المسارح ومنصات الإضاءة إلى أنظمة السمعي البصري عالية الدقة والبث المباشر. تعمل فرقنا التقنية بصمت خلف الكواليس ليكون حفلك في دائرة الضوء دائماً.",
+      "لا توجد خطط إنتاج ضخمة جداً بحيث لا يمكننا معالجتها، ولا توجد تفاصيل صغيرة جداً لا يمكننا إدارتها. نحن لا نتبع خططك ببساطة، بل نبث الحياة فيها.",
     features: [
       "Stage & set design & build",
       "Lighting design & operation",
@@ -281,7 +281,7 @@ export const SERVICES_DATA: ServiceData[] = [
       "البث المباشر والإذاعة",
       "التجهيز التقني والإدارة الميدانية",
     ],
-    heroImg: "/images/grid-film-1.jpg",
+    heroImg: "/images/serv9.png",
     gallery: ["/images/grid-film-2.jpg", "/images/grid-film-3.jpg", "/images/parallax-1.jpg"],
   },
   {
@@ -294,7 +294,7 @@ export const SERVICES_DATA: ServiceData[] = [
     overview:
       "Our creative studio designs the visual identity of your event from the ground up — brand guidelines, environmental graphics, stage backdrops, digital assets, printed collateral, and everything in between. We make your event look as extraordinary as it feels.",
     overview_ar:
-      "يصمم استوديونا الإبداعي الهوية البصرية لفعاليتك من الصفر — من المبادئ التوجيهية للعلامة التجارية والرسومات البيئية وخلفيات المسرح إلى الأصول الرقمية والمطبوعات وما هو أبعد من ذلك. نجعل فعاليتك تبدو استثنائية بقدر ما تُشعرك.",
+      "يقدم فريقنا من المصممين المحترفين والمبدعين للغاية مجموعة من الخدمات، ويضمن أن تتطابق كل التفاصيل الصغيرة مع رؤية العميل وتمثل علامته التجارية أفضل تمثيل.",
     features: [
       "Event branding & visual identity",
       "Stage backdrop & environmental design",
@@ -311,20 +311,20 @@ export const SERVICES_DATA: ServiceData[] = [
       "تزيين المكان وتصميم الديكور",
       "الأصول التصميمية ما بعد الفعالية",
     ],
-    heroImg: "/images/grid-design-1.jpg",
+    heroImg: "/images/serv10.png",
     gallery: ["/images/grid-design-2.jpg", "/images/grid-design-3.jpg", "/images/grid-creative-1.jpg"],
   },
   {
     id: "11",
     slug: "event-giveaways",
     title: "Event Giveaways",
-    title_ar: "هدايا الفعاليات",
+    title_ar: "الهدايا الدعائية للفعاليات",
     tagline: "Gifts they keep. Brands they remember.",
     tagline_ar: "هدايا يحتفظون بها. علامات لا تُنسى.",
     overview:
       "The right giveaway extends your brand long after the event ends. We design and produce custom branded merchandise — from premium gift sets and sustainable products to high-impact experiential giveaways — that leave a lasting impression.",
     overview_ar:
-      "الهدية المناسبة تمدّ حضور علامتك التجارية طويلاً بعد انتهاء الفعالية. نصمم وننتج البضائع المخصصة بعلامتك التجارية — من طقم الهدايا الفاخرة والمنتجات الصديقة للبيئة إلى الهدايا ذات الأثر الاستثنائي — التي تترك انطباعاً دائماً.",
+      "نحن على يقين من توفير العناصر الترويجية التي ستضع علامتكم التجارية في أفضل مكان، ونقدم عناصر لن تترك انطباعاً دائماً فحسب، بل تساعد أيضاً في زيادة الوعي بالعلامة التجارية.",
     features: [
       "Custom merchandise design",
       "Branded packaging & presentation",
@@ -341,11 +341,37 @@ export const SERVICES_DATA: ServiceData[] = [
       "إدارة التوزيع الميداني",
       "تنسيق هدايا البريميوم وكبار الشخصيات",
     ],
-    heroImg: "/images/grid-creative-1.jpg",
+    heroImg: "/images/serv11.png",
     gallery: ["/images/grid-creative-2.jpg", "/images/grid-creative-3.jpg", "/images/grid-design-4.jpg"],
   },
+  {
+    id: "12",
+    slug: "conference-management",
+    title: "Conference Management",
+    title_ar: "إدارة المؤتمرات",
+    tagline: "Deeper relationships. Lasting impressions.",
+    tagline_ar: "علاقات أعمق. انطباعات أرقى.",
+    overview:
+      "To strengthen business relationships and nurture personal connections between clients, customers, and employees, our diverse and unique collection of gifts helps you express your appreciation with elegance.",
+    overview_ar:
+      "لتأكيد العلاقات التجارية وتعزيز العلاقات الشخصية بين العملاء والزبائن والموظفين، ستساعدك مجموعتنا من الهدايا المتنوعة والفريدة على توصيل تقديرك بأسلوب راقٍ.",
+    features: [
+      "Corporate gifting strategy & curation",
+      "Branded premium gift collections",
+      "Client & VIP appreciation programmes",
+      "Employee recognition gifting",
+      "Custom packaging & presentation",
+      "End-to-end gifting logistics & delivery",
+    ],
+    features_ar: [
+      "استراتيجية وتنسيق الهدايا المؤسسية",
+      "مجموعات هدايا مميزة بالعلامة التجارية",
+      "برامج تقدير العملاء وكبار الشخصيات",
+      "هدايا تكريم الموظفين",
+      "تغليف وتقديم مخصص",
+      "خدمات لوجستية شاملة للهدايا والتسليم",
+    ],
+    heroImg: "/images/serv12.png",
+    gallery: ["/images/grid-creative-4.jpg", "/images/grid-creative-5.jpg", "/images/grid-design-3.jpg"],
+  },
 ];
-
-export function getServiceBySlug(slug: string): ServiceData | undefined {
-  return SERVICES_DATA.find((s) => s.slug === slug);
-}

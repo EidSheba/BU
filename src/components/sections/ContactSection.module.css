@@ -95,6 +95,11 @@
   color: #057a02;
 }
 
+/* An ltr-forced value (e.g. phone number) still aligns with its rtl label */
+:global(html[dir="rtl"]) .contactValue[dir="ltr"] {
+  text-align: right;
+}
+
 /* ── Right: form ── */
 .formWrap {
   background: rgba(255, 255, 255, 0.03);

@@ -11,6 +11,7 @@ const NAV = [
   { label_en: "Services",       label_ar: "خدماتنا",          href: "/services" },
   { label_en: "Projects",       label_ar: "مشاريعنا",         href: "/projects" },
   { label_en: "Career",         label_ar: "وظائف",            href: "/career" },
+  { label_en: "Get a Quote",    label_ar: "طلب تسعيرة",       href: "/quote" },
   { label_en: "Contact",        label_ar: "تواصل معنا",       href: "/contact" },
 ];
 
@@ -97,24 +98,26 @@ export default function FooterSection() {
           <span className={styles.colLabel}>{isAr ? "تواصل معنا" : "Get in touch"}</span>
 
           <div className={styles.contactItem}>
-            <span className={styles.contactLabel}>{isAr ? "البريد الإلكتروني" : "Email"}</span>
-            <a href="mailto:hello@businessumbrella.com" className={styles.contactValue}>
-              hello@businessumbrella.com
-            </a>
+            <span className={styles.contactLabel}>{isAr ? "الموقع" : "Location"}</span>
+            <span className={styles.contactValue}>
+              {isAr
+                ? "الدور الثاني، مبنى الحمراء سيتي، الرياض 13225، المملكة العربية السعودية"
+                : "2nd Floor, Al Hamra City Building, Riyadh, SU 13225, Saudi Arabia"}
+            </span>
           </div>
 
           <div className={styles.contactItem}>
             <span className={styles.contactLabel}>{isAr ? "الهاتف" : "Phone"}</span>
-            <a href="tel:+966541164491" className={styles.contactValue}>
-              +966 54 116 4491
+            <a href="tel:+966112666627" dir="ltr" className={styles.contactValue}>
+              +966 11 266 6627
             </a>
           </div>
 
           <div className={styles.contactItem}>
-            <span className={styles.contactLabel}>{isAr ? "مكاتبنا" : "Offices"}</span>
-            <span className={styles.contactValue}>
-              {isAr ? "الرياض · دبي · القاهرة" : "Riyadh · Dubai · Cairo"}
-            </span>
+            <span className={styles.contactLabel}>{isAr ? "البريد الإلكتروني" : "Email"}</span>
+            <a href="mailto:hello@umbrella.sa" className={styles.contactValue}>
+              hello@umbrella.sa
+            </a>
           </div>
         </div>
 

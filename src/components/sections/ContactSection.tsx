@@ -56,6 +56,10 @@ export default function ContactSection() {
     lead: isAr
       ? "أخبرنا عن فعاليتك أو تفعيل علامتك التجارية أو حملتك — يرد فريقنا عادةً خلال يوم عمل واحد."
       : "Tell us about your event, brand activation, or campaign — our team typically responds within one business day.",
+    locationLabel: isAr ? "الموقع" : "Location",
+    location: isAr
+      ? "الدور الثاني، مبنى الحمراء سيتي، الرياض 13225، المملكة العربية السعودية"
+      : "2nd Floor, Al Hamra City Building, Riyadh, SU 13225, Saudi Arabia",
     emailLabel: isAr ? "البريد الإلكتروني" : "Email",
     phoneLabel: isAr ? "الهاتف" : "Phone",
     nameLabel:    isAr ? "الاسم الكامل"  : "Full Name",
@@ -94,14 +98,18 @@ export default function ContactSection() {
 
           <div className={styles.contactList}>
             <div className={styles.contactItem}>
-              <span className={styles.contactLabel}>{t.emailLabel}</span>
-              <a href="mailto:hello@businessumbrella.com" className={styles.contactValue}>
-                hello@businessumbrella.com
-              </a>
+              <span className={styles.contactLabel}>{t.locationLabel}</span>
+              <span className={styles.contactValue}>{t.location}</span>
             </div>
             <div className={styles.contactItem}>
               <span className={styles.contactLabel}>{t.phoneLabel}</span>
-              <a href="tel:+966500000000" className={styles.contactValue}>+966 50 000 0000</a>
+              <a href="tel:+966112666627" dir="ltr" className={styles.contactValue}>+966 11 266 6627</a>
+            </div>
+            <div className={styles.contactItem}>
+              <span className={styles.contactLabel}>{t.emailLabel}</span>
+              <a href="mailto:hello@umbrella.sa" className={styles.contactValue}>
+                hello@umbrella.sa
+              </a>
             </div>
           </div>
         </div>

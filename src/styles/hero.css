@@ -521,6 +521,7 @@
 .sidebar-link--4 { animation-delay: 180ms; }
 .sidebar-link--5 { animation-delay: 240ms; }
 .sidebar-link--6 { animation-delay: 300ms; }
+.sidebar-link--7 { animation-delay: 360ms; }
 
 /* ── Sticky navbar ───────────────────────────────────────────── */
 .sticky-nav {

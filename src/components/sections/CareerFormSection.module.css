@@ -454,3 +454,21 @@
     padding-right: 1.25rem;
   }
 }
+
+/* ── Validation errors (shown after a failed submit) ── */
+.showErrors .input:invalid,
+.showErrors .select:invalid,
+.showErrors .textarea:invalid {
+  border-color: #e5484d;
+}
+
+.showErrors .fileInputHidden:invalid + .fileLabel {
+  border-color: #e5484d;
+}
+
+.errorMsg {
+  color: #e5484d;
+  font-size: 0.85rem;
+  margin: 0 0 1rem;
+  text-align: center;
+}
