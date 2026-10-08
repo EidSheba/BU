@@ -223,7 +223,6 @@ export default function ProjectsHero({ showCta = false, triggerRef }: ProjectsHe
             <span className={styles.reelTitle}>
               {lang === "ar" ? REEL[active].title_ar : REEL[active].title}
             </span>
-            <span className={styles.reelMeta}>{REEL[active].category} · {REEL[active].year}</span>
           </div>
         </div>
       </div>

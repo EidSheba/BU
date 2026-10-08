@@ -166,6 +166,30 @@
   font-weight: 400;
 }
 
+/* ── Services ── */
+.servicesSection {
+  padding: clamp(4rem, 7vw, 8rem) clamp(2rem, 6vw, 8rem);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.servicesList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.servicesItem {
+  padding: 1.25rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: clamp(1.1rem, 1.6vw, 1.5rem);
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.5;
+}
+
+.servicesItem:last-child {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
 .overviewRight {}
 
 .overviewImgWrap {

@@ -13,6 +13,7 @@ const ui = {
   en: {
     back: "← All Projects",
     overview: "Overview",
+    services: "Services",
     ctaTitle: (title: string) => `Have a project in mind\nlike ${title}?`,
     ctaBtn: "Start a project ↗",
     ctaBack: "← Back to all projects",
@@ -20,6 +21,7 @@ const ui = {
   ar: {
     back: "← كل المشاريع",
     overview: "نظرة عامة",
+    services: "الخدمات",
     ctaTitle: (title: string) => `هل لديك مشروع في ذهنك\nمثل ${title}؟`,
     ctaBtn: "ابدأ مشروعاً ↗",
     ctaBack: "← العودة لجميع المشاريع",
@@ -38,6 +40,7 @@ export default function ProjectDetail({ project }: { project: ProjectData }) {
   const title    = lang === "ar" ? project.title_ar    : project.title;
   const tagline  = lang === "ar" ? project.tagline_ar  : project.tagline;
   const overview = lang === "ar" ? project.overview_ar : project.overview;
+  const services = lang === "ar" ? project.highlights_ar : project.highlights;
 
   useEffect(() => {
     if (paused || slides.length <= 1) return;
@@ -168,6 +171,16 @@ export default function ProjectDetail({ project }: { project: ProjectData }) {
               )}
             </div>
           </div>
+        </section>
+
+        {/* Services */}
+        <section className={styles.servicesSection}>
+          <span data-reveal className={styles.sectionLabel}>{c.services}</span>
+          <ul className={styles.servicesList}>
+            {services.map((item) => (
+              <li key={item} data-reveal className={styles.servicesItem}>{item}</li>
+            ))}
+          </ul>
         </section>
 
         {/* CTA */}

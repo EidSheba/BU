@@ -153,9 +153,6 @@ export default function WorkSliderSection() {
                 </div>
 
                 <div className={styles.text}>
-                  <span className={styles.category}>
-                    {lang === "ar" ? proj.category_ar : proj.category} · {proj.year}
-                  </span>
                   <h3 className={styles.title}>
                     {lang === "ar" ? proj.title_ar : proj.title}
                   </h3>
