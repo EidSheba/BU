@@ -64,7 +64,7 @@ export const PROJECTS_DATA: ProjectData[] = [
       "توفير هدايا لكافة الحضور",
     ],
     heroImg: "/images/projects/sata-liwan.jpg",
-    gallery: ["/images/grid-design-3.jpg", "/images/grid-media-3.jpg", "/images/parallax-2.jpg"],
+    gallery: ["/images/projects/sata-liwan-1.jpg", "/images/projects/sata-liwan-2.jpg"],
   },
   {
     id: "03",
@@ -92,7 +92,7 @@ export const PROJECTS_DATA: ProjectData[] = [
       "خدمة صف السيارات لتسهيل الوصول إلى الفعالية",
     ],
     heroImg: "/images/projects/anime-key.jpg",
-    gallery: ["/images/grid-perf-2.jpg", "/images/grid-creative-1.jpg", "/images/grid-media-1.jpg"],
+    gallery: ["/images/projects/anime-key-1.jpg", "/images/projects/anime-key-2.jpg"],
   },
   {
     id: "04",
