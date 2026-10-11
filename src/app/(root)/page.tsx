@@ -4,6 +4,7 @@ import ScrollRevealText from "@/components/sections/ScrollRevealText";
 import StackSection from "@/components/sections/StackSection";
 import SecretSection from "@/components/sections/SecretSection";
 import WorkSliderSection from "@/components/sections/WorkSliderSection";
+import ClientsSection from "@/components/sections/ClientsSection";
 import FooterSection from "@/components/sections/FooterSection";
 import StickyNavbar from "@/components/StickyNavbar";
 
@@ -39,6 +40,7 @@ export default function Home() {
         <SecretSection />
       </div>
       <WorkSliderSection />
+      <ClientsSection />
       <FooterSection />
     </main>
   );
