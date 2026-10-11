@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import HeroSection from "@/components/sections/HeroSection";
 import ScrollRevealText from "@/components/sections/ScrollRevealText";
 import StackSection from "@/components/sections/StackSection";
-import ArchitectSection from "@/components/sections/ArchitectSection";
 import SecretSection from "@/components/sections/SecretSection";
 import WorkSliderSection from "@/components/sections/WorkSliderSection";
 import FooterSection from "@/components/sections/FooterSection";
@@ -36,7 +35,6 @@ export default function Home() {
         group2_ar={["مظلة واحدة", "أفكار بلا حدود"]}
       />
       <StackSection />
-      <ArchitectSection />
       <div className="secret-scroll-space">
         <SecretSection />
       </div>
