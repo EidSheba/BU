@@ -8,18 +8,18 @@ const LOGOS = [
   { src: "/images/clients/1.png", alt: "National Events Center" },
   { src: "/images/clients/2.png", alt: "Riyadh Season 2022" },
   { src: "/images/clients/3.png", alt: "Boulevard World" },
-  { src: "/images/clients/4.png", alt: "Sela" },
-  { src: "/images/clients/5.png", alt: "Mada" },
+  { src: "/images/clients/4.png", bright: true, alt: "Sela" },
+  { src: "/images/clients/5.png", bright: true, alt: "Mada" },
   { src: "/images/clients/6.png", alt: "International E-Commerce Expo" },
-  { src: "/images/clients/7.png", alt: "Thiqah" },
+  { src: "/images/clients/7.png", bright: true, alt: "Thiqah" },
   { src: "/images/clients/8.png", alt: "Riyadh Season" },
   { src: "/images/clients/9.png", alt: "Mawsim" },
-  { src: "/images/clients/10.png", alt: "Camel Club" },
+  { src: "/images/clients/10.png", zoom: true, alt: "Camel Club" },
   { src: "/images/clients/11.png", alt: "World Women Games" },
   { src: "/images/clients/12.png", alt: "Rice Bull Riding Co." },
   { src: "/images/clients/13.png", alt: "Supercoppa" },
-  { src: "/images/clients/14.png", alt: "Hajj Hackathon" },
-  { src: "/images/clients/15.png", alt: "Saudi Chess Championship" },
+  { src: "/images/clients/14.png", zoom: true, alt: "Hajj Hackathon" },
+  { src: "/images/clients/15.png", zoom: true, alt: "Saudi Chess Championship" },
   { src: "/images/clients/16.png", alt: "Arena" },
   { src: "/images/clients/17.png", alt: "WWE" },
   { src: "/images/clients/18.png", alt: "HQWS" },
@@ -45,7 +45,7 @@ export default function ClientsSection() {
                   alt={copy === 1 ? "" : logo.alt}
                   fill
                   sizes="180px"
-                  className={styles.logo}
+                  className={`${styles.logo} ${logo.bright ? styles.bright : ""} ${logo.zoom ? styles.zoom : ""}`}
                 />
               </li>
             ))}
