@@ -106,7 +106,6 @@ export default function ServicesListSection() {
             <div className={styles.cardOverlay} />
             <div className={styles.cardAccent} />
             <div className={styles.cardContent}>
-              <span className={styles.cardNum}>{svc.id}</span>
               <h3 className={styles.cardTitle}>
                 {lang === "ar" ? svc.title_ar : svc.title}
               </h3>

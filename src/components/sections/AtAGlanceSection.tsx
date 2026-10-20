@@ -157,7 +157,7 @@ export default function AtAGlanceSection() {
 
       <div ref={heroRef} className={styles.heroStat}>
         <div className={styles.heroLeft}>
-          <span className={styles.heroNumber}>16</span>
+          <span className={styles.heroNumber}>...</span>
           <span className={styles.heroLabel}>{lang === "ar" ? "عاماً" : "YEARS"}</span>
         </div>
         <p className={styles.heroDesc}>
@@ -183,14 +183,13 @@ export default function AtAGlanceSection() {
           {PANELS.map((p, i) => (
             <div key={i} ref={el => { panelRefs.current[i] = el; }} className={styles.panel}>
               <div ref={el => { numWrapRefs.current[i] = el; }} className={styles.numWrap}>
-                <span className={styles.bigNum}>{p.value}{p.suffix}</span>
+                <span className={styles.bigNum}>...</span>
                 <span className={styles.statLabel}>
                   {lang === "ar" ? p.label_ar : p.label_en}
                 </span>
               </div>
 
               <div ref={el => { copyRefs.current[i] = el; }} className={styles.copyBlock}>
-                <span className={styles.copyIndex}>{p.index} / 0{PANEL_COUNT}</span>
                 <span className={styles.copyTitle}>
                   {(lang === "ar" ? p.title_ar : p.title_en).split("\n").map((line, j) => (
                     <span key={j} className={styles.descLine}>{line}</span>
@@ -207,10 +206,6 @@ export default function AtAGlanceSection() {
             {PANELS.map((_, i) => (
               <div key={i} className={`${styles.dot} ${activeIdx === i ? styles.dotActive : ""}`} />
             ))}
-          </div>
-
-          <div className={styles.panelNum}>
-            0{Math.max(activeIdx + 1, 1)}&nbsp;/&nbsp;0{PANEL_COUNT}
           </div>
 
         </div>
