@@ -43,7 +43,6 @@ export default function ProjectsIndexSection() {
             data-row
             className={styles.row}
           >
-            <span className={styles.rowNum}>{proj.id}</span>
             <span className={styles.rowTitleWrap}>
               <span className={styles.rowTitle}>
                 {lang === "ar" ? proj.title_ar : proj.title}

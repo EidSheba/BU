@@ -7,29 +7,16 @@ import { useLanguage } from "@/hooks/useLanguage";
 
 const t = {
   en: {
-    eyebrow: "12 Disciplines · Full-Spectrum Event Solutions",
     sub: "We craft extraordinary experiences across every discipline — delivering bold, results-driven campaigns for our clients worldwide.",
-    stats: [
-      { count: 500, suffix: "+", label: "Events" },
-      { count: 15,  suffix: "+", label: "Countries" },
-      { count: 10,  suffix: "+", label: "Years" },
-    ],
   },
   ar: {
-    eyebrow: "١٢ تخصصاً · حلول فعاليات شاملة",
     sub: "نصنع تجارب استثنائية عبر كل التخصصات — نقدم حملات جريئة وفعّالة لعملائنا حول العالم.",
-    stats: [
-      { count: 500, suffix: "+", label: "فعالية" },
-      { count: 15,  suffix: "+", label: "دولة" },
-      { count: 10,  suffix: "+", label: "سنوات" },
-    ],
   },
 };
 
 export default function ServicesHero() {
   const headRef  = useRef<HTMLDivElement>(null);
   const subRef   = useRef<HTMLParagraphElement>(null);
-  const statsRef = useRef<HTMLDivElement>(null);
   const lang = useLanguage();
   const c = t[lang];
 
@@ -38,7 +25,6 @@ export default function ServicesHero() {
       const { gsap } = await import("gsap");
 
       if (subRef.current)   gsap.set(subRef.current,   { opacity: 0, y: 18 });
-      if (statsRef.current) gsap.set(statsRef.current, { opacity: 0, y: 16 });
 
       const tl = gsap.timeline({ delay: 0.15 });
 
@@ -57,22 +43,6 @@ export default function ServicesHero() {
       }
 
       if (subRef.current)   tl.to(subRef.current,   { opacity: 1, y: 0, duration: 0.85, ease: "power2.out" }, 0.55);
-      if (statsRef.current) tl.to(statsRef.current,  { opacity: 1, y: 0, duration: 0.7,  ease: "power2.out" }, 0.7);
-
-      if (statsRef.current) {
-        const countEls = statsRef.current.querySelectorAll<HTMLElement>("[data-count]");
-        countEls.forEach((el) => {
-          const target = parseInt(el.dataset.count ?? "0", 10);
-          const suffix = el.dataset.suffix ?? "";
-          const obj = { val: 0 };
-          tl.to(obj, {
-            val: target,
-            duration: 1.8,
-            ease: "power2.out",
-            onUpdate() { el.textContent = Math.round(obj.val) + suffix; },
-          }, 0.75);
-        });
-      }
     };
     init();
   }, [lang]);
@@ -116,14 +86,6 @@ export default function ServicesHero() {
 
         <div className={styles.bottomRow}>
           <p ref={subRef} className={styles.sub}>{c.sub}</p>
-          <div ref={statsRef} className={styles.heroStats}>
-            {c.stats.map((s, i) => (
-              <div key={i} className={styles.hStat}>
-                <b data-count={s.count} data-suffix={s.suffix}>0{s.suffix}</b>
-                <span>{s.label}</span>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </section>

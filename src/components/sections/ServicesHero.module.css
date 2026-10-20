@@ -139,36 +139,6 @@
   max-width: 480px;
 }
 
-/* ── Hero stats ── */
-.heroStats {
-  display: flex;
-  gap: clamp(1.5rem, 3vw, 3rem);
-  flex-shrink: 0;
-}
-
-.hStat {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 0.2rem;
-}
-
-.hStat b {
-  font-size: clamp(1.5rem, 2.5vw, 2.2rem);
-  font-weight: 800;
-  color: #ffffff;
-  letter-spacing: -0.04em;
-  line-height: 1;
-}
-
-.hStat span {
-  font-size: 0.6rem;
-  font-weight: 600;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.3);
-}
-
 /* ── Ticker ── */
 .ticker {
   position: relative;
@@ -209,9 +179,6 @@
 @media (max-width: 768px) {
   .lChar {
     font-size: clamp(4rem, 17vw, 8rem);
-  }
-  .heroStats {
-    display: none;
   }
   .sub {
     max-width: 100%;

@@ -37,7 +37,7 @@ export const PROJECTS_DATA: ProjectData[] = [
       "نظام صوتيات وضوئيات متكامل",
       "إدارة الحشود والتنظيم",
     ],
-    heroImg: "/images/projects/government-conferences-sponsorships.jpg",
+    heroImg: "/images/sa.svg",
     gallery: [],
   },
   {

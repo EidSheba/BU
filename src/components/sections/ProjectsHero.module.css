@@ -87,34 +87,6 @@
   max-width: 460px;
 }
 
-.statsRow {
-  display: flex;
-  gap: clamp(2rem, 4vw, 3.5rem);
-  padding-top: 0.5rem;
-}
-
-.stat {
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-}
-
-.stat b {
-  font-size: clamp(1.6rem, 2.6vw, 2.3rem);
-  font-weight: 800;
-  color: #ffffff;
-  letter-spacing: -0.04em;
-  line-height: 1;
-}
-
-.stat span {
-  font-size: 0.6rem;
-  font-weight: 600;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.3);
-}
-
 .cta {
   display: inline-flex;
   align-items: center;
@@ -199,13 +171,6 @@
   gap: 0.5rem;
 }
 
-.reelNum {
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.28em;
-  color: #057a02;
-}
-
 .reelTitle {
   font-size: clamp(1.4rem, 2.6vw, 2.1rem);
   font-weight: 800;
@@ -286,9 +251,6 @@
 @media (max-width: 540px) {
   .lChar {
     font-size: clamp(2.6rem, 11vw, 4rem);
-  }
-  .statsRow {
-    gap: 1.6rem;
   }
   .right {
     height: 48vh;

@@ -305,11 +305,6 @@
   flex-shrink: 0;
 }
 
-.hero-flag-img--uk {
-  width: 27px;
-  height: 18px;
-}
-
 .hero-lang-text {
   color: white;
   font-size: 0.8rem;

@@ -111,12 +111,14 @@ export default function StickyNavbar() {
               aria-label={isAr ? "Switch to English" : "Switch to Arabic"}
               onClick={() => changeLang(isAr ? "en" : "ar")}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={isAr ? "/images/uk.svg" : "/images/sa.svg"}
-                alt={isAr ? "England flag" : "Saudi Arabia flag"}
-                className={isAr ? "hero-flag-img hero-flag-img--uk" : "hero-flag-img"}
-              />
+              {!isAr && (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src="/images/sa.svg"
+                  alt="Saudi Arabia flag"
+                  className="hero-flag-img"
+                />
+              )}
               <span className="hero-lang-text">{isAr ? "EN" : "AR"}</span>
             </button>
 
