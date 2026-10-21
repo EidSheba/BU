@@ -12,17 +12,9 @@ const SLIDE_MS = 3600;
 const ui = {
   en: {
     back: "← All Projects",
-    overview: "Overview",
-    ctaTitle: (title: string) => `Have a project in mind\nlike ${title}?`,
-    ctaBtn: "Start a project ↗",
-    ctaBack: "← Back to all projects",
   },
   ar: {
     back: "← كل المشاريع",
-    overview: "نظرة عامة",
-    ctaTitle: (title: string) => `هل لديك مشروع في ذهنك\nمثل ${title}؟`,
-    ctaBtn: "ابدأ مشروعاً ↗",
-    ctaBack: "← العودة لجميع المشاريع",
   },
 };
 
@@ -36,7 +28,6 @@ export default function ProjectDetail({ project }: { project: ProjectData }) {
   const c = ui[lang];
 
   const title    = lang === "ar" ? project.title_ar    : project.title;
-  const tagline  = lang === "ar" ? project.tagline_ar  : project.tagline;
   const overview = lang === "ar" ? project.overview_ar : project.overview;
 
   useEffect(() => {
@@ -87,8 +78,6 @@ export default function ProjectDetail({ project }: { project: ProjectData }) {
     init();
   }, [lang]);
 
-  const ctaLines = c.ctaTitle(title).split("\n");
-
   return (
     <>
       {/* ── Hero ── */}
@@ -125,10 +114,6 @@ export default function ProjectDetail({ project }: { project: ProjectData }) {
               ))
             )}
           </div>
-
-          <div className={styles.heroMeta}>
-            <span data-sub className={styles.heroTagline}>{tagline}</span>
-          </div>
         </div>
       </section>
 
@@ -138,7 +123,6 @@ export default function ProjectDetail({ project }: { project: ProjectData }) {
         {/* Overview */}
         <section className={styles.overviewSection}>
           <div className={styles.overviewLeft}>
-            <span data-reveal className={styles.sectionLabel}>{c.overview}</span>
             <p data-reveal className={styles.overviewText}>{overview}</p>
           </div>
           <div data-reveal className={styles.overviewRight}>
@@ -166,18 +150,6 @@ export default function ProjectDetail({ project }: { project: ProjectData }) {
                 </div>
               )}
             </div>
-          </div>
-        </section>
-
-        {/* CTA */}
-        <section data-reveal className={styles.ctaSection}>
-          <h2 className={styles.ctaTitle}>
-            {ctaLines[0]}<br />
-            <span className={styles.ctaAccent}>{ctaLines[1]}</span>
-          </h2>
-          <div className={styles.ctaActions}>
-            <a href="/contact" className={styles.ctaBtn}>{c.ctaBtn}</a>
-            <Link href="/projects" className={styles.ctaBack}>{c.ctaBack}</Link>
           </div>
         </section>
 

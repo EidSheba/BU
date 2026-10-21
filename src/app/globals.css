@@ -188,62 +188,6 @@ textarea {
   transform: translateY(100vh);
 }
 
-/* ─── Secret Section ────────────────────────────────────────── */
-
-.secret-scroll-space {
-  position: relative;
-  height: 100vh;
-}
-
-.secret-section {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  background: #000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.secret-text-wrap {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 0.5rem;
-}
-
-.secret-reveal-layer {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.secret-our {
-  font-size: clamp(2rem, 5vw, 4rem);
-  font-weight: 300;
-  letter-spacing: 0.15em;
-  line-height: 1.1;
-  text-transform: uppercase;
-}
-
-.secret-ing {
-  font-size: clamp(3rem, 10vw, 10rem);
-  font-weight: 900;
-  letter-spacing: -0.03em;
-  line-height: 1.05;
-  text-transform: uppercase;
-}
-
-.secret-dim   { color: #444; }
-.secret-white { color: #ffffff; }
-.secret-green { color: #057a02; }
-
 /* ─── RTL (Arabic) overrides ─────────────────────────────── */
 
 [dir="rtl"],
@@ -254,9 +198,7 @@ textarea {
 }
 
 /* Zero out letter-spacing for Arabic typography */
-[dir="rtl"] .gs-heading,
-[dir="rtl"] .secret-our,
-[dir="rtl"] .secret-ing {
+[dir="rtl"] .gs-heading {
   letter-spacing: 0;
 }
 

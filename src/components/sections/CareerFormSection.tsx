@@ -7,15 +7,7 @@ import { useLanguage } from "@/hooks/useLanguage";
 /* ── Translation ────────────────────────────────────────────────── */
 const t = {
   en: {
-    label: "Application Form",
     title: "Apply Now",
-    sub: "Fill in the form below and we'll get back to you within 3 business days.",
-
-    /* groups */
-    groupPersonal: "Personal Information",
-    groupExp:      "Work Experience",
-    groupTraining: "Training & Languages",
-    groupDocs:     "Documents",
 
     /* fields */
     name:           "Name",
@@ -32,6 +24,8 @@ const t = {
     training:       "Training Courses",
     uploadCv:       "Upload CV",
     uploadPhoto:    "Upload Personal Photo",
+    experience:     "Work Experience",
+    phExperience:   "Companies, positions, dates and responsibilities",
 
     /* placeholders */
     phName:           "Full name",
@@ -41,16 +35,6 @@ const t = {
     phSpecialization: "e.g. Marketing, Engineering …",
     phOtherLangs:     "e.g. French, German …",
     phTraining:       "List any relevant courses or certifications",
-    phCompany:        "Company name",
-    phPosition:       "Job title / position",
-    phResponsibilities: "Brief description of responsibilities",
-    companyName:      "Company Name",
-    position:         "Position",
-    startDate:        "Starting Date",
-    endDate:          "End Date",
-    responsibilities: "Responsibilities",
-    phStartDate:      "Start date",
-    phEndDate:        "End date (leave blank if current)",
 
     /* select options */
     selectDefault:    "Select …",
@@ -60,13 +44,8 @@ const t = {
     englishOptions:   ["Beginner", "Elementary", "Intermediate", "Upper Intermediate", "Advanced", "Fluent / Native"],
 
     /* experience */
-    expEntry:   (n: number) => `Work Experience ${n}`,
-    addExp:     "+ Add Another Work Experience",
-    removeExp:  "Remove",
 
     /* files */
-    cvHint:     "PDF or Word  ·  max 5 MB",
-    photoHint:  "JPG or PNG  ·  max 2 MB",
     noFile:     "No file chosen",
 
     /* submit */
@@ -79,14 +58,8 @@ const t = {
     successBack:  "Submit Another Application",
   },
   ar: {
-    label: "استمارة التقديم",
     title: "قدّم الآن",
-    sub: "أكمل النموذج أدناه وسنتواصل معك خلال 3 أيام عمل.",
 
-    groupPersonal: "المعلومات الشخصية",
-    groupExp:      "الخبرة العملية",
-    groupTraining: "التدريب واللغات",
-    groupDocs:     "المستندات",
 
     name:           "الاسم",
     phone:          "رقم الجوال",
@@ -102,6 +75,8 @@ const t = {
     training:       "الدورات التدريبية",
     uploadCv:       "رفع السيرة الذاتية",
     uploadPhoto:    "رفع الصورة الشخصية",
+    experience:     "الخبرة العملية",
+    phExperience:   "الشركات والمسميات الوظيفية والتواريخ والمهام",
 
     phName:           "الاسم الكامل",
     phPhone:          "رقم الجوال",
@@ -110,16 +85,6 @@ const t = {
     phSpecialization: "مثال: تسويق، هندسة …",
     phOtherLangs:     "مثال: فرنسية، ألمانية …",
     phTraining:       "اذكر أي دورات أو شهادات ذات صلة",
-    phCompany:        "اسم الشركة",
-    phPosition:       "المسمى الوظيفي",
-    phResponsibilities: "وصف مختصر للمهام",
-    companyName:      "اسم الشركة",
-    position:         "المسمى الوظيفي",
-    startDate:        "تاريخ البداية",
-    endDate:          "تاريخ الانتهاء",
-    responsibilities: "المهام والمسؤوليات",
-    phStartDate:      "تاريخ البداية",
-    phEndDate:        "تاريخ الانتهاء (اتركه فارغاً إن كانت وظيفتك الحالية)",
 
     selectDefault:    "اختر …",
     maritalOptions:   ["أعزب / عزباء", "متزوج / متزوجة", "مطلق / مطلقة", "أرمل / أرملة"],
@@ -127,12 +92,7 @@ const t = {
     educationOptions: ["ثانوية عامة", "دبلوم", "بكالوريوس", "ماجستير", "دكتوراه", "أخرى"],
     englishOptions:   ["مبتدئ", "أساسي", "متوسط", "فوق المتوسط", "متقدم", "طلق / لغة أم"],
 
-    expEntry:   (n: number) => `الخبرة العملية ${n}`,
-    addExp:     "+ إضافة خبرة عمل أخرى",
-    removeExp:  "حذف",
 
-    cvHint:    "PDF أو Word  ·  الحد الأقصى 5 ميجابايت",
-    photoHint: "JPG أو PNG  ·  الحد الأقصى 2 ميجابايت",
     noFile:    "لم يتم اختيار ملف",
 
     submitBtn:  "إرسال الطلب",
@@ -145,22 +105,6 @@ const t = {
 };
 
 /* ── Types ─────────────────────────────────────────────────────── */
-type WorkExp = {
-  company: string;
-  position: string;
-  startDate: string;
-  endDate: string;
-  responsibilities: string;
-};
-
-const EMPTY_EXP: WorkExp = {
-  company: "",
-  position: "",
-  startDate: "",
-  endDate: "",
-  responsibilities: "",
-};
-
 type FormData = {
   name: string;
   phone: string;
@@ -173,7 +117,7 @@ type FormData = {
   specialization: string;
   englishLevel: string;
   otherLangs: string;
-  experiences: WorkExp[];
+  experience: string;
   training: string;
   cvFile: File | null;
   photoFile: File | null;
@@ -183,7 +127,7 @@ const EMPTY_FORM: FormData = {
   name: "", phone: "", email: "", nationality: "",
   dob: "", maritalStatus: "", gender: "", education: "",
   specialization: "", englishLevel: "", otherLangs: "",
-  experiences: [{ ...EMPTY_EXP }],
+  experience: "",
   training: "", cvFile: null, photoFile: null,
 };
 
@@ -242,7 +186,6 @@ function SelectField({
 function FileUploadField({
   id,
   label,
-  hint,
   accept,
   file,
   noFileText,
@@ -251,7 +194,6 @@ function FileUploadField({
 }: {
   id: string;
   label: string;
-  hint: string;
   accept: string;
   file: File | null;
   noFileText: string;
@@ -278,7 +220,6 @@ function FileUploadField({
           <span className={`${styles.fileLabelMain} ${file ? styles.chosen : ""}`}>
             {file ? file.name : label}
           </span>
-          <span className={styles.fileLabelSub}>{file ? "" : hint}</span>
         </span>
       </label>
     </div>
@@ -298,18 +239,6 @@ export default function CareerFormSection() {
   /* helpers */
   const set = <K extends keyof FormData>(key: K, val: FormData[K]) =>
     setForm((f) => ({ ...f, [key]: val }));
-
-  const setExp = (i: number, key: keyof WorkExp, val: string) =>
-    setForm((f) => {
-      const exps = f.experiences.map((e, idx) => idx === i ? { ...e, [key]: val } : e);
-      return { ...f, experiences: exps };
-    });
-
-  const addExp = () =>
-    setForm((f) => ({ ...f, experiences: [...f.experiences, { ...EMPTY_EXP }] }));
-
-  const removeExp = (i: number) =>
-    setForm((f) => ({ ...f, experiences: f.experiences.filter((_, idx) => idx !== i) }));
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -352,12 +281,7 @@ export default function CareerFormSection() {
     <section id="apply-form" className={styles.section}>
       {/* Header */}
       <div className={styles.header}>
-        <span className={styles.sectionLabel}>
-          <span className={styles.labelDot} />
-          {c.label}
-        </span>
         <h2 className={styles.sectionTitle}>{c.title}</h2>
-        <p className={styles.sectionSub}>{c.sub}</p>
       </div>
 
       <form
@@ -366,11 +290,7 @@ export default function CareerFormSection() {
         noValidate
       >
 
-        {/* ── Personal Info ── */}
-        <div className={styles.group}>
-          <p className={styles.groupTitle}>{c.groupPersonal}</p>
-
-          <div className={styles.grid2}>
+        <div className={styles.grid2}>
             <Field label={c.name} required>
               <input
                 className={styles.input}
@@ -463,96 +383,15 @@ export default function CareerFormSection() {
                 required
               />
             </Field>
-          </div>
-        </div>
-
-        {/* ── Work Experience ── */}
-        <div className={styles.group}>
-          <p className={styles.groupTitle}>{c.groupExp}</p>
-
-          {form.experiences.map((exp, i) => (
-            <div key={i} className={styles.expCard}>
-              <div className={styles.expCardHeader}>
-                <span className={styles.expCardLabel}>{c.expEntry(i + 1)}</span>
-                {form.experiences.length > 1 && (
-                  <button
-                    type="button"
-                    className={styles.removeBtn}
-                    onClick={() => removeExp(i)}
-                  >
-                    {c.removeExp}
-                  </button>
-                )}
-              </div>
-
-              <div className={styles.grid2}>
-                <Field label={c.companyName} required>
-                  <input
-                    className={styles.input}
-                    type="text"
-                    placeholder={c.phCompany}
-                    value={exp.company}
-                    onChange={(e) => setExp(i, "company", e.target.value)}
-                    required
-                  />
-                </Field>
-
-                <Field label={c.position} required>
-                  <input
-                    className={styles.input}
-                    type="text"
-                    placeholder={c.phPosition}
-                    value={exp.position}
-                    onChange={(e) => setExp(i, "position", e.target.value)}
-                    required
-                  />
-                </Field>
-
-                <Field label={c.startDate} required>
-                  <input
-                    className={styles.input}
-                    type="date"
-                    aria-label={c.startDate}
-                    value={exp.startDate}
-                    onChange={(e) => setExp(i, "startDate", e.target.value)}
-                    required
-                  />
-                </Field>
-
-                <Field label={c.endDate} required>
-                  <input
-                    className={styles.input}
-                    type="date"
-                    aria-label={c.endDate}
-                    value={exp.endDate}
-                    onChange={(e) => setExp(i, "endDate", e.target.value)}
-                    required
-                  />
-                </Field>
-
-                <Field label={c.responsibilities} required className={styles.colSpan2}>
-                  <textarea
-                    className={styles.textarea}
-                    placeholder={c.phResponsibilities}
-                    value={exp.responsibilities}
-                    onChange={(e) => setExp(i, "responsibilities", e.target.value)}
-                    required
-                  />
-                </Field>
-              </div>
-            </div>
-          ))}
-
-          <button type="button" className={styles.addExpBtn} onClick={addExp}>
-            {c.addExp}
-          </button>
-        </div>
-
-        {/* ── Training & Languages ── */}
-        <div className={styles.group}>
-          <p className={styles.groupTitle}>{c.groupTraining}</p>
-
-          <div className={styles.grid2}>
+            <Field label={c.experience} required className={styles.colSpan2}>
+              <textarea
+                className={styles.textarea}
+                placeholder={c.phExperience}
+                value={form.experience}
+                onChange={(e) => set("experience", e.target.value)}
+                required
+              />
+            </Field>
             <Field label={c.englishLevel} required>
               <SelectField
                 value={form.englishLevel}
@@ -582,19 +421,10 @@ export default function CareerFormSection() {
                 required
               />
             </Field>
-          </div>
-        </div>
-
-        {/* ── Documents ── */}
-        <div className={styles.group}>
-          <p className={styles.groupTitle}>{c.groupDocs}</p>
-
-          <div className={styles.grid2}>
             <Field label={c.uploadCv} required>
               <FileUploadField
                 id={`${uid}-cv`}
                 label={c.uploadCv}
-                hint={c.cvHint}
                 accept=".pdf,.doc,.docx"
                 file={form.cvFile}
                 noFileText={c.noFile}
@@ -607,15 +437,13 @@ export default function CareerFormSection() {
               <FileUploadField
                 id={`${uid}-photo`}
                 label={c.uploadPhoto}
-                hint={c.photoHint}
-                accept=".jpg,.jpeg,.png,.webp"
+                accept="image/*"
                 file={form.photoFile}
                 noFileText={c.noFile}
                 required
                 onChange={(f) => set("photoFile", f)}
               />
             </Field>
-          </div>
         </div>
 
         {/* ── Submit ── */}

@@ -1,8 +1,7 @@
 import StickyNavbar from "@/components/StickyNavbar";
 import FooterSection from "@/components/sections/FooterSection";
-import ServicesHero from "@/components/sections/ServicesHero";
+import ServicesTitle from "@/components/sections/ServicesTitle";
 import ServicesListSection from "@/components/sections/ServicesListSection";
-import ServicesShowcase from "@/components/sections/ServicesShowcase";
 
 export const metadata = {
   title: "Services — Business Umbrella | Event Management, Creative & More",
@@ -26,9 +25,8 @@ export default function ServicesPage() {
   return (
     <main>
       <StickyNavbar />
-      <ServicesHero />
+      <ServicesTitle />
       <ServicesListSection />
-      <ServicesShowcase />
       <FooterSection />
     </main>
   );

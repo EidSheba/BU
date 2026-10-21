@@ -1,5 +1,5 @@
 import StickyNavbar from "@/components/StickyNavbar";
-import AtAGlanceSection from "@/components/sections/AtAGlanceSection";
+import AboutIntroSection from "@/components/sections/AboutIntroSection";
 import ClientsSection from "@/components/sections/ClientsSection";
 import FooterSection from "@/components/sections/FooterSection";
 
@@ -26,7 +26,7 @@ export default function AboutPage() {
     <main>
       <StickyNavbar />
       <div style={{ paddingTop: "80px" }} />
-      <AtAGlanceSection />
+      <AboutIntroSection />
       <ClientsSection />
       <FooterSection />
     </main>

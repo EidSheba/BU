@@ -10,58 +10,11 @@ import { useLanguage } from "@/hooks/useLanguage";
 const SLIDES = PROJECTS_DATA;
 const N = SLIDES.length;
 
-const t = {
-  en: {
-    eyebrow: "Selected Work · 13 Productions",
-    h1: "PROJECTS", h2: "THAT SPEAK", h3: "FOR THEMSELVES",
-    sub: "From government summits to extreme-sport spectacles, every name on this list is a different problem we were trusted to solve — on the ground, on schedule, and always at full scale.",
-    cta: "View All Projects",
-  },
-  ar: {
-    eyebrow: "أعمال مختارة · ١٣ إنتاجاً",
-    h1: "مشاريع", h2: "تتحدث", h3: "عن نفسها",
-    sub: "من قمم حكومية إلى مشاهد رياضية استثنائية، كل اسم في هذه القائمة مشكلة مختلفة وثقنا بنا لحلها — على أرض الواقع، في الوقت المحدد، وبالحجم الكامل دائماً.",
-    cta: "عرض جميع المشاريع",
-  },
-};
-
 export default function WorkSliderSection() {
   const outerRef  = useRef<HTMLDivElement>(null);
   const trackRef  = useRef<HTMLDivElement>(null);
   const dotsRef   = useRef<(HTMLSpanElement | null)[]>([]);
-  const headerRef = useRef<HTMLDivElement>(null);
   const lang = useLanguage();
-  const c = t[lang];
-
-  // Header entrance — fades/rises in once the header scrolls into view.
-  useEffect(() => {
-    let scrollTrigger: { kill: () => void } | undefined;
-
-    async function init() {
-      const { gsap } = await import("gsap");
-      const { ScrollTrigger } = await import("gsap/ScrollTrigger");
-      gsap.registerPlugin(ScrollTrigger);
-
-      const header = headerRef.current;
-      if (!header) return;
-
-      const targets = header.querySelectorAll<HTMLElement>("[data-reveal]");
-      gsap.set(targets, { opacity: 0, y: 24 });
-
-      const tl = gsap.timeline({ paused: true });
-      tl.to(targets, { opacity: 1, y: 0, duration: 0.8, ease: "power2.out", stagger: 0.12 });
-
-      scrollTrigger = ScrollTrigger.create({
-        trigger: header,
-        start: "top 80%",
-        once: true,
-        onEnter: () => tl.play(),
-      });
-    }
-
-    init();
-    return () => scrollTrigger?.kill();
-  }, [lang]);
 
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -116,18 +69,6 @@ export default function WorkSliderSection() {
 
   return (
     <section className={styles.wrap}>
-      <div ref={headerRef} className={styles.header}>
-        <h2 data-reveal className={styles.headline}>
-          <span className={styles.hRow}>{c.h1}</span>
-          <span className={`${styles.hRow} ${styles.hRowAccent}`}>{c.h2}</span>
-          <span className={styles.hRow}>{c.h3}</span>
-        </h2>
-
-        <p data-reveal className={styles.sub}>{c.sub}</p>
-
-        <Link data-reveal href="/projects" className={styles.cta}>{c.cta}</Link>
-      </div>
-
       <div
         ref={outerRef}
         className={styles.outer}

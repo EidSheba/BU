@@ -1,0 +1,76 @@
+.section {
+  background: #fff;
+  padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 6vw, 5rem) clamp(4rem, 8vw, 7rem);
+}
+
+.titleWrap {
+  text-align: center;
+  line-height: 1;
+  padding-bottom: clamp(2rem, 4vw, 3.5rem);
+}
+
+.title {
+  display: block;
+  font-size: clamp(2rem, 5.5vw, 5rem);
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  color: #0a0a0a;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+@keyframes slideFromLeft {
+  from { transform: translateX(-90px); opacity: 0; }
+  to   { transform: translateX(0);     opacity: 1; }
+}
+
+@keyframes slideFromRight {
+  from { transform: translateX(90px); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+
+.titleLeft {
+  display: inline-block;
+  animation: slideFromLeft 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.titleRight {
+  display: inline-block;
+  animation: slideFromRight 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.12s both;
+}
+
+:global(html[dir="rtl"]) .title {
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.body {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform, opacity;
+}
+.body.visible { opacity: 1; transform: translateY(0); }
+
+.bar {
+  display: block;
+  width: 64px;
+  height: 4px;
+  background: #3dcc60;
+  margin: 0 auto clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.text {
+  font-size: clamp(1.05rem, 1.8vw, 1.45rem);
+  font-weight: 500;
+  line-height: 1.8;
+  color: #0a0a0a;
+}
+
+:global(html[dir="rtl"]) .text {
+  line-height: 2;
+}

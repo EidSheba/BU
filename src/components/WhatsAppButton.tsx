@@ -7,7 +7,7 @@ const PHONE = "966541164491";
 
 const MESSAGE = {
   en: "Hello, I'd like to know more about Business Umbrella's services.",
-  ar: "مرحباً، أرغب في معرفة المزيد عن خدمات بيزنس أمبريلا.",
+  ar: "حياك الله اريد استفسر عن خدماتكم",
 };
 
 export default function WhatsAppButton() {

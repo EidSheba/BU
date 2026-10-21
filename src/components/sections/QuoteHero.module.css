@@ -1,0 +1,47 @@
+/* ─── Quote Title — same treatment as the Projects and Services titles ── */
+
+.section {
+  background: #050505;
+  padding: clamp(7rem, 12vw, 11rem) clamp(1.5rem, 5vw, 6rem) 0;
+}
+
+.titleWrap {
+  text-align: center;
+  padding-bottom: clamp(1rem, 2vw, 2rem);
+}
+
+.title {
+  display: block;
+  font-size: clamp(1.8rem, 4.5vw, 4rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: #ffffff;
+  overflow: hidden;
+}
+
+.titleInner {
+  display: inline-block;
+  will-change: transform;
+}
+
+.titleAccent {
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(2, 230, 130, 0.85);
+}
+
+.bar {
+  display: block;
+  width: 64px;
+  height: 4px;
+  background: #3dcc60;
+  margin: clamp(1.2rem, 2.4vw, 2rem) auto 0;
+}
+
+:global(html[dir="rtl"]) .title {
+  letter-spacing: normal;
+  text-transform: none;
+  /* room below the baseline so dots under letters (ي) aren't clipped by overflow */
+  line-height: 1.6;
+}

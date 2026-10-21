@@ -2,53 +2,7 @@
 
 .section {
   background: #050505;
-  padding: clamp(4rem, 8vw, 10rem) 0 0;
-}
-
-/* ── Section heading ── */
-.heading {
-  padding: 0 clamp(2rem, 5vw, 7rem);
-  margin-bottom: clamp(2.5rem, 5vw, 5rem);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.75rem;
-}
-
-.headLabel {
-  display: block;
-  font-size: 0.66rem;
-  font-weight: 700;
-  letter-spacing: 0.38em;
-  text-transform: uppercase;
-  color: #057a02;
-  margin-bottom: 1rem;
-}
-
-.headTitle {
-  font-size: clamp(2rem, 4.5vw, 4rem);
-  font-weight: 800;
-  color: #ffffff;
-  letter-spacing: -0.04em;
-  line-height: 1.2;
-}
-
-.headTitleWrap {
-  position: relative;
-  display: inline-block;
-}
-
-.headTitleMuted {
-  color: rgba(255, 255, 255, 0.22);
-}
-
-.headTitleFill {
-  position: absolute;
-  inset: 0;
-  color: #ffffff;
-  white-space: nowrap;
-  -webkit-clip-path: inset(0 100% 0 0);
-  clip-path: inset(0 100% 0 0);
+  padding: 0;
 }
 
 /* ── Bento grid ──

@@ -40,13 +40,6 @@ export default function HeroSection() {
               </span>
             </h1>
 
-            {/* Localized Subtitle / Value Proposition */}
-            <p className="hero-subtitle">
-              {isAr
-                ? "نحول الرؤى إلى تجارب استثنائية وفعاليات ملهمة تترك أثراً لا يُنسى في المملكة وخارجها"
-                : "Transforming visions into unforgettable live experiences, conferences, and brand activations across Saudi Arabia."}
-            </p>
-
             {/* Touch-Friendly Action Buttons */}
             <div className="hero-actions">
               <Link href="/projects" className="hero-btn hero-btn--primary">

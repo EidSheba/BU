@@ -1,7 +1,6 @@
 import StickyNavbar from "@/components/StickyNavbar";
 import FooterSection from "@/components/sections/FooterSection";
-import ProjectsHero from "@/components/sections/ProjectsHero";
-import ProjectsIndexSection from "@/components/sections/ProjectsIndexSection";
+import ProjectsGallery from "@/components/sections/ProjectsGallery";
 
 export const metadata = {
   title: "Projects — Business Umbrella | Portfolio of Events & Activations",
@@ -25,8 +24,7 @@ export default function ProjectsPage() {
   return (
     <main>
       <StickyNavbar />
-      <ProjectsHero />
-      <ProjectsIndexSection />
+      <ProjectsGallery />
       <FooterSection />
     </main>
   );

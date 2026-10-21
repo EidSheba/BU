@@ -8,22 +8,7 @@ import { useLanguage } from "@/hooks/useLanguage";
 
 export default function ServicesListSection() {
   const gridRef       = useRef<HTMLDivElement>(null);
-  const headTitleRef  = useRef<HTMLHeadingElement>(null);
-  const headFillRef   = useRef<HTMLSpanElement>(null);
   const lang = useLanguage();
-
-  const t = {
-    en: {
-      label: "Our Disciplines",
-      heading1: "Everything you need.",
-      heading2: "Under one roof.",
-    },
-    ar: {
-      label: "تخصصاتنا",
-      heading1: "كل ما تحتاجه.",
-      heading2: "تحت سقف واحد.",
-    },
-  }[lang];
 
   useEffect(() => {
     const triggers: { kill: () => void }[] = [];
@@ -46,26 +31,6 @@ export default function ServicesListSection() {
         },
       });
       triggers.push(st);
-
-      const fillEl = headFillRef.current;
-      if (fillEl) {
-        const setClip = (progress: number) => {
-          const hidden = (1 - progress) * 100;
-          const clip = `inset(0 ${hidden}% 0 0)`;
-          fillEl.style.clipPath = clip;
-          (fillEl.style as CSSStyleDeclaration & { webkitClipPath?: string }).webkitClipPath = clip;
-        };
-        setClip(0);
-
-        const fillTrigger = ScrollTrigger.create({
-          trigger: headTitleRef.current,
-          start: "top 80%",
-          end: "bottom 45%",
-          scrub: 0.4,
-          onUpdate: (self: { progress: number }) => setClip(self.progress),
-        });
-        triggers.push(fillTrigger);
-      }
     };
 
     init();
@@ -74,19 +39,6 @@ export default function ServicesListSection() {
 
   return (
     <section className={styles.section}>
-
-      <div className={styles.heading}>
-        <span className={styles.headLabel}>{t.label}</span>
-        <h2 ref={headTitleRef} className={styles.headTitle}>
-          {t.heading1}<br />
-          <span className={styles.headTitleWrap}>
-            <span className={styles.headTitleMuted}>{t.heading2}</span>
-            <span ref={headFillRef} className={styles.headTitleFill} aria-hidden="true">
-              {t.heading2}
-            </span>
-          </span>
-        </h2>
-      </div>
 
       <div ref={gridRef} className={styles.grid}>
         {SERVICES_DATA.map((svc) => (

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import StickyNavbar from "@/components/StickyNavbar";
-import CareerHero from "@/components/sections/CareerHero";
 import CareerFormSection from "@/components/sections/CareerFormSection";
 import FooterSection from "@/components/sections/FooterSection";
 
@@ -14,7 +13,6 @@ export default function CareerPage() {
   return (
     <main>
       <StickyNavbar />
-      <CareerHero />
       <CareerFormSection />
       <FooterSection />
     </main>

@@ -12,7 +12,7 @@
   display: grid;
   grid-template-columns: 1fr 1.1fr;
   gap: clamp(3rem, 6vw, 7rem);
-  align-items: start;
+  align-items: stretch;
 }
 
 /* ── Left: info ── */
@@ -22,55 +22,70 @@
   gap: 1.5rem;
 }
 
-.eyebrow {
-  display: flex;
+.map {
+  position: relative;
+  width: 100%;
+  flex: 1;
+  min-height: 320px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  overflow: hidden;
+  background: #111;
+}
+
+.map iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.mapBtn {
+  position: absolute;
+  top: 0.9rem;
+  inset-inline-end: 0.9rem;
+  z-index: 2;
+  display: inline-flex;
   align-items: center;
-  gap: 0.75rem;
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.45);
-}
-
-.eyebrowDot {
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
+  gap: 0.5rem;
+  padding: 0.65rem 1.1rem;
   background: #057a02;
-  flex-shrink: 0;
-}
-
-.heading {
-  font-size: clamp(2rem, 4vw, 3.4rem);
-  font-weight: 800;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
   color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  border-radius: 999px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  transition: background 0.25s ease, transform 0.25s ease;
 }
 
-.lead {
-  font-size: clamp(0.9rem, 1.1vw, 1.05rem);
-  line-height: 1.85;
-  color: rgba(255, 255, 255, 0.45);
-  max-width: 440px;
+.mapBtn:hover {
+  background: #3dcc60;
+  transform: translateY(-2px);
+}
+
+.mapBtnArrow {
+  display: inline-block;
 }
 
 /* Email / phone */
 .contactList {
-  display: flex;
-  flex-direction: column;
-  gap: 1.4rem;
-  margin-top: 1rem;
-  padding-top: 2rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1rem, 2vw, 1.5rem);
 }
 
 .contactItem {
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
+  gap: 0.5rem;
+  padding: clamp(1.2rem, 2vw, 1.8rem);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
 }
 
 .contactLabel {
@@ -135,7 +150,6 @@
 }
 
 .input,
-.select,
 .textarea {
   width: 100%;
   background: rgba(255, 255, 255, 0.04);
@@ -153,27 +167,12 @@
   min-height: 120px;
 }
 
-.select {
-  cursor: pointer;
-  appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23999' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 1rem center;
-  padding-right: 2.5rem;
-}
-
-.select option {
-  background: #0d0d0d;
-  color: #fff;
-}
-
 .input::placeholder,
 .textarea::placeholder {
   color: rgba(255, 255, 255, 0.25);
 }
 
 .input:focus,
-.select:focus,
 .textarea:focus {
   outline: none;
   border-color: #057a02;
@@ -268,6 +267,15 @@
   .container {
     grid-template-columns: 1fr;
     gap: 3.5rem;
+  }
+
+  /* form first, then map, then the contact cards */
+  .formWrap { order: 1; }
+  .info { order: 2; }
+  .contactList {
+    order: 3;
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
 }
 

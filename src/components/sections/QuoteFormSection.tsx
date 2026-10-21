@@ -5,32 +5,12 @@ import styles from "./QuoteFormSection.module.css";
 import { useLanguage } from "@/hooks/useLanguage";
 
 /* ── Option keys (language-independent, so switching language keeps selections) ── */
-const PROJECT_TYPES = ["exhibition", "event", "conference", "launch", "activation", "other"] as const;
-const BUDGETS = ["lt50", "50-100", "100-250", "250-500", "500-1m", "gt1m", "unsure"] as const;
-const CONTACT_METHODS = ["phone", "email", "whatsapp"] as const;
-
-type ProjectType = (typeof PROJECT_TYPES)[number];
 
 /* ── Translation ────────────────────────────────────────────────── */
 const t = {
   en: {
-    label: "Request for Proposal",
-    title: "Tell us about your project",
-    sub: "Takes about 3 minutes. The more detail you share, the more accurate your quotation will be.",
-
-    steps: ["Project", "Details", "Budget", "Contact", "Review"],
+    steps: ["Details", "Contact"],
     stepOf: (a: number, b: number) => `Step ${a} of ${b}`,
-
-    /* step 1 */
-    projectTypeQ: "What are you planning?",
-    projectTypes: {
-      exhibition: ["Exhibition Booth", "Design & build of a stand at a trade show or expo"],
-      event:      ["Corporate Event", "Galas, ceremonies, gatherings and celebrations"],
-      conference: ["Conference / Forum", "Summits, seminars, panels and workshops"],
-      launch:     ["Product Launch", "Reveal events and brand launches"],
-      activation: ["Brand Activation", "Pop-ups, roadshows and experiential campaigns"],
-      other:      ["Something Else", "Tell us more in the next steps"],
-    } as Record<ProjectType, [string, string]>,
 
     /* step 2 */
     eventName:      "Exhibition / Event Name",
@@ -43,26 +23,12 @@ const t = {
     endDate:        "End Date",
     visitors:       "Expected Attendance",
     phVisitors:     "e.g. 500",
-    boothTitle:     "Booth Specifications",
-    boothArea:      "Booth Area (m²)",
-    phBoothArea:    "e.g. 36",
     brief:          "Project Brief",
     phBrief:        "Describe your objectives, target audience, key requirements and any ideas or references you have in mind.",
 
     /* step 3 */
     budget:         "Estimated Budget (SAR)",
-    budgetHint:     "Helps us propose the right solution for your scale — it stays confidential.",
-    budgetOpts: {
-      "lt50": "Under 50K", "50-100": "50K – 100K", "100-250": "100K – 250K", "250-500": "250K – 500K",
-      "500-1m": "500K – 1M", "gt1m": "Over 1M", "unsure": "Not decided yet",
-    } as Record<(typeof BUDGETS)[number], string>,
-    deadline:       "When do you need the proposal?",
-    attachment:     "Attachments",
-    optional:       "Optional",
-    attachHint:     "Brief, floor plan, brand guidelines · PDF, images, ZIP · max 10 MB",
-    attachBtn:      "Upload files",
-    notes:          "Additional Notes",
-    phNotes:        "Anything else we should know?",
+    phBudget:       "e.g. 250000",
 
     /* step 4 */
     fullName:       "Full Name",
@@ -75,14 +41,8 @@ const t = {
     phEmail:        "name@company.com",
     phone:          "Phone",
     phPhone:        "+966 5X XXX XXXX",
-    contactVia:     "Preferred Contact Method",
-    contactOpts: { phone: "Phone Call", email: "Email", whatsapp: "WhatsApp" } as Record<(typeof CONTACT_METHODS)[number], string>,
 
     /* step 5 */
-    reviewTitle:    "Review your request",
-    edit:           "Edit",
-    notProvided:    "—",
-    files:          (n: number) => `${n} file${n === 1 ? "" : "s"}`,
     consent:        "I agree that Business Umbrella may contact me regarding this request and process the information I provided.",
 
     /* nav */
@@ -96,7 +56,6 @@ const t = {
     /* aside */
     asideHelp:      "Prefer to talk?",
     asideCall:      "Contact us",
-    summaryTitle:   "Your request",
 
     /* success */
     successTitle:   "Request received!",
@@ -105,22 +64,8 @@ const t = {
     successBack:    "Submit Another Request",
   },
   ar: {
-    label: "طلب عرض سعر",
-    title: "أخبرنا عن مشروعك",
-    sub: "يستغرق حوالي 3 دقائق. كلما شاركت تفاصيل أكثر، كان عرض السعر أدق.",
-
-    steps: ["المشروع", "التفاصيل", "الميزانية", "التواصل", "المراجعة"],
+    steps: ["التفاصيل", "التواصل"],
     stepOf: (a: number, b: number) => `الخطوة ${a} من ${b}`,
-
-    projectTypeQ: "ما الذي تخطط له؟",
-    projectTypes: {
-      exhibition: ["جناح معرض", "تصميم وتنفيذ جناح في معرض أو إكسبو"],
-      event:      ["فعالية مؤسسية", "حفلات، مراسم، لقاءات واحتفالات"],
-      conference: ["مؤتمر / منتدى", "قمم، ندوات، جلسات حوارية وورش عمل"],
-      launch:     ["إطلاق منتج", "فعاليات الإطلاق والكشف عن العلامات التجارية"],
-      activation: ["تفعيل علامة تجارية", "متاجر مؤقتة، جولات وحملات تفاعلية"],
-      other:      ["مشروع آخر", "أخبرنا المزيد في الخطوات التالية"],
-    } as Record<ProjectType, [string, string]>,
 
     eventName:      "اسم المعرض / الفعالية",
     phEventName:    "مثال: ليب 2027، معرض الغذاء السعودي …",
@@ -132,25 +77,11 @@ const t = {
     endDate:        "تاريخ النهاية",
     visitors:       "عدد الحضور المتوقع",
     phVisitors:     "مثال: 500",
-    boothTitle:     "مواصفات الجناح",
-    boothArea:      "مساحة الجناح (م²)",
-    phBoothArea:    "مثال: 36",
     brief:          "وصف المشروع",
     phBrief:        "صف أهدافك، الجمهور المستهدف، المتطلبات الأساسية وأي أفكار أو مراجع لديك.",
 
     budget:         "الميزانية التقديرية (ريال سعودي)",
-    budgetHint:     "تساعدنا على اقتراح الحل المناسب لحجم مشروعك — وتبقى سرية.",
-    budgetOpts: {
-      "lt50": "أقل من 50 ألف", "50-100": "50 – 100 ألف", "100-250": "100 – 250 ألف", "250-500": "250 – 500 ألف",
-      "500-1m": "500 ألف – مليون", "gt1m": "أكثر من مليون", "unsure": "لم تحدد بعد",
-    } as Record<(typeof BUDGETS)[number], string>,
-    deadline:       "متى تحتاج عرض السعر؟",
-    attachment:     "المرفقات",
-    optional:       "اختياري",
-    attachHint:     "ملف تعريفي، مخطط الأرضية، دليل الهوية · PDF، صور، ZIP · الحد الأقصى 10 ميجابايت",
-    attachBtn:      "رفع الملفات",
-    notes:          "ملاحظات إضافية",
-    phNotes:        "هل هناك أي شيء آخر يجب أن نعرفه؟",
+    phBudget:       "مثال: 250000",
 
     fullName:       "الاسم الكامل",
     phFullName:     "اسمك الكامل",
@@ -162,13 +93,7 @@ const t = {
     phEmail:        "name@company.com",
     phone:          "رقم الجوال",
     phPhone:        "+966 5X XXX XXXX",
-    contactVia:     "طريقة التواصل المفضلة",
-    contactOpts: { phone: "اتصال هاتفي", email: "البريد الإلكتروني", whatsapp: "واتساب" } as Record<(typeof CONTACT_METHODS)[number], string>,
 
-    reviewTitle:    "راجع طلبك",
-    edit:           "تعديل",
-    notProvided:    "—",
-    files:          (n: number) => `${n} ${n === 1 ? "ملف" : "ملفات"}`,
     consent:        "أوافق على أن تتواصل معي بيزنس أمبريلا بخصوص هذا الطلب وأن تعالج المعلومات التي قدمتها.",
 
     back:           "رجوع",
@@ -180,7 +105,6 @@ const t = {
 
     asideHelp:      "تفضّل التحدث معنا؟",
     asideCall:      "تواصل معنا",
-    summaryTitle:   "طلبك",
 
     successTitle:   "تم استلام طلبك!",
     successSub:     "شكراً لك. سيتواصل معك أحد أعضاء فريقنا خلال يوم عمل واحد لمناقشة مشروعك.",
@@ -191,57 +115,38 @@ const t = {
 
 /* ── Form state ─────────────────────────────────────────────────── */
 type QuoteForm = {
-  projectType: ProjectType | "";
   eventName: string;
   city: string;
   venue: string;
   startDate: string;
   endDate: string;
   visitors: string;
-  boothArea: string;
   brief: string;
   budget: string;
-  deadline: string;
-  files: File[];
-  notes: string;
   fullName: string;
   company: string;
   jobTitle: string;
   email: string;
   phone: string;
-  contactVia: string;
   consent: boolean;
 };
 
 const EMPTY_FORM: QuoteForm = {
-  projectType: "",
   eventName: "", city: "", venue: "", startDate: "", endDate: "", visitors: "",
-  boothArea: "", brief: "",
-  budget: "", deadline: "", files: [], notes: "",
-  fullName: "", company: "", jobTitle: "", email: "", phone: "", contactVia: "",
+  brief: "",
+  budget: "",
+  fullName: "", company: "", jobTitle: "", email: "", phone: "",
   consent: false,
 };
 
-const TOTAL_STEPS = 5;
-
-/* ── Icons for project-type cards ───────────────────────────────── */
-const TYPE_ICONS: Record<ProjectType, React.ReactNode> = {
-  exhibition: <path d="M3 20V9l9-5 9 5v11M3 20h18M7 20v-6h10v6M9 10h6" />,
-  event:      <path d="M12 3v3M5.6 5.6l2.1 2.1M3 12h3M18 12h3M16.3 7.7l2.1-2.1M8 21h8M10 21v-4a2 2 0 0 1 4 0v4M7 14a5 5 0 1 1 10 0" />,
-  conference: <path d="M3 5h18v10H3zM8 19h8M12 15v4M7 9h6M7 12h10" />,
-  launch:     <path d="M12 2c3 3 4.5 6.5 4.5 10.5L14 16h-4l-2.5-3.5C7.5 8.5 9 5 12 2zM10 16l-2 5 4-2 4 2-2-5M12 9.5v.01" />,
-  activation: <path d="M4 10l14-6v16L4 14v-4zM4 10H2v4h2M8 15l1.5 5h3L11 16" />,
-  other:      <path d="M12 5v14M5 12h14" />,
-};
+const TOTAL_STEPS = 2;
 
 /* ── Sub-components ─────────────────────────────────────────────── */
 function Field({
-  label, required, optionalText, hint, children, className,
+  label, required, children, className,
 }: {
   label: string;
   required?: boolean;
-  optionalText?: string;
-  hint?: string;
   children: React.ReactNode;
   className?: string;
 }) {
@@ -250,10 +155,8 @@ function Field({
       <span className={styles.label}>
         {label}
         {required && <span className={styles.required}>*</span>}
-        {optionalText && <span className={styles.optional}>{optionalText}</span>}
       </span>
       {children}
-      {hint && <span className={styles.hint}>{hint}</span>}
     </label>
   );
 }
@@ -277,8 +180,6 @@ export default function QuoteFormSection() {
   const set = <K extends keyof QuoteForm>(key: K, val: QuoteForm[K]) =>
     setForm((f) => ({ ...f, [key]: val }));
 
-  const isExhibition = form.projectType === "exhibition";
-
   const scrollToTop = () =>
     sectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
 
@@ -295,7 +196,7 @@ export default function QuoteFormSection() {
       firstInvalid.focus({ preventScroll: true });
       return false;
     }
-    if (step === 1 && form.startDate && form.endDate && form.endDate < form.startDate) {
+    if (step === 0 && form.startDate && form.endDate && form.endDate < form.startDate) {
       setShowErrors(true);
       setError(c.errorDates);
       return false;
@@ -361,71 +262,9 @@ export default function QuoteFormSection() {
     );
   }
 
-  /* Review helpers */
-  const labelOf = <T extends string>(map: Record<T, string>, k: string) =>
-    k ? map[k as T] ?? k : c.notProvided;
-  const reviewGroups: { step: number; title: string; rows: [string, string][] }[] = [
-    {
-      step: 0,
-      title: c.steps[0],
-      rows: [
-        [c.projectTypeQ, form.projectType ? c.projectTypes[form.projectType][0] : c.notProvided],
-      ],
-    },
-    {
-      step: 1,
-      title: c.steps[1],
-      rows: [
-        [c.eventName, form.eventName],
-        [c.city, form.city],
-        [c.venue, form.venue],
-        [`${c.startDate} / ${c.endDate}`, `${form.startDate} → ${form.endDate}`],
-        [c.visitors, form.visitors || c.notProvided],
-        ...(isExhibition
-          ? ([
-              [c.boothArea, form.boothArea ? `${form.boothArea} m²` : c.notProvided],
-            ] as [string, string][])
-          : []),
-        [c.brief, form.brief],
-      ],
-    },
-    {
-      step: 2,
-      title: c.steps[2],
-      rows: [
-        [c.budget, labelOf(c.budgetOpts, form.budget)],
-        [c.deadline, form.deadline],
-        [c.attachment, form.files.length ? c.files(form.files.length) : c.notProvided],
-        [c.notes, form.notes || c.notProvided],
-      ],
-    },
-    {
-      step: 3,
-      title: c.steps[3],
-      rows: [
-        [c.fullName, form.fullName],
-        [c.company, form.company],
-        [c.jobTitle, form.jobTitle],
-        [c.email, form.email],
-        [c.phone, form.phone],
-        [c.contactVia, labelOf(c.contactOpts, form.contactVia)],
-      ],
-    },
-  ];
-
   return (
     <section ref={sectionRef} id="quote-form" className={styles.section}>
-      {/* Header */}
-      <div className={styles.header}>
-        <span className={styles.sectionLabel}>
-          <span className={styles.labelDot} />
-          {c.label}
-        </span>
-        <h2 className={styles.sectionTitle}>{c.title}</h2>
-        <p className={styles.sectionSub}>{c.sub}</p>
-      </div>
-
-      <div className={`${styles.layout} ${!form.projectType ? styles.layoutSingle : ""}`}>
+      <div className={`${styles.layout} ${styles.layoutSingle}`}>
         {/* ── Main card ── */}
         <div className={styles.card}>
           {/* Stepper */}
@@ -466,44 +305,8 @@ export default function QuoteFormSection() {
           >
             <div ref={stepRef} key={step} className={styles.stepBody}>
 
-              {/* ── Step 1: Project ── */}
+              {/* ── Step 1: Details ── */}
               {step === 0 && (
-                <>
-                  <fieldset className={styles.fieldset}>
-                    <legend className={styles.question}>
-                      {c.projectTypeQ}<span className={styles.required}>*</span>
-                    </legend>
-                    <div className={styles.typeGrid}>
-                      {PROJECT_TYPES.map((pt) => (
-                        <label
-                          key={pt}
-                          className={`${styles.typeCard} ${form.projectType === pt ? styles.selected : ""}`}
-                        >
-                          <input
-                            type="radio"
-                            name={`${uid}-type`}
-                            value={pt}
-                            checked={form.projectType === pt}
-                            onChange={() => set("projectType", pt)}
-                            className={styles.srOnly}
-                            required
-                          />
-                          <span className={styles.typeIcon}>
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                              {TYPE_ICONS[pt]}
-                            </svg>
-                          </span>
-                          <span className={styles.typeTitle}>{c.projectTypes[pt][0]}</span>
-                          <span className={styles.typeDesc}>{c.projectTypes[pt][1]}</span>
-                        </label>
-                      ))}
-                    </div>
-                  </fieldset>
-                </>
-              )}
-
-              {/* ── Step 2: Details ── */}
-              {step === 1 && (
                 <>
                   <div className={styles.grid2}>
                     <Field label={c.eventName} required className={styles.colSpan2}>
@@ -533,90 +336,21 @@ export default function QuoteFormSection() {
                     </Field>
                   </div>
 
-                  {isExhibition && (
-                    <div className={styles.subCard}>
-                      <p className={styles.subCardTitle}>{c.boothTitle}</p>
-                      <div className={styles.grid2}>
-                        <Field label={c.boothArea} required className={styles.colSpan2}>
-                          <input className={styles.input} type="number" min={1} inputMode="numeric"
-                            placeholder={c.phBoothArea} value={form.boothArea}
-                            onChange={(e) => set("boothArea", e.target.value)} required />
-                        </Field>
-                      </div>
-                    </div>
-                  )}
-
                   <Field label={c.brief} required>
                     <textarea className={styles.textarea} rows={5} placeholder={c.phBrief}
                       value={form.brief} onChange={(e) => set("brief", e.target.value)} required />
                   </Field>
-                </>
-              )}
 
-              {/* ── Step 3: Budget ── */}
-              {step === 2 && (
-                <>
-                  <fieldset className={styles.fieldset}>
-                    <legend className={styles.question}>
-                      {c.budget}<span className={styles.required}>*</span>
-                      <span className={styles.questionHint}>{c.budgetHint}</span>
-                    </legend>
-                    <div className={styles.budgetGrid}>
-                      {BUDGETS.map((b) => (
-                        <label key={b} className={`${styles.budgetCard} ${form.budget === b ? styles.selected : ""}`}>
-                          <input type="radio" name={`${uid}-budget`} value={b} checked={form.budget === b}
-                            onChange={() => set("budget", b)} className={styles.srOnly} required />
-                          {c.budgetOpts[b]}
-                        </label>
-                      ))}
-                    </div>
-                  </fieldset>
-
-                  <div className={styles.grid2}>
-                    <Field label={c.deadline} required>
-                      <input className={styles.input} type="date" min={today || undefined}
-                        value={form.deadline} onChange={(e) => set("deadline", e.target.value)} required />
-                    </Field>
-
-                    <div className={styles.field}>
-                      <span className={styles.label}>
-                        {c.attachment}<span className={styles.optional}>{c.optional}</span>
-                      </span>
-                      <input
-                        id={`${uid}-files`}
-                        type="file"
-                        multiple
-                        accept=".pdf,.jpg,.jpeg,.png,.zip,.ppt,.pptx,.doc,.docx"
-                        className={styles.srOnly}
-                        onChange={(e) => set("files", Array.from(e.target.files ?? []))}
-                      />
-                      <label htmlFor={`${uid}-files`} className={styles.fileLabel}>
-                        <span className={styles.fileIcon}>
-                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                            <path d="M8 1v9M4 6l4-5 4 5M2 12h12v2H2v-2z" stroke="#057a02" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-                          </svg>
-                        </span>
-                        <span className={styles.fileText}>
-                          <span className={`${styles.fileMain} ${form.files.length ? styles.chosen : ""}`}>
-                            {form.files.length
-                              ? form.files.map((f) => f.name).join(", ")
-                              : c.attachBtn}
-                          </span>
-                          <span className={styles.fileSub}>{c.attachHint}</span>
-                        </span>
-                      </label>
-                    </div>
-                  </div>
-
-                  <Field label={c.notes} optionalText={c.optional}>
-                    <textarea className={styles.textarea} rows={4} placeholder={c.phNotes}
-                      value={form.notes} onChange={(e) => set("notes", e.target.value)} />
+                  <Field label={c.budget} required>
+                    <input className={styles.input} type="number" min={1} inputMode="numeric"
+                      placeholder={c.phBudget} value={form.budget}
+                      onChange={(e) => set("budget", e.target.value)} required />
                   </Field>
                 </>
               )}
 
-              {/* ── Step 4: Contact ── */}
-              {step === 3 && (
+              {/* ── Step 2: Contact ── */}
+              {step === 1 && (
                 <>
                   <div className={styles.grid2}>
                     <Field label={c.fullName} required>
@@ -640,48 +374,6 @@ export default function QuoteFormSection() {
                         pattern="[+0-9\s\-\(\)]{7,}" value={form.phone}
                         onChange={(e) => set("phone", e.target.value)} required />
                     </Field>
-                  </div>
-
-                  <fieldset className={styles.fieldset}>
-                    <legend className={styles.question}>
-                      {c.contactVia}<span className={styles.required}>*</span>
-                    </legend>
-                    <div className={styles.segmented}>
-                      {CONTACT_METHODS.map((m) => (
-                        <label key={m} className={`${styles.segment} ${form.contactVia === m ? styles.selected : ""}`}>
-                          <input type="radio" name={`${uid}-contact`} value={m} checked={form.contactVia === m}
-                            onChange={() => set("contactVia", m)} className={styles.srOnly} required />
-                          {c.contactOpts[m]}
-                        </label>
-                      ))}
-                    </div>
-                  </fieldset>
-                </>
-              )}
-
-              {/* ── Step 5: Review ── */}
-              {step === 4 && (
-                <>
-                  <p className={styles.question}>{c.reviewTitle}</p>
-                  <div className={styles.review}>
-                    {reviewGroups.map((g) => (
-                      <div key={g.step} className={styles.reviewGroup}>
-                        <div className={styles.reviewHead}>
-                          <span>{g.title}</span>
-                          <button type="button" className={styles.editBtn} onClick={() => goTo(g.step)}>
-                            {c.edit}
-                          </button>
-                        </div>
-                        <dl className={styles.reviewList}>
-                          {g.rows.map(([k, v]) => (
-                            <div key={k} className={styles.reviewRow}>
-                              <dt>{k}</dt>
-                              <dd>{v || c.notProvided}</dd>
-                            </div>
-                          ))}
-                        </dl>
-                      </div>
-                    ))}
                   </div>
 
                   <label className={styles.consent}>
@@ -727,21 +419,6 @@ export default function QuoteFormSection() {
             </div>
           </form>
         </div>
-
-        {/* ── Aside ── */}
-        {form.projectType && (
-          <aside className={styles.aside}>
-            <div className={styles.asideCard}>
-              <p className={styles.asideTitle}>{c.summaryTitle}</p>
-              <p className={styles.summaryType}>{c.projectTypes[form.projectType][0]}</p>
-              {(form.eventName || form.city) && (
-                <p className={styles.summaryMeta}>
-                  {[form.eventName, form.city].filter(Boolean).join(" · ")}
-                </p>
-              )}
-            </div>
-          </aside>
-        )}
       </div>
     </section>
   );

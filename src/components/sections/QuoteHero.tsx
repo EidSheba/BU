@@ -1,105 +1,40 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Image from "next/image";
-import styles from "./CareerHero.module.css";
+import styles from "./QuoteHero.module.css";
 import { useLanguage } from "@/hooks/useLanguage";
 
-const t = {
-  en: {
-    sub: "Tell us about your exhibition, event or activation. Our team will study your brief and send a tailored proposal with a detailed cost breakdown.",
-  },
-  ar: {
-    sub: "أخبرنا عن معرضك أو فعاليتك أو حملتك التفعيلية، وسيدرس فريقنا متطلباتك ويرسل لك عرضاً مخصصاً مع تفصيل كامل للتكاليف.",
-  },
-};
-
 export default function QuoteHero() {
+  const titleRef = useRef<HTMLSpanElement>(null);
   const lang = useLanguage();
-  const c = t[lang];
-
-  const headRef = useRef<HTMLDivElement>(null);
-  const subRef  = useRef<HTMLParagraphElement>(null);
 
   useEffect(() => {
-    const init = async () => {
+    (async () => {
       const { gsap } = await import("gsap");
-
-      if (subRef.current) gsap.set(subRef.current, { opacity: 0, y: 18 });
-
-      const tl = gsap.timeline({ delay: 0.15 });
-
-      if (lang === "en") {
-        const letters = headRef.current?.querySelectorAll<HTMLElement>("[data-letter]");
-        if (letters?.length) {
-          gsap.set(letters, { y: "115%" });
-          tl.to(letters, { y: "0%", duration: 1.25, ease: "power4.out", stagger: { amount: 0.32 } }, 0.1);
-        }
-      } else {
-        const words = headRef.current?.querySelectorAll<HTMLElement>("[data-word]");
-        if (words?.length) {
-          gsap.set(words, { y: "100%", opacity: 0 });
-          tl.to(words, { y: "0%", opacity: 1, duration: 1.1, ease: "power4.out", stagger: { amount: 0.25 } }, 0.1);
-        }
-      }
-
-      if (subRef.current) tl.to(subRef.current, { opacity: 1, y: 0, duration: 0.85, ease: "power2.out" }, 0.55);
-    };
-    init();
+      if (!titleRef.current) return;
+      gsap.fromTo(
+        titleRef.current,
+        { y: "110%" },
+        { y: "0%", duration: 1.1, ease: "power4.out", delay: 0.15 },
+      );
+    })();
   }, [lang]);
 
   return (
-    <section className={styles.hero}>
-      <div className={styles.bg}>
-        <Image
-          src="/images/parallax-3.jpg"
-          alt=""
-          fill
-          className={styles.bgImg}
-          priority
-          sizes="100vw"
-        />
-        <div className={styles.bgGrad} />
-        <div className={styles.bgGradBot} />
-        <div className={styles.bgNoise} />
-      </div>
-
-      <div className={styles.inner}>
-        {lang === "en" ? (
-          <div ref={headRef} className={styles.headline} aria-label="Get a Quote">
-            <div className={styles.hRow}>
-              {"GET A".split("").map((ch, i) => (
-                <span key={i} className={styles.lWrap}>
-                  <span data-letter className={styles.lChar}>{ch === " " ? " " : ch}</span>
-                </span>
-              ))}
-            </div>
-            <div className={styles.hRow}>
-              {"QUOTE".split("").map((ch, i) => (
-                <span key={i} className={styles.lWrap}>
-                  <span data-letter className={styles.lChar}>{ch}</span>
-                </span>
-              ))}
-            </div>
-          </div>
-        ) : (
-          <div ref={headRef} className={styles.headline} aria-label="اطلب تسعيرتك">
-            <div className={styles.hRow}>
-              <span className={styles.lWrap}>
-                <span data-word className={styles.lChar}>اطلب</span>
-              </span>
-            </div>
-            <div className={styles.hRow}>
-              <span className={styles.lWrap}>
-                <span data-word className={styles.lChar}>تسعيرتك</span>
-              </span>
-            </div>
-          </div>
-        )}
-
-        <div className={styles.bottomRow}>
-          <p ref={subRef} className={styles.sub}>{c.sub}</p>
-        </div>
+    <section className={styles.section}>
+      <div className={styles.titleWrap}>
+        <h1 className={styles.title}>
+          <span ref={titleRef} className={styles.titleInner}>
+            {lang === "ar" ? (
+              "اطلب تسعيرتك"
+            ) : (
+              <>
+                GET A <span className={styles.titleAccent}>QUOTE</span>
+              </>
+            )}
+          </span>
+        </h1>
+        <span className={styles.bar} />
       </div>
     </section>
   );

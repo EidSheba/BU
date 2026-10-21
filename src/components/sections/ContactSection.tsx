@@ -3,16 +3,12 @@
 import { useState } from "react";
 import styles from "./ContactSection.module.css";
 import { useLanguage } from "@/hooks/useLanguage";
-import { SERVICES_DATA } from "@/data/services";
-
-const SERVICES_EN = [...SERVICES_DATA.map((s) => s.title), "Other"];
-const SERVICES_AR = [...SERVICES_DATA.map((s) => s.title_ar), "أخرى"];
 
 type FormState = {
   name: string;
   email: string;
   phone: string;
-  service: string;
+  company: string;
   message: string;
 };
 
@@ -20,11 +16,8 @@ export default function ContactSection() {
   const lang = useLanguage();
   const isAr = lang === "ar";
 
-  const SERVICES = isAr ? SERVICES_AR : SERVICES_EN;
-
   const INITIAL_FORM: FormState = {
-    name: "", email: "", phone: "",
-    service: SERVICES[0],
+    name: "", email: "", phone: "", company: "",
     message: "",
   };
 
@@ -43,11 +36,7 @@ export default function ContactSection() {
   }
 
   const t = {
-    eyebrow: isAr ? "تواصل معنا" : "Get In Touch",
-    heading: isAr ? "هل لديك مشروع؟\nلنحققه معاً." : "Have a project in mind?\nLet's make it happen.",
-    lead: isAr
-      ? "أخبرنا عن فعاليتك أو تفعيل علامتك التجارية أو حملتك — يرد فريقنا عادةً خلال يوم عمل واحد."
-      : "Tell us about your event, brand activation, or campaign — our team typically responds within one business day.",
+    openMap: isAr ? "افتح في خرائط جوجل" : "Open in Google Maps",
     locationLabel: isAr ? "الموقع" : "Location",
     location: isAr
       ? "الدور الثاني، مبنى الحمراء سيتي، الرياض 13225، المملكة العربية السعودية"
@@ -57,8 +46,9 @@ export default function ContactSection() {
     nameLabel:    isAr ? "الاسم الكامل"  : "Full Name",
     namePlaceholder: isAr ? "محمد أحمد"  : "John Doe",
     emailPlaceholder: isAr ? "name@company.com" : "john@company.com",
+    companyLabel: isAr ? "الشركة" : "Company",
+    companyPlaceholder: isAr ? "اسم شركتك" : "Your company name",
     phonePlaceholder: isAr ? "+966 5x xxx xxxx" : "+966 5x xxx xxxx",
-    serviceLabel: isAr ? "الخدمة"  : "Service",
     messageLabel: isAr ? "رسالتك"  : "Message",
     messagePlaceholder: isAr ? "أخبرنا عن مشروعك..." : "Tell us about your project...",
     submitBtn: isAr ? "إرسال الرسالة" : "Send Message",
@@ -69,40 +59,29 @@ export default function ContactSection() {
     successReset: isAr ? "إرسال رسالة أخرى" : "Send another message",
   };
 
-  const headingLines = t.heading.split("\n");
-
   return (
     <section className={styles.section}>
       <div className={styles.container}>
 
         {/* ── Left: info ── */}
         <div className={styles.info}>
-          <span className={styles.eyebrow}>
-            <span className={styles.eyebrowDot} />
-            {t.eyebrow}
-          </span>
-
-          <h2 className={styles.heading}>
-            {headingLines[0]}<br />{headingLines[1]}
-          </h2>
-
-          <p className={styles.lead}>{t.lead}</p>
-
-          <div className={styles.contactList}>
-            <div className={styles.contactItem}>
-              <span className={styles.contactLabel}>{t.locationLabel}</span>
-              <span className={styles.contactValue}>{t.location}</span>
-            </div>
-            <div className={styles.contactItem}>
-              <span className={styles.contactLabel}>{t.phoneLabel}</span>
-              <a href="tel:+966112666627" dir="ltr" className={styles.contactValue}>+966 11 266 6627</a>
-            </div>
-            <div className={styles.contactItem}>
-              <span className={styles.contactLabel}>{t.emailLabel}</span>
-              <a href="mailto:hello@umbrella.sa" className={styles.contactValue}>
-                hello@umbrella.sa
-              </a>
-            </div>
+          <div className={styles.map}>
+            <iframe
+              title={t.locationLabel}
+              src="https://maps.google.com/maps?q=24.7850202,46.7906779&z=16&output=embed"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+            />
+            <a
+              href="https://maps.app.goo.gl/Sp6fKuhKxevjfxWFA"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.mapBtn}
+            >
+              {t.openMap}
+              <span className={styles.mapBtnArrow} aria-hidden="true">↗</span>
+            </a>
           </div>
         </div>
 
@@ -152,14 +131,12 @@ export default function ContactSection() {
                   />
                 </div>
                 <div className={styles.field}>
-                  <label htmlFor="service" className={styles.label}>{t.serviceLabel}</label>
-                  <select
-                    id="service" name="service"
-                    value={form.service} onChange={handleChange}
-                    className={styles.select}
-                  >
-                    {SERVICES.map((s) => <option key={s} value={s}>{s}</option>)}
-                  </select>
+                  <label htmlFor="company" className={styles.label}>{t.companyLabel}</label>
+                  <input
+                    id="company" name="company" type="text"
+                    value={form.company} onChange={handleChange}
+                    placeholder={t.companyPlaceholder} className={styles.input}
+                  />
                 </div>
               </div>
 
@@ -182,6 +159,24 @@ export default function ContactSection() {
           )}
         </div>
 
+
+        {/* ── Bottom: contact cards ── */}
+        <div className={styles.contactList}>
+          <div className={styles.contactItem}>
+            <span className={styles.contactLabel}>{t.locationLabel}</span>
+            <span className={styles.contactValue}>{t.location}</span>
+          </div>
+          <div className={styles.contactItem}>
+            <span className={styles.contactLabel}>{t.phoneLabel}</span>
+            <a href="tel:+966112666627" dir="ltr" className={styles.contactValue}>+966 11 266 6627</a>
+          </div>
+          <div className={styles.contactItem}>
+            <span className={styles.contactLabel}>{t.emailLabel}</span>
+            <a href="mailto:hello@umbrella.sa" className={styles.contactValue}>
+              hello@umbrella.sa
+            </a>
+          </div>
+        </div>
       </div>
     </section>
   );
