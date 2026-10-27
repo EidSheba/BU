@@ -12,16 +12,21 @@ const SLIDE_MS = 3600;
 const ui = {
   en: {
     back: "← All Projects",
+    prev: "Previous",
+    next: "Next",
   },
   ar: {
     back: "← كل المشاريع",
+    prev: "السابق",
+    next: "التالي",
   },
 };
 
 export default function ProjectDetail({ project }: { project: ProjectData }) {
-  const heroTextRef = useRef<HTMLDivElement>(null);
   const bodyRef     = useRef<HTMLDivElement>(null);
-  const slides      = [project.heroImg, ...project.gallery];
+  const videos      = project.videos ?? [];
+  const slides      = videos.length ? videos : [project.heroImg, ...project.gallery];
+  const videoRefs   = useRef<(HTMLVideoElement | null)[]>([]);
   const [active, setActive]   = useState(0);
   const [paused, setPaused]   = useState(false);
   const lang = useLanguage();
@@ -31,37 +36,29 @@ export default function ProjectDetail({ project }: { project: ProjectData }) {
   const overview = lang === "ar" ? project.overview_ar : project.overview;
 
   useEffect(() => {
-    if (paused || slides.length <= 1) return;
+    if (videos.length || paused || slides.length <= 1) return;
     const id = setInterval(() => setActive((i) => (i + 1) % slides.length), SLIDE_MS);
     return () => clearInterval(id);
-  }, [paused, slides.length]);
+  }, [paused, slides.length, videos.length]);
+
+  // Videos advance when the current one ends; only the active one plays.
+  useEffect(() => {
+    videoRefs.current.forEach((v, i) => {
+      if (!v) return;
+      if (i === active) {
+        v.currentTime = 0;
+        v.play().catch(() => {});
+      } else {
+        v.pause();
+      }
+    });
+  }, [active]);
 
   useEffect(() => {
     const init = async () => {
       const { gsap } = await import("gsap");
       const { ScrollTrigger } = await import("gsap/ScrollTrigger");
       gsap.registerPlugin(ScrollTrigger);
-
-      const heroSubs = heroTextRef.current?.querySelectorAll<HTMLElement>("[data-sub]");
-
-      if (lang === "en") {
-        const letters = heroTextRef.current?.querySelectorAll<HTMLElement>("[data-letter]");
-        if (letters?.length) {
-          gsap.set(letters, { y: "110%" });
-          gsap.to(letters, { y: "0%", duration: 1.1, ease: "power4.out", stagger: { amount: 0.3 }, delay: 0.2 });
-        }
-      } else {
-        const words = heroTextRef.current?.querySelectorAll<HTMLElement>("[data-word]");
-        if (words?.length) {
-          gsap.set(words, { y: "100%", opacity: 0 });
-          gsap.to(words, { y: "0%", opacity: 1, duration: 1.1, ease: "power4.out", stagger: { amount: 0.25 }, delay: 0.2 });
-        }
-      }
-
-      if (heroSubs?.length) {
-        gsap.set(heroSubs, { opacity: 0, y: 16 });
-        gsap.to(heroSubs, { opacity: 1, y: 0, duration: 0.8, ease: "power2.out", stagger: 0.1, delay: 0.6 });
-      }
 
       if (bodyRef.current) {
         const reveals = bodyRef.current.querySelectorAll<HTMLElement>("[data-reveal]");
@@ -80,49 +77,14 @@ export default function ProjectDetail({ project }: { project: ProjectData }) {
 
   return (
     <>
-      {/* ── Hero ── */}
-      <section className={styles.hero}>
-        <div className={styles.heroBg}>
-          <Image src={project.heroImg} alt={title} fill className={styles.heroBgImg} priority sizes="100vw" />
-          <div className={styles.heroOverlay} />
-          <div className={styles.heroOverlayBot} />
-        </div>
-
-        <div ref={heroTextRef} className={styles.heroInner}>
-          <span data-sub className={styles.heroBack}>
-            <Link href="/projects" className={styles.heroBackLink}>{c.back}</Link>
-          </span>
-
-          <div className={styles.heroHeadline}>
-            {lang === "en" ? (
-              title.split(" ").map((word, wi) => (
-                <div key={wi} className={styles.heroWordRow}>
-                  {word.split("").map((char, ci) => (
-                    <span key={ci} className={styles.heroLBox}>
-                      <span data-letter className={styles.heroLChar}>{char}</span>
-                    </span>
-                  ))}
-                </div>
-              ))
-            ) : (
-              title.split(" ").map((word, wi) => (
-                <div key={wi} className={styles.heroWordRow}>
-                  <span className={styles.heroLBox}>
-                    <span data-word className={styles.heroLChar}>{word}</span>
-                  </span>
-                </div>
-              ))
-            )}
-          </div>
-        </div>
-      </section>
-
       {/* ── Body ── */}
       <div ref={bodyRef} className={styles.body}>
 
         {/* Overview */}
         <section className={styles.overviewSection}>
           <div className={styles.overviewLeft}>
+            <Link data-reveal href="/projects" className={styles.backLink}>{c.back}</Link>
+            <h1 data-reveal className={styles.title}>{title}</h1>
             <p data-reveal className={styles.overviewText}>{overview}</p>
           </div>
           <div data-reveal className={styles.overviewRight}>
@@ -133,15 +95,54 @@ export default function ProjectDetail({ project }: { project: ProjectData }) {
             >
               {slides.map((img, i) => (
                 <div key={i} className={`${styles.overviewSlide} ${i === active ? styles.overviewSlideActive : ""}`}>
-                  <Image
-                    src={img}
-                    alt={`${title} ${i + 1}`}
-                    fill
-                    className={styles.overviewImg}
-                    sizes="(max-width: 768px) 100vw, 45vw"
-                  />
+                  {videos.length ? (
+                    <video
+                      ref={(el) => { videoRefs.current[i] = el; }}
+                      src={img}
+                      className={styles.overviewImg}
+                      style={{ width: "100%", height: "100%" }}
+                      autoPlay={i === 0}
+                      muted
+                      playsInline
+                      preload="auto"
+                      loop={videos.length === 1}
+                      onEnded={() => setActive((a) => (a + 1) % slides.length)}
+                    />
+                  ) : (
+                    <Image
+                      src={img}
+                      alt={`${title} ${i + 1}`}
+                      fill
+                      className={styles.overviewImg}
+                      sizes="(max-width: 768px) 100vw, 45vw"
+                    />
+                  )}
                 </div>
               ))}
+              {slides.length > 1 && (
+                <div className={styles.overviewArrows} dir="ltr">
+                  <button
+                    type="button"
+                    className={styles.overviewArrow}
+                    aria-label={c.prev}
+                    onClick={() => setActive((i) => (i - 1 + slides.length) % slides.length)}
+                  >
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d="M15 5l-7 7 7 7" />
+                    </svg>
+                  </button>
+                  <button
+                    type="button"
+                    className={styles.overviewArrow}
+                    aria-label={c.next}
+                    onClick={() => setActive((i) => (i + 1) % slides.length)}
+                  >
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
+                </div>
+              )}
               {slides.length > 1 && (
                 <div className={styles.overviewDots}>
                   {slides.map((_, i) => (

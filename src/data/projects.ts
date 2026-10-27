@@ -11,7 +11,8 @@ export interface ProjectData {
   highlights_ar: string[];
   heroImg: string;
   gallery: string[];
-}
+  /** When set, the detail page auto-plays these videos instead of the image gallery. */
+  videos?: string[];}
 
 export const PROJECTS_DATA: ProjectData[] = [
   {
@@ -359,6 +360,35 @@ export const PROJECTS_DATA: ProjectData[] = [
     ],
     heroImg: "/images/projects/hajj-hackathon.jpg",
     gallery: ["/images/projects/hajj-hackathon-1.jpg"],
+  },
+  {
+    id: "14",
+    slug: "iec-360",
+    title: "IEC 360 EXPO Tujjar",
+    title_ar: "تجار IEC 360 EXPO",
+    tagline: "A full-circle view of the event, from first idea to final applause.",
+    tagline_ar: "رؤية شاملة للفعالية، من الفكرة الأولى حتى التصفيق الأخير.",
+    overview:
+      "IEC 360 is an end-to-end event experience in which our team handled every touchpoint under one roof. From concept development and creative direction to on-site production and flawless operations, we delivered a cohesive experience that kept the brand story consistent at every angle.",
+    overview_ar:
+      "آي إي سي 360 تجربة فعاليات متكاملة تولّى فريقنا فيها كل نقاط التواصل تحت مظلة واحدة. من تطوير الفكرة والإخراج الإبداعي إلى الإنتاج الميداني والتشغيل المتقن، قدمنا تجربة متماسكة حافظت على قصة العلامة التجارية في كل زاوية.",
+    highlights: [
+      "Concept development and creative direction",
+      "Stage, booth and venue design and production",
+      "Integrated audio, lighting and screen systems",
+      "On-site operations and guest experience management",
+      "Photography and video coverage",
+    ],
+    highlights_ar: [
+      "تطوير الفكرة والإخراج الإبداعي",
+      "تصميم وتنفيذ المسرح والأكشاك والموقع",
+      "أنظمة صوتيات وإضاءة وشاشات متكاملة",
+      "التشغيل الميداني وإدارة تجربة الضيوف",
+      "التغطية بالتصوير الفوتوغرافي والفيديو",
+    ],
+    heroImg: "/images/IEC-360-card.png",
+    gallery: [],
+    videos: ["/videos/B-web.mp4", "/videos/BU-2-web.mp4"],
   },
 ];
 

@@ -1,65 +1,9 @@
 /* ─── Project Detail Page (mirrors Service Detail) ──────────────── */
 
-/* ── Hero ── */
-.hero {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  min-height: 600px;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  padding-top: 80px;
-}
-
-.heroBg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-
-.heroBgImg {
-  object-fit: cover;
-  object-position: center 30%;
-  filter: brightness(0.45) saturate(0.85);
-}
-
-.heroOverlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(5, 5, 5, 0.5) 0%,
-    rgba(5, 5, 5, 0.1) 40%,
-    rgba(5, 5, 5, 0.55) 100%
-  );
-}
-
-.heroOverlayBot {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 260px;
-  background: linear-gradient(to top, #050505, transparent);
-}
-
-.heroInner {
-  position: relative;
-  z-index: 2;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 0 clamp(2rem, 6vw, 8rem) clamp(2.5rem, 4.5vw, 5rem);
-}
-
-.heroBack {
-  display: block;
-  margin-bottom: 2.5rem;
-}
-
-.heroBackLink {
+/* ── Title (above overview) ── */
+.backLink {
+  align-self: flex-start;
+  margin-bottom: 1.8rem;
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.25em;
@@ -69,42 +13,17 @@
   transition: color 200ms ease;
 }
 
-.heroBackLink:hover {
+.backLink:hover {
   color: #057a02;
 }
 
-/* Letter animation */
-.heroHeadline {
-  display: flex;
-  flex-direction: column;
-  line-height: 1;
-  margin-bottom: clamp(1.5rem, 3vw, 3rem);
-}
-
-.heroWordRow {
-  display: flex;
-  overflow: hidden;
-  margin-top: clamp(-1.4rem, -3.6vw, -4.2rem);
-}
-
-.heroWordRow:first-child {
-  margin-top: 0;
-}
-
-.heroLBox {
-  overflow: hidden;
-  display: inline-block;
-  padding: 0.18em 0;
-}
-
-.heroLChar {
-  display: inline-block;
-  font-size: clamp(2.8rem, 7.2vw, 8.5rem);
+.title {
+  font-size: clamp(2.2rem, 4.5vw, 4.5rem);
   font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
   color: #ffffff;
-  letter-spacing: -0.035em;
-  will-change: transform;
-  line-height: 1.5;
+  margin-bottom: clamp(1.5rem, 2.5vw, 2.5rem);
 }
 
 /* ── Body ── */
@@ -117,7 +36,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: clamp(3rem, 6vw, 8rem);
-  padding: clamp(5rem, 9vw, 11rem) clamp(2rem, 6vw, 8rem);
+  padding: clamp(8rem, 11vw, 12rem) clamp(2rem, 6vw, 8rem) clamp(5rem, 9vw, 11rem);
   align-items: center;
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
@@ -162,6 +81,53 @@
 
 .overviewSlideActive .overviewImg {
   transform: scale(1.06);
+}
+
+.overviewArrows {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  pointer-events: none;
+}
+
+.overviewArrow {
+  pointer-events: auto;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(5, 5, 5, 0.45);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #ffffff;
+  cursor: pointer;
+  opacity: 0.85;
+  transition: background 220ms ease, border-color 220ms ease, transform 220ms ease, opacity 220ms ease;
+}
+
+.overviewArrow:hover {
+  background: #057a02;
+  border-color: #057a02;
+  opacity: 1;
+  transform: scale(1.08);
+}
+
+.overviewArrow:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
+@media (max-width: 540px) {
+  .overviewArrow {
+    width: 38px;
+    height: 38px;
+  }
 }
 
 .overviewDots {
@@ -269,8 +235,8 @@
 }
 
 @media (max-width: 540px) {
-  .heroLChar {
-    font-size: clamp(2.4rem, 13vw, 4.5rem);
+  .title {
+    font-size: clamp(2rem, 10vw, 3rem);
   }
   .galleryGrid {
     grid-template-columns: 1fr;
