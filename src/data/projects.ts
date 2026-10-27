@@ -369,9 +369,9 @@ export const PROJECTS_DATA: ProjectData[] = [
     tagline: "A full-circle view of the event, from first idea to final applause.",
     tagline_ar: "رؤية شاملة للفعالية، من الفكرة الأولى حتى التصفيق الأخير.",
     overview:
-      "IEC 360 is an end-to-end event experience in which our team handled every touchpoint under one roof. From concept development and creative direction to on-site production and flawless operations, we delivered a cohesive experience that kept the brand story consistent at every angle.",
+      ".......................",
     overview_ar:
-      "آي إي سي 360 تجربة فعاليات متكاملة تولّى فريقنا فيها كل نقاط التواصل تحت مظلة واحدة. من تطوير الفكرة والإخراج الإبداعي إلى الإنتاج الميداني والتشغيل المتقن، قدمنا تجربة متماسكة حافظت على قصة العلامة التجارية في كل زاوية.",
+      ".......................",
     highlights: [
       "Concept development and creative direction",
       "Stage, booth and venue design and production",
